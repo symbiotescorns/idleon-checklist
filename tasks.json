@@ -6,23 +6,24 @@
             {
                 "type": "Daily",
                 "items": [
-                    "Wind Walker Top of the morning kills for medallions",
-                    "Daily Merit Tasks for each world",
-                    "Guilds daily GP tasks",
+                    "Daily [Top of the Mornin] kills on Wind Walker",
+                    "Daily Merit Tasks (At Least W1/W2)",
+                    "Guild's Daily GP tasks",
                     "Shop Vendors' goods",
-                    "Refinery Throttle on Squire",
-                    "Its Your Birthday! on Journeyman",
-                    "Printer Go Brrr on Maestro",
-                    "Void Trial Rerun (Speedrunning) on Voidwalker",
-                    "Cranium Cooking on Shaman",
-                    "Equinox"
+                    "[Refinery Throttle] on Squire",
+                    "[Its Your Birthday!] on Journeyman",
+                    "[Printer Go Brrr] on Maestro",
+                    "[Void Trial Rerun] (Speedrunning) on Voidwalker",
+                    "[Cranium Cooking] on Shaman",
+                    "No Stamp Left Behind: Max out stamps",
+                    "Boron: Daily atomized bubble levels"
                 ]
             },
             {
                 "type": "Weekly",
                 "items": [
-                    "Guilds weekly GP tasks",
-                    "Dungeons x20 Happy Hour",
+                    "Guild's weekly GP tasks",
+                    "Dungeon's x20 Happy Hour (+[Vacuous Tissue] Prayer)",
                     "Companions free pet follower"
                 ]
             }
@@ -41,7 +42,7 @@
                     "Baba Yaga (daily spawn)",
                     "Forest Villa Key from Dog Bone (NPC)",
                     "Dr Defecaus and Boop",
-                    "Spikes Minigame "
+                    "Hourly Spikes Minigame (\"if u love me let me go\")"
                 ]
             }
         ]
@@ -55,8 +56,9 @@
                 "items": [
                     "Arcade balls",
                     "Postboy Pablob's Post Office",
-                    "Alchemy vials, shop",
-                    "Aclhemy (gems, atmos, water)",
+                    "Alchemy: Unlock vials",
+                    "Alchemy: Gems from Shop",
+                    "Alchemy: Daily cost reduction",
                     "Colosseum Ticket from Centurion",
                     "Efaunt's Tomb Key from Djonnut",
                     "King Doot and Biggie Hours",
@@ -84,7 +86,8 @@
                     "Other town buildings include: Refinery and Library",
                     "Trapping manually or via Trapping Drone",
                     "Colosseum Ticket from Lonely Hunter",
-                    "Chizoar's Cavern Key from Bellows"
+                    "Chizoar's Cavern Key from Bellows",
+                    "Equinox"
                 ]
             },
             {
@@ -104,7 +107,10 @@
             {
                 "type": "Daily",
                 "items": [
-                    "Breeding eggs, spices, and fenceyard"
+                    "Breeding eggs and fenceyard",
+                    "Daily spice claims from Breeding",
+                    "Cooking meal using Kitchen table",
+                    "Ribbons from Cooking Menu"
                 ]
             },
             {
@@ -127,7 +133,8 @@
                     "Gaming",
                     "Nuggets",
                     "Snail",
-                    "Hole resources"
+                    "Villager EXP in Hole",
+                    "Study EXP in Hole"
                 ]
             },
             {
