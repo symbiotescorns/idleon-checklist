@@ -1,2 +1,0 @@
-# idleon-checklist
-Checklist
