@@ -35,13 +35,13 @@
             {
                 "type": "Daily",
                 "items": [
-                    "Picnic Stowaway daily quest line (Gems and Golden Food)",
+                    "Picnic Stowaway daily quest line",
                     "Smithing forge and anvil production",
                     "Colosseum Ticket from Typhoon",
                     "Baba Yaga (daily spawn)",
                     "Forest Villa Key from Dog Bone (NPC)",
                     "Dr Defecaus and Boop",
-                    "Spikes Minigame (type 'If u love me let me go' in game chat, only grants gems once a day)"
+                    "Spikes Minigame "
                 ]
             }
         ]
@@ -55,7 +55,8 @@
                 "items": [
                     "Arcade balls",
                     "Postboy Pablob's Post Office",
-                    "Alchemy vials, shop (Gems, Distilled and Dense Water, and Bargain Tag), sigils, and bubbles",
+                    "Alchemy vials, shop",
+                    "Aclhemy (gems, atmos, water)",
                     "Colosseum Ticket from Centurion",
                     "Efaunt's Tomb Key from Djonnut",
                     "King Doot and Biggie Hours",
@@ -123,7 +124,10 @@
                 "type": "Daily",
                 "items": [
                     "Sailing ships, treasures, and captain shop",
-                    "Gaming field, Little Sprinkler, Dirty Shovel, Autumn Squirrel, Elegant Seashell, Bog Log, Pong, and Snail"
+                    "Gaming",
+                    "Nuggets",
+                    "Snail",
+                    "Hole resources"
                 ]
             },
             {
@@ -150,7 +154,7 @@
             {
                 "type": "Weekly",
                 "items": [
-                    "Summoning familiars (white essence cost resets every 4 days)",
+                    "Summoning familiars",
                     "Demented Spiritlord miniboss"
                 ]
             }
