@@ -100,23 +100,23 @@ body.dark-mode .controls .button.toggle {
 
 .container {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex; /* Use flexbox for better alignment */
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    justify-content: center; /* Center the cards */
+    gap: 40px; /* Add spacing between cards */
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .card {
-    width: 400px; /* Increase card width */
-    margin: 40px auto; /* Center the card */
+    width: 400px; /* Fixed width for consistency */
+    margin: 20px; /* Add margin to prevent overlap */
     border-radius: 15px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
     background: linear-gradient(135deg, #f4f4f9, #e0e0e0); /* Gradient background */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
     position: relative; /* For positioning the image */
-    padding: 20px; /* Add padding inside the card */
     text-align: center; /* Center-align text */
 }
 
@@ -127,17 +127,15 @@ body.dark-mode .controls .button.toggle {
 
 .card .banner {
     width: 100%; /* Match the card width */
-    height: 200px; /* Fixed height for the image */
-    object-fit: cover; /* Ensure the image scales properly */
-    position: absolute; /* Position the image above the card */
-    top: -100px; /* Move the image above the card */
-    left: 0;
-    border-radius: 15px 15px 0 0; /* Rounded top corners */
-    z-index: 1; /* Ensure the image is above the card */
+    height: auto; /* Allow the image to maintain its aspect ratio */
+    max-height: 250px; /* Set a maximum height */
+    object-fit: contain; /* Ensure the full image is visible without cropping */
+    position: relative; /* Remove absolute positioning to avoid overlap */
+    border-bottom: 5px solid #e0e0e0; /* Add a subtle divider */
 }
 
 .card-content {
-    margin-top: 120px; /* Add space for the image */
+    margin-top: 20px; /* Add space between the image and content */
     background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
     border: 2px solid #ccc; /* Add a border around the content */
     border-radius: 15px; /* Match the card's rounded corners */

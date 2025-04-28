@@ -137,7 +137,17 @@ function loadTasks() {
 
                     taskGroup.items.forEach(task => {
                         const listItem = document.createElement('li');
-                        listItem.textContent = task;
+                        const label = document.createElement('label');
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.addEventListener('change', saveProgress);
+
+                        const span = document.createElement('span');
+                        span.textContent = task;
+
+                        label.appendChild(checkbox);
+                        label.appendChild(span);
+                        listItem.appendChild(label);
                         checklist.appendChild(listItem);
                     });
 
@@ -148,6 +158,8 @@ function loadTasks() {
                 card.appendChild(cardContent);
                 container.appendChild(card);
             });
+
+            loadProgress(); // Load saved checkbox states
         })
         .catch(error => console.error('Error loading tasks:', error));
 }
