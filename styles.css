@@ -350,11 +350,31 @@ body.dark-mode .completion-card {
     flex-direction: column; /* Stack content vertically */
     gap: 15px; /* Add spacing between elements */
     margin: 0 auto; /* Center the Personal Tasks section horizontally */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+}
+
+.personal-tasks:hover {
+    transform: scale(1.03); /* Enlarge the Personal Tasks box on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
 body.dark-mode .personal-tasks {
     background-color: #1e1e1e; /* Ensure the personal tasks card switches to dark mode */
     color: #ffffff; /* Ensure text inside the personal tasks card is white */
+}
+
+.personal-tasks .banner {
+    width: 100%; /* Full width of the card */
+    height: 32px; /* Maintain aspect ratio */
+    max-height: 200px; /* Limit the height */
+    object-fit: cover; /* Ensure the image scales properly */
+    object-position: left; /* Align the image to the left */
+    border-bottom: 2px solid #ccc; /* Add a subtle divider */
+    margin-bottom: 15px; /* Add spacing below the banner */
+}
+
+body.dark-mode .personal-tasks .banner {
+    border-bottom: 2px solid #333; /* Darken the divider in dark mode */
 }
 
 .personal-tasks ul {
@@ -364,6 +384,7 @@ body.dark-mode .personal-tasks {
 }
 
 .personal-tasks ul li {
+    font-size: 1rem; /* Ensure consistent font size across all tasks */
     transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
     padding: 5px;
     border-radius: 5px; /* Add rounded corners */
