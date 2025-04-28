@@ -349,6 +349,7 @@ body.dark-mode .completion-card {
     display: flex;
     flex-direction: column; /* Stack content vertically */
     gap: 15px; /* Add spacing between elements */
+    margin: 0 auto; /* Center the Personal Tasks section horizontally */
 }
 
 body.dark-mode .personal-tasks {
@@ -356,16 +357,58 @@ body.dark-mode .personal-tasks {
     color: #ffffff; /* Ensure text inside the personal tasks card is white */
 }
 
-.personal-tasks h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
 .personal-tasks ul {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.personal-tasks ul li {
+    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
+    padding: 5px;
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.personal-tasks ul li:hover {
+    transform: scale(1.05); /* Slightly enlarge the task */
+    background-color: #e0f7fa; /* Highlight the task with a light color */
+}
+
+body.dark-mode .personal-tasks ul li:hover {
+    background-color: #37474f; /* Highlight with a darker color in dark mode */
+}
+
+.personal-tasks ul li label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.personal-tasks ul li input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%; /* Match radio button style */
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.personal-tasks ul li input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    position: relative;
+}
+
+.personal-tasks ul li input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    left: 4px;
 }
 
 .personal-tasks ul li button {
