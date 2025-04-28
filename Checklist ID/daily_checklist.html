@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Checklist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Add spacing between task text and remove button */
+        #personal-tasks li button {
+            margin-left: 10px;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark-mode .card {
+            background-color: #1e1e1e;
+            border-color: #333333;
+        }
+
+        .dark-mode input[type="text"],
+        .dark-mode button {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Daily Checklist</h1>
+        <div class="controls">
+            <button class="button reset" onclick="resetCheckboxes()">Reset</button>
+            <button class="button toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        </div>
+        <input type="text" id="search-bar" placeholder="Search tasks..." oninput="filterTasks()">
+        <div id="progress-container">
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <span id="progress-text">0% Completed</span>
+        </div>
+    </header>
+    <div class="container">
+        <div class="card general">
+            <h2><span class="icon">🏆</span> General</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Wind Walker Top of the morning kills for medallions</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Daily Merit Tasks for each world</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Guilds daily GP tasks</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Shop Vendors' goods</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Refinery Throttle on Squire</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Its Your Birthday! on Journeyman</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Printer Go Brrr on Maestro</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Void Trial Rerun (Speedrunning) on Voidwalker</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Cranium Cooking on Shaman</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Equinox</span>
+                    </label>
+                </li>
+            </ul>
+            <h3>Weekly</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Guilds weekly GP tasks</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Dungeons x20 Happy Hour</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Companions free pet follower</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card world1">
+            <h2><span class="icon">🌳</span> World 1</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Picnic Stowaway daily quest line (Gems and Golden Food)</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Smithing forge and anvil production</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Colosseum Ticket from Typhoon</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Baba Yaga (daily spawn)</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Forest Villa Key from Dog Bone (NPC)</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Dr Defecaus and Boop</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Spikes Minigame (type "If u love me let me go" in game chat, only grants gems once a
+                            day)</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card world2">
+            <h2><span class="icon">🏖️</span> World 2</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Arcade balls</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Postboy Pablob's Post Office</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Alchemy vials, shop (Gems, Distilled and Dense Water, and Bargain Tag), sigils, and
+                            bubbles</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Colosseum Ticket from Centurion</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Efaunt's Tomb Key from Djonnut</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>King Doot and Biggie Hours</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Island Expeditions bottles, giant crystals, and trash</span>
+                    </label>
+                </li>
+            </ul>
+            <h3>Weekly</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Killroy's Slaughterhouse</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Island Expeditions (Rando island, Shimmer island)</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Weekly Battles</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card world3">
+            <h2><span class="icon">⛄</span> World 3</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Construction buildings, cogs, and flaggy</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Other town buildings include: Refinery and Library</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Trapping manually or via Trapping Drone</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Colosseum Ticket from Lonely Hunter</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Chizoar's Cavern Key from Bellows</span>
+                    </label>
+                </li>
+            </ul>
+            <h3>Weekly</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Worship souls / MSA</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Giant Monsters</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Dilapidated Slush miniboss</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card world4">
+            <h2><span class="icon">👾</span> World 4</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Breeding eggs, spices, and fenceyard</span>
+                    </label>
+                </li>
+            </ul>
+            <h3>Weekly</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Mutated Mush miniboss</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Laboratory Chip Repository and Jewel Spinner</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card world5">
+            <h2><span class="icon">🌋</span> World 5</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Sailing ships, treasures, and captain shop</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Gaming field, Little Sprinkler, Dirty Shovel, Autumn Squirrel, Elegant Seashell, Bog Log,
+                            Pong, and Snail</span>
+                    </label>
+                </li>
+            </ul>
+            <h3>Weekly</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Divinity 2 god unlinks</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Domeo Magmus miniboss</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card world6">
+            <h2><span class="icon">⛰️</span> World 6</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Farming crops and Crop Transfer Ticket</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Sneaking ninjas and Jade Emporium</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Summoning EXP and battles (3 daily attempts)</span>
+                    </label>
+                </li>
+            </ul>
+            <h3>Weekly</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Summoning familiars (white essence cost resets every 4 days)</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Demented Spiritlord miniboss</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card players">
+            <h2><span class="icon">🎮</span> Players</h2>
+            <h3>Daily</h3>
+            <ul class="checklist">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 1</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 2</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 3</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 4</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 5</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 6</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 7</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 8</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 9</span>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                        <span>Player 10</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="card personal">
+            <h2><span class="icon">📝</span> Personal Task</h2>
+            <button class="button add-task" onclick="addPersonalTask()">+</button>
+            <ul class="checklist" id="personal-tasks">
+                <!-- Personal tasks will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+    <footer>
+        Made by Zoro (symbiotescorns | IFA) - Dream supported by egoSumThan
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
