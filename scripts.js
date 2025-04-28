@@ -21,18 +21,9 @@ function toggleDarkMode() {
     localStorage.setItem("darkMode", JSON.stringify(body.classList.contains("dark-mode")));
 }
 
-function addPersonalTask() {
-    const taskText = prompt("Enter your task:");
-    if (taskText) {
-        const taskList = document.getElementById("personal-tasks");
-        const li = createTaskElement(taskText, false);
-        taskList.appendChild(li);
-        updateProgressBars(); // Update progress bar after adding a task
-    }
-}
-
-function createTaskElement(text, completed) {
+function createTaskElement(text, completed, isPersonal = false) {
     const li = document.createElement("li");
+    li.dataset.sectionId = ""; // Add a data attribute to store the section ID
     const label = document.createElement("label");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -52,21 +43,34 @@ function createTaskElement(text, completed) {
         hideTask(li, text);
     };
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "❌";
-    deleteButton.title = "Delete Task"; // Tooltip for better clarity
-    deleteButton.onclick = () => {
-        li.remove();
-        saveTasks();
-        updateProgressBars(); // Update progress bar after removing a task
-    };
-
     label.appendChild(checkbox);
     label.appendChild(span);
     li.appendChild(label);
     li.appendChild(hideButton); // Add the hide button
-    li.appendChild(deleteButton);
+
+    if (isPersonal) {
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "❌";
+        deleteButton.title = "Delete Task"; // Tooltip for better clarity
+        deleteButton.onclick = () => {
+            li.remove();
+            saveTasks();
+            updateProgressBars(); // Update progress bar after removing a task
+        };
+        li.appendChild(deleteButton); // Add the delete button only for personal tasks
+    }
+
     return li;
+}
+
+function addPersonalTask() {
+    const taskText = prompt("Enter your task:");
+    if (taskText) {
+        const taskList = document.getElementById("personal-tasks");
+        const li = createTaskElement(taskText, false, true); // Pass `true` for personal tasks
+        taskList.appendChild(li);
+        updateProgressBars(); // Update progress bar after adding a task
+    }
 }
 
 function hideTask(taskElement, text) {
@@ -77,7 +81,8 @@ function hideTask(taskElement, text) {
     const restoreButton = document.createElement("button");
     restoreButton.textContent = "↩️"; // Restore icon
     restoreButton.onclick = () => {
-        restoreTask(hiddenTask, text);
+        const originalSectionId = taskElement.dataset.sectionId; // Retrieve the original section ID
+        restoreTask(hiddenTask, text, originalSectionId);
     };
 
     hiddenTask.appendChild(restoreButton);
@@ -87,10 +92,14 @@ function hideTask(taskElement, text) {
     updateProgressBars(); // Update progress bar after hiding a task
 }
 
-function restoreTask(hiddenTaskElement, text) {
-    const generalContainer = document.getElementById("general-container");
-    const restoredTask = createTaskElement(text, false);
-    generalContainer.appendChild(restoredTask);
+function restoreTask(hiddenTaskElement, text, sectionId) {
+    const originalSection = document.getElementById(sectionId); // Use the section ID to find the original checklist
+    if (originalSection) {
+        const isPersonal = sectionId === "personal-tasks"; // Check if the task belongs to the personal section
+        const restoredTask = createTaskElement(text, false, isPersonal); // Pass `isPersonal` to control delete button
+        restoredTask.dataset.sectionId = sectionId; // Ensure the restored task retains its section ID
+        originalSection.appendChild(restoredTask);
+    }
 
     hiddenTaskElement.remove();
     updateProgressBars(); // Update progress bar after restoring a task
@@ -180,9 +189,11 @@ function loadTasks() {
 
                     const checklist = document.createElement('ul');
                     checklist.className = 'checklist';
+                    checklist.id = `${world.name.toLowerCase().replace(/\s+/g, '-')}-${taskGroup.type.toLowerCase().replace(/\s+/g, '-')}`;
 
                     taskGroup.items.forEach(task => {
                         const listItem = document.createElement('li');
+                        listItem.dataset.sectionId = checklist.id; // Store the section ID
                         const label = document.createElement('label');
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
