@@ -177,6 +177,27 @@ body.dark-mode .card:hover {
     left: 4px;
 }
 
+.search-bar {
+    width: 80%;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar::placeholder {
+    color: #999;
+    font-style: italic;
+    content: "Task search";
+}
+
+.search-bar:focus {
+    border-color: #4caf50;
+}
+
 footer {
     text-align: center;
     padding: 10px;
