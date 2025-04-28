@@ -255,9 +255,10 @@ function startTimer(timerId, minutes) {
 }
 
 function resetTimer(timerId, minutes) {
-    clearInterval(timerIntervals[timerId]);
+    clearInterval(timerIntervals[timerId]); // Clear the existing timer
     const timerElement = document.getElementById(timerId);
-    timerElement.textContent = `${String(minutes).padStart(2, '0')}:00`;
+    timerElement.textContent = `${String(minutes).padStart(2, '0')}:00`; // Reset the display
+    startTimer(timerId, minutes); // Restart the timer
 }
 
 function startCustomTimer() {
