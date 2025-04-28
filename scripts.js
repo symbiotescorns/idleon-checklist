@@ -116,6 +116,7 @@ function loadTasks() {
             data.forEach(world => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                if (world.name === 'General') card.classList.add('general-card');
 
                 const banner = document.createElement('img');
                 banner.src = world.banner;
@@ -143,7 +144,7 @@ function loadTasks() {
                         const label = document.createElement('label');
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
-                        checkbox.addEventListener('change', saveProgress);
+                        checkbox.addEventListener('change', updateProgressBars);
 
                         const span = document.createElement('span');
                         span.textContent = task;
@@ -200,6 +201,29 @@ function loadTasks() {
             });
 
             loadProgress();
+            updateProgressBars(); // Initialize progress bars
         })
         .catch(error => console.error('Error loading tasks:', error));
+}
+
+function updateProgressBars() {
+    const allCheckboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    const totalChecked = Array.from(allCheckboxes).filter(checkbox => checkbox.checked).length;
+    const totalCheckboxes = allCheckboxes.length;
+
+    const worlds = ['World 1', 'World 2', 'World 3', 'World 4', 'World 5', 'World 6'];
+    worlds.forEach((world, index) => {
+        const worldCheckboxes = document.querySelectorAll(`#worlds-container .card:nth-child(${index + 1}) .checklist input[type="checkbox"]`);
+        const worldChecked = Array.from(worldCheckboxes).filter(checkbox => checkbox.checked).length;
+        const worldProgress = document.getElementById(`world-${index + 1}-progress`);
+        worldProgress.style.width = `${(worldChecked / worldCheckboxes.length) * 100 || 0}%`;
+    });
+
+    const personalCheckboxes = document.querySelectorAll('#personal-tasks input[type="checkbox"]');
+    const personalChecked = Array.from(personalCheckboxes).filter(checkbox => checkbox.checked).length;
+    const personalProgress = document.getElementById('personal-progress');
+    personalProgress.style.width = `${(personalChecked / personalCheckboxes.length) * 100 || 0}%`;
+
+    const totalProgress = document.getElementById('total-progress');
+    totalProgress.style.width = `${(totalChecked / totalCheckboxes) * 100 || 0}%`;
 }

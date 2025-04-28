@@ -136,7 +136,7 @@ body.dark-mode .card:hover {
 
 .banner {
     width: 100%; /* Full width of the card */
-    height: 32px; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
     max-height: 200px; /* Limit the height */
     object-fit: cover; /* Ensure the image scales properly */
     border-bottom: 2px solid #ccc; /* Add a subtle divider */
@@ -263,15 +263,21 @@ footer {
 }
 
 .general-section .container {
-    width: 70%;
+    width: 70%; /* Ensure the General section takes 70% of the width */
+}
+
+.card.general-card {
+    width: 100%; /* Make the General card take the full width of its container */
+    margin: 0; /* Remove extra margins */
 }
 
 .completion-card {
-    width: 30%;
+    width: 25%; /* Adjust width to avoid touching the edge */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    text-align: left; /* Align content to the left */
 }
 
 .completion-card h3 {
@@ -303,7 +309,7 @@ footer {
 .progress-bar .bar .fill {
     height: 100%;
     background-color: #4caf50;
-    width: 0;
+    width: 0; /* Default width is 0, updated dynamically */
     transition: width 0.3s ease;
 }
 
