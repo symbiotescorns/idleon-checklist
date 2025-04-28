@@ -194,7 +194,7 @@ body.dark-mode .card-content ul li {
     width: 20px;
     height: 20px;
     border: 2px solid #ccc;
-    border-radius: 50%;
+    border-radius: 50%; /* Match radio button style */
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -263,7 +263,7 @@ footer {
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
-    align-items: flex-start; /* Align General and Progress Bar to the top */
+    align-items: flex-start; /* Align General and Completion sections to the top */
 }
 
 .general-section .container {
@@ -273,12 +273,12 @@ footer {
 .card.general-card {
     width: 100%; /* Ensure the General card takes the full width of its container */
     margin: 0; /* Remove extra margins */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
 }
 
 .card.general-card:hover {
-    transform: scale(1.1); /* Match hover effect with Worlds cards */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
+    transform: scale(1.03); /* Reduce hover scale to prevent going off-screen */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
 .completion-card {
@@ -291,6 +291,7 @@ footer {
     display: flex; /* Use flexbox for alignment */
     flex-direction: column; /* Stack progress bars vertically */
     gap: 15px; /* Add spacing between progress bars */
+    margin-top: 0; /* Align with General section */
 }
 
 .progress-bar {
@@ -382,7 +383,7 @@ body.dark-mode .personal-tasks {
 }
 
 .personal-tasks button {
-    margin-top: 10px;
+    margin: 20px auto 0; /* Center the button horizontally */
     padding: 10px 15px;
     background-color: #4caf50;
     color: #ffffff;
