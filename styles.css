@@ -100,38 +100,43 @@ body.dark-mode .controls .button.toggle {
 
 .container {
     flex: 1;
-    display: flex; /* Use flexbox for better alignment */
-    flex-wrap: wrap; /* Allow cards to wrap to the next row */
-    justify-content: center; /* Center the cards */
-    gap: 40px; /* Add spacing between cards */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .card {
-    width: 400px; /* Fixed width for consistency */
-    margin: 20px; /* Add margin to prevent overlap */
-    border-radius: 15px; /* Rounded corners */
-    overflow: hidden; /* Ensure content stays within the card */
-    background: linear-gradient(135deg, #f4f4f9, #e0e0e0); /* Gradient background */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-    position: relative; /* For positioning the image */
-    text-align: center; /* Center-align text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    transition: transform 0.3s, background-color 0.3s;
 }
 
 .card:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
-    transition: transform 0.3s;
+    transform: scale(1.02);
+    background-color: #f9f9f9;
 }
 
-.card .banner {
-    width: 100%; /* Match the card width */
-    height: auto; /* Allow the image to maintain its aspect ratio */
-    max-height: 250px; /* Set a maximum height */
-    object-fit: contain; /* Ensure the full image is visible without cropping */
-    position: relative; /* Remove absolute positioning to avoid overlap */
-    border-bottom: 5px solid #e0e0e0; /* Add a subtle divider */
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .card:hover {
+    background-color: #2a2a2a;
+}
+
+.banner {
+    width: 100%; /* Ensure it takes the full width of the card */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Ensure the image scales properly */
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .card-content {
