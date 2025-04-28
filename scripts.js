@@ -70,8 +70,11 @@ function saveTasks() {
 }
 
 function resetCheckboxes() {
-    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false; // Uncheck all checkboxes
+    });
     saveProgress();
+    updateProgressBars(); // Reset progress bars after unchecking all checkboxes
 }
 
 function filterTasks() {

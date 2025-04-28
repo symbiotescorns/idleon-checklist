@@ -192,10 +192,10 @@ body.dark-mode .card-content ul li {
 
 .checklist input[type="checkbox"] {
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 20px; /* Ensure consistent width */
+    height: 20px; /* Ensure consistent height */
     border: 2px solid #ccc;
-    border-radius: 50%; /* Match radio button style */
+    border-radius: 50%; /* Ensure perfect circle */
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
