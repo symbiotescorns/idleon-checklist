@@ -136,9 +136,10 @@ body.dark-mode .card:hover {
 
 .banner {
     width: 100%; /* Full width of the card */
-    height: auto; /* Maintain aspect ratio */
+    height: 32px; /* Maintain aspect ratio */
     max-height: 200px; /* Limit the height */
     object-fit: cover; /* Ensure the image scales properly */
+    object-position: left; /* Align the image to the left */
     border-bottom: 2px solid #ccc; /* Add a subtle divider */
 }
 
@@ -263,12 +264,18 @@ footer {
 }
 
 .general-section .container {
-    width: 70%; /* Ensure the General section takes 70% of the width */
+    width: 65%; /* Reduce the width slightly to align with the Completion card */
 }
 
 .card.general-card {
-    width: 100%; /* Make the General card take the full width of its container */
+    width: 100%; /* Ensure the General card takes the full width of its container */
     margin: 0; /* Remove extra margins */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+}
+
+.card.general-card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
 }
 
 .completion-card {
