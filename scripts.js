@@ -45,8 +45,16 @@ function createTaskElement(text, completed) {
     const span = document.createElement("span");
     span.textContent = text;
 
+    const hideButton = document.createElement("button");
+    hideButton.textContent = "👁️"; // Eye icon
+    hideButton.title = "Hide Task"; // Tooltip for better clarity
+    hideButton.onclick = () => {
+        hideTask(li, text);
+    };
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
+    deleteButton.title = "Delete Task"; // Tooltip for better clarity
     deleteButton.onclick = () => {
         li.remove();
         saveTasks();
@@ -56,8 +64,36 @@ function createTaskElement(text, completed) {
     label.appendChild(checkbox);
     label.appendChild(span);
     li.appendChild(label);
+    li.appendChild(hideButton); // Add the hide button
     li.appendChild(deleteButton);
     return li;
+}
+
+function hideTask(taskElement, text) {
+    const hiddenTasksList = document.getElementById("hidden-tasks");
+    const hiddenTask = document.createElement("li");
+    hiddenTask.textContent = text;
+
+    const restoreButton = document.createElement("button");
+    restoreButton.textContent = "↩️"; // Restore icon
+    restoreButton.onclick = () => {
+        restoreTask(hiddenTask, text);
+    };
+
+    hiddenTask.appendChild(restoreButton);
+    hiddenTasksList.appendChild(hiddenTask);
+
+    taskElement.remove();
+    updateProgressBars(); // Update progress bar after hiding a task
+}
+
+function restoreTask(hiddenTaskElement, text) {
+    const generalContainer = document.getElementById("general-container");
+    const restoredTask = createTaskElement(text, false);
+    generalContainer.appendChild(restoredTask);
+
+    hiddenTaskElement.remove();
+    updateProgressBars(); // Update progress bar after restoring a task
 }
 
 function saveTasks() {
@@ -155,9 +191,17 @@ function loadTasks() {
                         const span = document.createElement('span');
                         span.textContent = task;
 
+                        const hideButton = document.createElement('button');
+                        hideButton.textContent = "👁️"; // Eye icon
+                        hideButton.title = "Hide Task"; // Tooltip for clarity
+                        hideButton.onclick = () => {
+                            hideTask(listItem, task);
+                        };
+
                         label.appendChild(checkbox);
                         label.appendChild(span);
                         listItem.appendChild(label);
+                        listItem.appendChild(hideButton); // Add the hide button
                         checklist.appendChild(listItem);
                     });
 

@@ -186,8 +186,8 @@ body.dark-mode .card-content ul li {
 .checklist label {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    gap: 10px;
+    gap: 10px; /* Add spacing between checkbox and text */
+    flex-grow: 1; /* Ensure the label takes available space */
 }
 
 .checklist input[type="checkbox"] {
@@ -217,9 +217,12 @@ body.dark-mode .card-content ul li {
 }
 
 .checklist li {
-    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align all elements */
+    justify-content: space-between; /* Space out task text and buttons */
     padding: 5px;
-    border-radius: 5px; /* Add rounded corners */
+    border-radius: 5px;
+    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
 }
 
 .checklist li:hover {
@@ -229,6 +232,21 @@ body.dark-mode .card-content ul li {
 
 body.dark-mode .checklist li:hover {
     background-color: #37474f; /* Highlight with a darker color in dark mode */
+}
+
+.checklist li button {
+    margin-left: 10px; /* Add spacing between buttons */
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.checklist li button:hover {
+    transform: scale(1.2); /* Slightly enlarge the button on hover */
+    color: #f30606; /* Highlight the button on hover */
 }
 
 .search-bar {
@@ -535,6 +553,61 @@ body.dark-mode .timer-column {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+}
+
+.hidden-tasks {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 600px;
+}
+
+body.dark-mode .hidden-tasks {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.hidden-tasks h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hidden-tasks ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hidden-tasks ul li {
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.dark-mode .hidden-tasks ul li {
+    background-color: #2a2a2a;
+}
+
+.hidden-tasks ul li button {
+    background: none;
+    border: none;
+    color: #f30606;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.hidden-tasks ul li button:hover {
+    transform: scale(1.2);
 }
 
 @media (max-width: 1024px) {
