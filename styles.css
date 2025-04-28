@@ -272,9 +272,77 @@ body.dark-mode .checklist li:hover {
 
 footer {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     font-size: 0.9rem;
     color: #666;
+    background-color: #f4f4f9;
+    border-top: 1px solid #ccc;
+}
+
+footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.credits-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.credits-section {
+    text-align: left;
+}
+
+.credits-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.credits-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.credits-section ul li {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.credits-section ul li i {
+    color: #4caf50; /* Icon color */
+    font-size: 1.2rem;
+}
+
+body.dark-mode footer {
+    background-color: #121212;
+    color: #ffffff;
+    border-top: 1px solid #333;
+}
+
+body.dark-mode footer h3,
+body.dark-mode .credits-section h4 {
+    color: #ffffff;
+}
+
+body.dark-mode .credits-section ul li {
+    color: #ffffff;
+}
+
+body.dark-mode .credits-section ul li i {
+    color: #27ae60; /* Adjust icon color for dark mode */
 }
 
 .general-section {
