@@ -1,7 +1,7 @@
 [
     {
         "name": "General",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
@@ -30,7 +30,7 @@
     },
     {
         "name": "World 1",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
