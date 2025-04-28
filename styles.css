@@ -133,8 +133,9 @@ body.dark-mode .card:hover {
 
 .banner {
     width: 100%; /* Ensure it takes the full width of the card */
-    height: 200px; /* Fixed height */
-    object-fit: cover; /* Ensure the image scales properly */
+    height: auto; /* Allow the image to maintain its aspect ratio */
+    max-height: 150px; /* Set a maximum height to prevent oversized images */
+    object-fit: contain; /* Ensure the full image is visible without cropping */
     border-radius: 10px;
     margin-bottom: 15px;
 }
@@ -144,7 +145,8 @@ body.dark-mode .card:hover {
     background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
     border: 2px solid #ccc; /* Add a border around the content */
     border-radius: 15px; /* Match the card's rounded corners */
-    padding: 20px; /* Add padding inside the content box */
+    padding: 10px; /* Add padding for the task content */
+    text-align: left; /* Align tasks to the left */
     z-index: 2; /* Ensure content is above the image */
     position: relative; /* For proper stacking */
 }

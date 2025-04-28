@@ -119,9 +119,47 @@ function loadTasks() {
                 banner.alt = `${world.name} Banner`;
                 banner.className = 'banner';
 
+                const cardContent = document.createElement('div');
+                cardContent.className = 'card-content';
+
+                const title = document.createElement('h3');
+                title.textContent = world.name;
+
+                cardContent.appendChild(title);
+
+                world.tasks.forEach(taskGroup => {
+                    const groupTitle = document.createElement('h4');
+                    groupTitle.textContent = taskGroup.type;
+                    cardContent.appendChild(groupTitle);
+
+                    const checklist = document.createElement('ul');
+                    checklist.className = 'checklist';
+
+                    taskGroup.items.forEach(task => {
+                        const listItem = document.createElement('li');
+                        const label = document.createElement('label');
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.addEventListener('change', saveProgress);
+
+                        const span = document.createElement('span');
+                        span.textContent = task;
+
+                        label.appendChild(checkbox);
+                        label.appendChild(span);
+                        listItem.appendChild(label);
+                        checklist.appendChild(listItem);
+                    });
+
+                    cardContent.appendChild(checklist);
+                });
+
                 card.appendChild(banner);
+                card.appendChild(cardContent);
                 container.appendChild(card);
             });
+
+            loadProgress(); // Load saved checkbox states
         })
         .catch(error => console.error('Error loading tasks:', error));
 }
