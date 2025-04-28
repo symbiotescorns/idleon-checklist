@@ -133,8 +133,8 @@ body.dark-mode .card:hover {
 
 .banner {
     width: 100%; /* Ensure it takes the full width of the card */
-    height: 200px; /* Increase the height */
-    object-fit: cover; /* Ensure the image scales properly without distortion */
+    height: auto; /* Adjust height dynamically to maintain aspect ratio */
+    object-fit: contain; /* Ensure the full image is displayed without cropping */
     border-radius: 10px;
     margin-bottom: 15px;
 }
