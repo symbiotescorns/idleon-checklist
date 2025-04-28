@@ -27,7 +27,7 @@ function addPersonalTask() {
         const taskList = document.getElementById("personal-tasks");
         const li = createTaskElement(taskText, false);
         taskList.appendChild(li);
-        saveTasks();
+        updateProgressBars(); // Update progress bar after adding a task
     }
 }
 
@@ -37,17 +37,20 @@ function createTaskElement(text, completed) {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = completed;
-    checkbox.onchange = saveTasks;
+    checkbox.addEventListener('change', () => {
+        saveTasks();
+        updateProgressBars(); // Update progress bar on checkbox change
+    });
 
     const span = document.createElement("span");
     span.textContent = text;
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
-    deleteButton.style.marginLeft = "10px";
     deleteButton.onclick = () => {
         li.remove();
         saveTasks();
+        updateProgressBars(); // Update progress bar after removing a task
     };
 
     label.appendChild(checkbox);
