@@ -14,6 +14,7 @@ body.dark-mode {
     background-color: #121212;
     color: #ffffff;
     transition: background-color 0.5s, color 0.5s;
+    font-weight: bold; /* Make all text bold in dark mode */
 }
 
 header {
@@ -125,7 +126,8 @@ body.dark-mode .controls .button.toggle {
 }
 
 body.dark-mode .card {
-    background-color: #1e1e1e;
+    background-color: #1e1e1e; /* Ensure the card switches to dark mode color */
+    color: #ffffff; /* Ensure text inside the card is white */
     border-color: #333333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
@@ -155,7 +157,7 @@ body.dark-mode .card:hover {
 }
 
 body.dark-mode .card-content h3 {
-    color: #ffffff;
+    color: #ffffff; /* Ensure text inside card content is white */
 }
 
 .card-content ul {
@@ -171,7 +173,7 @@ body.dark-mode .card-content h3 {
 }
 
 body.dark-mode .card-content ul li {
-    color: #cccccc;
+    color: #ffffff; /* Ensure text inside card content is white */
 }
 
 .checklist {
@@ -286,6 +288,41 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: left; /* Align content to the left */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack progress bars vertically */
+    gap: 15px; /* Add spacing between progress bars */
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: column; /* Ensure label and bar are stacked */
+}
+
+.progress-bar span {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.progress-bar .bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar .bar .fill {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0; /* Default width is 0, updated dynamically */
+    transition: width 0.3s ease;
+}
+
+body.dark-mode .completion-card {
+    background-color: #1e1e1e; /* Ensure the completion card switches to dark mode */
+    color: #ffffff; /* Ensure text inside the completion card is white */
 }
 
 .worlds-section {
@@ -294,6 +331,7 @@ footer {
     gap: 20px;
     padding: 20px;
     flex-wrap: wrap; /* Ensure responsiveness */
+    align-items: flex-start; /* Align items to the top */
 }
 
 .worlds-section .container {
@@ -307,6 +345,14 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: left; /* Align content to the left */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    gap: 15px; /* Add spacing between elements */
+}
+
+body.dark-mode .personal-tasks {
+    background-color: #1e1e1e; /* Ensure the personal tasks card switches to dark mode */
+    color: #ffffff; /* Ensure text inside the personal tasks card is white */
 }
 
 .personal-tasks h3 {
@@ -334,6 +380,14 @@ footer {
 
 .personal-tasks button:hover {
     background-color: #45a049;
+}
+
+body.dark-mode .progress-bar .bar {
+    background-color: #333333; /* Darken the progress bar background */
+}
+
+body.dark-mode .progress-bar .bar .fill {
+    background-color: #4caf50; /* Keep the fill color consistent */
 }
 
 @media (max-width: 768px) {
