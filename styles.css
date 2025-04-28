@@ -136,7 +136,7 @@ body.dark-mode .card:hover {
 
 .banner {
     width: 100%; /* Full width of the card */
-    height: auto; /* Maintain aspect ratio */
+    height: 20%; /* Maintain aspect ratio */
     max-height: 200px; /* Limit the height */
     object-fit: cover; /* Ensure the image scales properly */
     border-bottom: 2px solid #ccc; /* Add a subtle divider */
@@ -210,6 +210,21 @@ body.dark-mode .card-content ul li {
     position: absolute;
     top: 2px;
     left: 4px;
+}
+
+.checklist li {
+    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
+    padding: 5px;
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.checklist li:hover {
+    transform: scale(1.05); /* Slightly enlarge the task */
+    background-color: #e0f7fa; /* Highlight the task with a light color */
+}
+
+body.dark-mode .checklist li:hover {
+    background-color: #37474f; /* Highlight with a darker color in dark mode */
 }
 
 .search-bar {
