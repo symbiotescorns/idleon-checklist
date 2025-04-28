@@ -20,6 +20,33 @@
             </button>
         </div>
     </header>
+    <div class="timers-section">
+        <div class="timer-column">
+            <h3>20-Minute Timer</h3>
+            <p id="timer-20">20:00</p>
+            <div class="button-group">
+                <button onclick="startTimer('timer-20', 20)">Start</button>
+                <button onclick="resetTimer('timer-20', 20)">Reset</button>
+            </div>
+        </div>
+        <div class="timer-column">
+            <h3>1-Hour Timer</h3>
+            <p id="timer-60">60:00</p>
+            <div class="button-group">
+                <button onclick="startTimer('timer-60', 60)">Start</button>
+                <button onclick="resetTimer('timer-60', 60)">Reset</button>
+            </div>
+        </div>
+        <div class="timer-column">
+            <h3>Custom Timer</h3>
+            <input type="number" id="custom-timer-input" placeholder="Minutes" min="1">
+            <p id="timer-custom">00:00</p>
+            <div class="button-group">
+                <button onclick="startCustomTimer()">Start</button>
+                <button onclick="resetCustomTimer()">Reset</button>
+            </div>
+        </div>
+    </div>
     <div class="general-section">
         <div class="container" id="general-container">
             <!-- General tasks will be dynamically loaded here -->

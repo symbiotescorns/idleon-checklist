@@ -233,3 +233,45 @@ function updateProgressBars() {
     const totalProgress = document.getElementById('total-progress');
     totalProgress.style.width = `${(totalChecked / totalCheckboxes) * 100 || 0}%`;
 }
+
+let timerIntervals = {};
+
+function startTimer(timerId, minutes) {
+    const timerElement = document.getElementById(timerId);
+    let timeRemaining = minutes * 60;
+
+    clearInterval(timerIntervals[timerId]); // Clear any existing timer
+    timerIntervals[timerId] = setInterval(() => {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        timeRemaining--;
+
+        if (timeRemaining < 0) {
+            clearInterval(timerIntervals[timerId]);
+            alert(`${timerId.replace('timer-', '')}-Minute Timer Finished!`);
+        }
+    }, 1000);
+}
+
+function resetTimer(timerId, minutes) {
+    clearInterval(timerIntervals[timerId]);
+    const timerElement = document.getElementById(timerId);
+    timerElement.textContent = `${String(minutes).padStart(2, '0')}:00`;
+}
+
+function startCustomTimer() {
+    const input = document.getElementById('custom-timer-input');
+    const minutes = parseInt(input.value, 10);
+    if (isNaN(minutes) || minutes <= 0) {
+        alert('Please enter a valid number of minutes.');
+        return;
+    }
+    startTimer('timer-custom', minutes);
+}
+
+function resetCustomTimer() {
+    resetTimer('timer-custom', 0);
+    document.getElementById('timer-custom').textContent = '00:00';
+    document.getElementById('custom-timer-input').value = '';
+}
