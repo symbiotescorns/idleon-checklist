@@ -277,16 +277,22 @@ function updateProgressBars() {
         const worldCheckboxes = document.querySelectorAll(`#worlds-container .card:nth-child(${index + 1}) .checklist input[type="checkbox"]`);
         const worldChecked = Array.from(worldCheckboxes).filter(checkbox => checkbox.checked).length;
         const worldProgress = document.getElementById(`world-${index + 1}-progress`);
-        worldProgress.style.width = `${(worldChecked / worldCheckboxes.length) * 100 || 0}%`;
+        const progressPercentage = (worldChecked / worldCheckboxes.length) * 100 || 0;
+        worldProgress.style.width = `${progressPercentage}%`;
+        worldProgress.classList.toggle('glow', progressPercentage === 100); // Add glow if 100%
     });
 
     const personalCheckboxes = document.querySelectorAll('#personal-tasks input[type="checkbox"]');
     const personalChecked = Array.from(personalCheckboxes).filter(checkbox => checkbox.checked).length;
     const personalProgress = document.getElementById('personal-progress');
-    personalProgress.style.width = `${(personalChecked / personalCheckboxes.length) * 100 || 0}%`;
+    const personalPercentage = (personalChecked / personalCheckboxes.length) * 100 || 0;
+    personalProgress.style.width = `${personalPercentage}%`;
+    personalProgress.classList.toggle('glow', personalPercentage === 100); // Add glow if 100%
 
     const totalProgress = document.getElementById('total-progress');
-    totalProgress.style.width = `${(totalChecked / totalCheckboxes) * 100 || 0}%`;
+    const totalPercentage = (totalChecked / totalCheckboxes) * 100 || 0;
+    totalProgress.style.width = `${totalPercentage}%`;
+    totalProgress.classList.toggle('glow', totalPercentage === 100); // Add glow if 100%
 }
 
 let timerIntervals = {};

@@ -336,9 +336,44 @@ footer {
 
 .progress-bar .bar .fill {
     height: 100%;
-    background-color: #4caf50;
     width: 0; /* Default width is 0, updated dynamically */
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+}
+
+#total-progress {
+    background-image: linear-gradient(to right, rgba(4, 70, 4, 0), rgb(5, 101, 5));
+}
+
+#world-1-progress {
+    background-color: #0cf533; /* Blue */
+}
+
+#world-2-progress {
+    background-color: #C2B280; /* Orange */
+}
+
+#world-3-progress {
+    background-color: #899cf0; /* Purple */
+}
+
+#world-4-progress {
+    background-color: #800080; /* Pink */
+}
+
+#world-5-progress {
+    background-color: #CF1020; /* Cyan */
+}
+
+#world-6-progress {
+    background-color: #6df347; /* Yellow */
+}
+
+#personal-progress {
+    background-color: #795548; /* Brown */
+}
+
+.progress-bar .bar .fill.glow {
+    box-shadow: 0 0 15px 5px currentColor; /* Glow effect */
 }
 
 body.dark-mode .completion-card {
