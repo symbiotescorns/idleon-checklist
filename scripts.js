@@ -72,7 +72,7 @@ function resetCheckboxes() {
 }
 
 function filterTasks() {
-    const query = document.getElementById('search-bar').value.toLowerCase();
+    const query = document.querySelector('.search-bar').value.toLowerCase(); // Fixed selector
     document.querySelectorAll('.checklist li').forEach(task => {
         task.style.display = task.textContent.toLowerCase().includes(query) ? '' : 'none';
     });
