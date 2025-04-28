@@ -261,10 +261,11 @@ footer {
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
+    flex-wrap: wrap; /* Ensure responsiveness */
 }
 
 .general-section .container {
-    width: 65%; /* Reduce the width slightly to align with the Completion card */
+    width: 65%; /* Adjust width for better alignment */
 }
 
 .card.general-card {
@@ -279,7 +280,7 @@ footer {
 }
 
 .completion-card {
-    width: 25%; /* Adjust width to avoid touching the edge */
+    width: 30%; /* Adjust width for better alignment */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -287,50 +288,25 @@ footer {
     text-align: left; /* Align content to the left */
 }
 
-.completion-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.progress-bar {
-    margin-bottom: 15px;
-}
-
-.progress-bar span {
-    display: block;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    color: #666;
-}
-
-.progress-bar .bar {
-    width: 100%;
-    height: 20px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-bar .bar .fill {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0; /* Default width is 0, updated dynamically */
-    transition: width 0.3s ease;
-}
-
 .worlds-section {
-    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     padding: 20px;
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.worlds-section .container {
+    width: 65%; /* Align with the General section */
 }
 
 .personal-tasks {
-    margin-top: 20px;
+    width: 30%; /* Align with the Completion card */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    text-align: left; /* Align content to the left */
 }
 
 .personal-tasks h3 {
@@ -358,4 +334,15 @@ footer {
 
 .personal-tasks button:hover {
     background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .general-section, .worlds-section {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+    }
+
+    .general-section .container, .completion-card,
+    .worlds-section .container, .personal-tasks {
+        width: 100%; /* Full width for smaller screens */
+    }
 }
