@@ -109,49 +109,46 @@ body.dark-mode .controls .button.toggle {
 }
 
 .card {
-    display: flex; /* Align content in a column */
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 15px; /* Match Figma rounded corners */
+    width: 400px; /* Increase card width */
+    margin: 40px auto; /* Center the card */
+    border-radius: 15px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
-    padding: 0; /* Remove padding for a cleaner look */
-    margin: 20px;
-    transition: transform 0.3s, background-color 0.3s;
-    background-color: #ffffff; /* Ensure a clean background */
-}
-
-.card:hover {
-    transform: scale(1.02);
-    background-color: #f9f9f9;
-}
-
-body.dark-mode .card {
-    background-color: #1e1e1e;
-    border-color: #333333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode .card:hover {
-    background-color: #2a2a2a;
-}
-
-.banner {
-    width: 100%; /* Full width of the card */
-    height: 250px; /* Match Figma height */
-    object-fit: cover; /* Ensure the image scales properly */
-    border-bottom: 5px solid #e0e0e0; /* Add a subtle divider */
-}
-
-.card-content {
-    padding: 20px; /* Add padding for the text content */
+    background: linear-gradient(135deg, #f4f4f9, #e0e0e0); /* Gradient background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    position: relative; /* For positioning the image */
+    padding: 20px; /* Add padding inside the card */
     text-align: center; /* Center-align text */
 }
 
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    transition: transform 0.3s;
+}
+
+.card .banner {
+    width: 100%; /* Match the card width */
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover; /* Ensure the image scales properly */
+    position: absolute; /* Position the image above the card */
+    top: -100px; /* Move the image above the card */
+    left: 0;
+    border-radius: 15px 15px 0 0; /* Rounded top corners */
+    z-index: 1; /* Ensure the image is above the card */
+}
+
+.card-content {
+    margin-top: 120px; /* Add space for the image */
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border: 2px solid #ccc; /* Add a border around the content */
+    border-radius: 15px; /* Match the card's rounded corners */
+    padding: 20px; /* Add padding inside the content box */
+    z-index: 2; /* Ensure content is above the image */
+    position: relative; /* For proper stacking */
+}
+
 .card-content h3 {
-    font-size: 1.5rem; /* Match Figma font size */
-    margin-bottom: 10px;
+    font-size: 1.8rem; /* Larger font size for the title */
+    margin-bottom: 15px;
     color: #333;
 }
 
