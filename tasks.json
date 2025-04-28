@@ -1,0 +1,159 @@
+[
+    {
+        "name": "General",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Wind Walker Top of the morning kills for medallions",
+                    "Daily Merit Tasks for each world",
+                    "Guilds daily GP tasks",
+                    "Shop Vendors' goods",
+                    "Refinery Throttle on Squire",
+                    "Its Your Birthday! on Journeyman",
+                    "Printer Go Brrr on Maestro",
+                    "Void Trial Rerun (Speedrunning) on Voidwalker",
+                    "Cranium Cooking on Shaman",
+                    "Equinox"
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Guilds weekly GP tasks",
+                    "Dungeons x20 Happy Hour",
+                    "Companions free pet follower"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 1",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Picnic Stowaway daily quest line (Gems and Golden Food)",
+                    "Smithing forge and anvil production",
+                    "Colosseum Ticket from Typhoon",
+                    "Baba Yaga (daily spawn)",
+                    "Forest Villa Key from Dog Bone (NPC)",
+                    "Dr Defecaus and Boop",
+                    "Spikes Minigame (type 'If u love me let me go' in game chat, only grants gems once a day)"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 2",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Arcade balls",
+                    "Postboy Pablob's Post Office",
+                    "Alchemy vials, shop (Gems, Distilled and Dense Water, and Bargain Tag), sigils, and bubbles",
+                    "Colosseum Ticket from Centurion",
+                    "Efaunt's Tomb Key from Djonnut",
+                    "King Doot and Biggie Hours",
+                    "Island Expeditions bottles, giant crystals, and trash"
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Killroy's Slaughterhouse",
+                    "Island Expeditions (Rando island, Shimmer island)",
+                    "Weekly Battles"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 3",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Construction buildings, cogs, and flaggy",
+                    "Other town buildings include: Refinery and Library",
+                    "Trapping manually or via Trapping Drone",
+                    "Colosseum Ticket from Lonely Hunter",
+                    "Chizoar's Cavern Key from Bellows"
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Worship souls / MSA",
+                    "Giant Monsters",
+                    "Dilapidated Slush miniboss"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 4",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Breeding eggs, spices, and fenceyard"
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Mutated Mush miniboss",
+                    "Laboratory Chip Repository and Jewel Spinner"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 5",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Sailing ships, treasures, and captain shop",
+                    "Gaming field, Little Sprinkler, Dirty Shovel, Autumn Squirrel, Elegant Seashell, Bog Log, Pong, and Snail"
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Divinity 2 god unlinks",
+                    "Domeo Magmus miniboss"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 6",
+        "banner": "../assets/BH-header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Farming crops and Crop Transfer Ticket",
+                    "Sneaking ninjas and Jade Emporium",
+                    "Summoning EXP and battles (3 daily attempts)"
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Summoning familiars (white essence cost resets every 4 days)",
+                    "Demented Spiritlord miniboss"
+                ]
+            }
+        ]
+    }
+]

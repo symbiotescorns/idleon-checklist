@@ -1,0 +1,185 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1e1e2f;
+    color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid;
+    border-image: linear-gradient(to right, red, white, red) 1;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+header .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .controls .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    width: 60px;
+    height: 42px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+header .controls .button.reset:hover {
+    background-color: #d90404;
+    transform: scale(1.05);
+}
+
+header .controls .button.toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+header .controls .button.toggle:hover {
+    transform: scale(1.2);
+}
+
+body.dark-mode header {
+    background-color: #121212;
+    border-bottom: 2px solid #27ae60;
+}
+
+body.dark-mode .controls .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+}
+
+body.dark-mode .controls .button.reset:hover {
+    background-color: #d90404;
+}
+
+body.dark-mode .controls .button.toggle {
+    color: #ffffff;
+}
+
+.container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    background-color: #f9f9f9;
+}
+
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .card:hover {
+    background-color: #2a2a2a;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checklist label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.checklist input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checklist input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    position: relative;
+}
+
+.checklist input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    left: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
