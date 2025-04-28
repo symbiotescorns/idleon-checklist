@@ -136,7 +136,7 @@ body.dark-mode .card:hover {
 
 .banner {
     width: 100%; /* Full width of the card */
-    height: 20%; /* Maintain aspect ratio */
+    height: 32px; /* Maintain aspect ratio */
     max-height: 200px; /* Limit the height */
     object-fit: cover; /* Ensure the image scales properly */
     border-bottom: 2px solid #ccc; /* Add a subtle divider */
@@ -253,4 +253,96 @@ footer {
     padding: 10px;
     font-size: 0.9rem;
     color: #666;
+}
+
+.general-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.general-section .container {
+    width: 70%;
+}
+
+.completion-card {
+    width: 30%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.completion-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.progress-bar {
+    margin-bottom: 15px;
+}
+
+.progress-bar span {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.progress-bar .bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar .bar .fill {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.worlds-section {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.personal-tasks {
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.personal-tasks h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.personal-tasks ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.personal-tasks button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.personal-tasks button:hover {
+    background-color: #45a049;
 }

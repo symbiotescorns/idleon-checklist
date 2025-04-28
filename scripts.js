@@ -101,7 +101,7 @@ function setupCollapsibleSections() {
 }
 
 function loadTasks() {
-    fetch('./tasks.json') // Ensure the correct relative path to tasks.json
+    fetch('./tasks.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -109,7 +109,10 @@ function loadTasks() {
             return response.json();
         })
         .then(data => {
-            const container = document.getElementById('task-container');
+            const generalContainer = document.getElementById('general-container');
+            const worldsContainer = document.getElementById('worlds-container');
+            const completionCard = document.querySelector('.completion-card');
+
             data.forEach(world => {
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -156,10 +159,47 @@ function loadTasks() {
 
                 card.appendChild(banner);
                 card.appendChild(cardContent);
-                container.appendChild(card);
+
+                if (world.name === 'General') {
+                    generalContainer.appendChild(card);
+                } else {
+                    worldsContainer.appendChild(card);
+                }
             });
 
-            loadProgress(); // Load saved checkbox states
+            // Add progress bars
+            const progressBars = [
+                { label: 'Total', id: 'total-progress' },
+                { label: 'World 1', id: 'world-1-progress' },
+                { label: 'World 2', id: 'world-2-progress' },
+                { label: 'World 3', id: 'world-3-progress' },
+                { label: 'World 4', id: 'world-4-progress' },
+                { label: 'World 5', id: 'world-5-progress' },
+                { label: 'World 6', id: 'world-6-progress' },
+                { label: 'Personal', id: 'personal-progress' }
+            ];
+
+            progressBars.forEach(bar => {
+                const progressBar = document.createElement('div');
+                progressBar.className = 'progress-bar';
+
+                const label = document.createElement('span');
+                label.textContent = bar.label;
+
+                const barContainer = document.createElement('div');
+                barContainer.className = 'bar';
+
+                const fill = document.createElement('div');
+                fill.className = 'fill';
+                fill.id = bar.id;
+
+                barContainer.appendChild(fill);
+                progressBar.appendChild(label);
+                progressBar.appendChild(barContainer);
+                completionCard.appendChild(progressBar);
+            });
+
+            loadProgress();
         })
         .catch(error => console.error('Error loading tasks:', error));
 }
