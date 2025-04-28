@@ -99,26 +99,29 @@ body.dark-mode .controls .button.toggle {
 }
 
 .container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    justify-content: center; /* Center the cards */
+    gap: 20px; /* Add spacing between cards */
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    transition: transform 0.3s, background-color 0.3s;
+    width: 300px; /* Fixed width for consistency */
+    margin: 20px; /* Add margin to prevent overlap */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure content stays within the card */
+    background-color: #ffffff; /* White background for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+    text-align: center; /* Center-align text */
 }
 
 .card:hover {
-    transform: scale(1.02);
-    background-color: #f9f9f9;
+    transform: scale(1.1); /* Enlarge the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
 }
 
 body.dark-mode .card {
@@ -132,28 +135,21 @@ body.dark-mode .card:hover {
 }
 
 .banner {
-    width: 100%; /* Ensure it takes the full width of the card */
-    height: auto; /* Allow the image to maintain its aspect ratio */
-    max-height: 150px; /* Set a maximum height to prevent oversized images */
-    object-fit: contain; /* Ensure the full image is visible without cropping */
-    border-radius: 10px;
-    margin-bottom: 15px;
+    width: 100%; /* Full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 200px; /* Limit the height */
+    object-fit: cover; /* Ensure the image scales properly */
+    border-bottom: 2px solid #ccc; /* Add a subtle divider */
 }
 
 .card-content {
-    margin-top: 20px; /* Add space between the image and content */
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
-    border: 2px solid #ccc; /* Add a border around the content */
-    border-radius: 15px; /* Match the card's rounded corners */
-    padding: 10px; /* Add padding for the task content */
+    padding: 15px; /* Add padding for the task content */
     text-align: left; /* Align tasks to the left */
-    z-index: 2; /* Ensure content is above the image */
-    position: relative; /* For proper stacking */
 }
 
 .card-content h3 {
-    font-size: 1.8rem; /* Larger font size for the title */
-    margin-bottom: 15px;
+    font-size: 1.5rem; /* Adjust font size for the title */
+    margin-bottom: 10px;
     color: #333;
 }
 
