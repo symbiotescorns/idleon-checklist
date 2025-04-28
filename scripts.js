@@ -272,7 +272,11 @@ function startCustomTimer() {
 }
 
 function resetCustomTimer() {
-    resetTimer('timer-custom', 0);
-    document.getElementById('timer-custom').textContent = '00:00';
-    document.getElementById('custom-timer-input').value = '';
+    const input = document.getElementById('custom-timer-input');
+    const minutes = parseInt(input.value, 10) || 0; // Use the current input value or default to 0
+    if (minutes > 0) {
+        resetTimer('timer-custom', minutes); // Restart the timer with the current input value
+    } else {
+        alert('Please enter a valid number of minutes to reset the timer.');
+    }
 }
