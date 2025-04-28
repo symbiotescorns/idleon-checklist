@@ -1,7 +1,7 @@
 [
     {
         "name": "General",
-        "banner": "idleon-checklist/assests/Frame 12 1.png",
+        "banner": "./assets/Frame_12_1.png",
         "tasks": [
             {
                 "type": "Daily",
@@ -48,7 +48,7 @@
     },
     {
         "name": "World 2",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
@@ -74,7 +74,7 @@
     },
     {
         "name": "World 3",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
@@ -98,7 +98,7 @@
     },
     {
         "name": "World 4",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
@@ -117,7 +117,7 @@
     },
     {
         "name": "World 5",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
@@ -137,7 +137,7 @@
     },
     {
         "name": "World 6",
-        "banner": "./assets/BH-header.png",
+        "banner": "./assets/BH_header.png",
         "tasks": [
             {
                 "type": "Daily",
