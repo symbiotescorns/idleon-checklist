@@ -111,7 +111,7 @@ body.dark-mode .controls .button.toggle {
 }
 
 .card {
-    width: 300px; /* Fixed width for consistency */
+    flex: 1 1 calc(33.333% - 40px); /* Responsive width: 3 cards per row with spacing */
     margin: 20px; /* Add margin to prevent overlap */
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
@@ -122,7 +122,7 @@ body.dark-mode .controls .button.toggle {
 }
 
 .card:hover {
-    transform: scale(1.1); /* Enlarge the card on hover */
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
 }
 
@@ -259,7 +259,7 @@ footer {
     color: #666;
 }
 
-.general-section {
+general-section {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -278,12 +278,13 @@ footer {
 }
 
 .card.general-card:hover {
-    transform: scale(1.03); /* Reduce hover scale to prevent going off-screen */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    transform: scale(1.02); /* Reduce hover scale to prevent tasks from going outside */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
 .completion-card {
-    width: 30%; /* Adjust width for better alignment */
+    flex: 1 1 calc(33.333% - 40px); /* Align with other cards */
+    margin: 20px auto; /* Center the Completion section horizontally */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -341,7 +342,8 @@ body.dark-mode .completion-card {
 }
 
 .personal-tasks {
-    width: 30%; /* Align with the Completion card */
+    flex: 1 1 calc(33.333% - 40px); /* Align with other cards */
+    margin: 20px auto; /* Center the Personal Tasks section horizontally */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -350,7 +352,6 @@ body.dark-mode .completion-card {
     display: flex;
     flex-direction: column; /* Stack content vertically */
     gap: 15px; /* Add spacing between elements */
-    margin: 0 auto; /* Center the Personal Tasks section horizontally */
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
 }
 
@@ -470,7 +471,17 @@ body.dark-mode .progress-bar .bar .fill {
     background-color: #4caf50; /* Keep the fill color consistent */
 }
 
+@media (max-width: 1024px) {
+    .card {
+        flex: 1 1 calc(50% - 40px); /* 2 cards per row on medium screens */
+    }
+}
+
 @media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(100% - 40px); /* 1 card per row on small screens */
+    }
+
     .general-section, .worlds-section {
         flex-direction: column; /* Stack sections vertically on smaller screens */
     }
