@@ -55,36 +55,36 @@
             <div class="container" id="general-container">
                 <!-- General tasks will be dynamically loaded here -->
             </div>
-        </div>
-        <div class="right-section">
-            <div class="completion-card card">
-                <div class="card-inner">
-                    <div class="banner-wrapper">
-                        <img src="./assets/banners/complete.png" alt="Completion Banner" class="banner">
-                    </div>
-                    <div class="card-content">
-                        <!-- Progress bars will be dynamically loaded here -->
-                        <div id="progress-bars-container">
-                            <!-- Progress bars will be dynamically added here -->
+            <div class="right-section">
+                <div class="completion-card card">
+                    <div class="card-inner">
+                        <div class="banner-wrapper">
+                            <img src="./assets/banners/complete.png" alt="Completion Banner" class="banner">
                         </div>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="reset-card card">
-                <div class="card-inner">
-                    <div class="banner-wrapper">
-                        <img src="./assets/banners/reset.png" alt="Reset Banner" class="banner">
-                    </div>
-                    <div class="card-content">
-                        <div class="reset-actions">
-                            <div class="column">
-                                <p>Daily</p>
-                                <button class="button reset" onclick="resetCheckboxes('Daily')">RESET</button>
+                        <div class="card-content">
+                            <!-- Progress bars will be dynamically loaded here -->
+                            <div id="progress-bars-container">
+                                <!-- Progress bars will be dynamically added here -->
                             </div>
-                            <div class="column">
-                                <p>Weekly</p>
-                                <button class="button reset" onclick="resetCheckboxes('Weekly')">RESET</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="reset-card card">
+                    <div class="card-inner">
+                        <div class="banner-wrapper">
+                            <img src="./assets/banners/reset.png" alt="Reset Banner" class="banner">
+                        </div>
+                        <div class="card-content">
+                            <div class="reset-actions">
+                                <div class="column">
+                                    <p>Daily</p>
+                                    <button class="button reset" onclick="resetCheckboxes('Daily')">RESET</button>
+                                </div>
+                                <div class="column">
+                                    <p>Weekly</p>
+                                    <button class="button reset" onclick="resetCheckboxes('Weekly')">RESET</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,9 @@
         </div>
         <div class="personal-tasks card">
             <div class="card-inner">
-                <img src="./assets/banners/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
+                <div class="banner-wrapper">
+                    <img src="./assets/banners/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
+                </div>
                 <h3>Personal Tasks</h3>
                 <ul id="personal-tasks"></ul>
                 <button onclick="addPersonalTask()">Add Task</button>

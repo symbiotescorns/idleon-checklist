@@ -119,7 +119,10 @@ header .controls .button.toggle:hover {
     height: 100%;
     object-fit: scale-down;
     object-position: left; /* Align the image to the left */
-    border-bottom: 2px solid #ccc; /* Add a subtle divider */
+}
+
+.banner-wrapper {
+    border-bottom: 2px solid #ccc;
 }
 
 .card-content {
@@ -414,14 +417,19 @@ footer h3 {
     color: #ffffff; /* Ensure text inside the personal tasks card is white */
 }
 
-.personal-tasks .banner {
-    width: 100%; /* Full width of the card */
-    height: 32px; /* Maintain aspect ratio */
-    max-height: 200px; /* Limit the height */
-    object-fit: cover; /* Ensure the image scales properly */
-    object-position: left; /* Align the image to the left */
-    border-bottom: 2px solid #333; /* Darken the divider in dark mode */
-    margin-bottom: 15px; /* Add spacing below the banner */
+/* .personal-tasks .banner {
+    width: 100%;
+    height: 32px; 
+    max-height: 200px; 
+    object-fit: cover; 
+    object-position: left; 
+    border-bottom: 2px solid #333; 
+    margin-bottom: 15px;
+} */
+
+.person-tasks .banner-wrapper {
+    border-bottom: 2px solid #333;
+    margin-bottom: 15px;
 }
 
 .personal-tasks ul {
@@ -871,13 +879,18 @@ footer h3 {
     margin-top: 20px;
 }
 
-.reset-card .banner {
+.reset-card .banner-wrapper {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+}
+
+/* .reset-card .banner {
     width: 100%;
     height: 32px;
     object-fit: cover;
     border-bottom: 2px solid #333;
     margin-bottom: 15px;
-}
+} */
 
 .reset-card .card-content {
     padding: 15px;
