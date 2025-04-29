@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    loadHiddenTasks();
+    loadPersonalTasks();
 });
 
 function toggleDarkMode() {
@@ -89,6 +92,7 @@ function hideTask(taskElement, text) {
     hiddenTasksList.appendChild(hiddenTask);
 
     taskElement.remove();
+    saveHiddenTasks(); // Save hidden tasks
     updateProgressBars(); // Update progress bar after hiding a task
 }
 
@@ -102,6 +106,7 @@ function restoreTask(hiddenTaskElement, text, sectionId) {
     }
 
     hiddenTaskElement.remove();
+    saveHiddenTasks(); // Save hidden tasks
     updateProgressBars(); // Update progress bar after restoring a task
 }
 
@@ -299,6 +304,7 @@ let timerIntervals = {};
 
 function startTimer(timerId, minutes) {
     const timerElement = document.getElementById(timerId);
+    const startButton = document.querySelector(`[onclick="startTimer('${timerId}', ${minutes})"]`);
     let timeRemaining = minutes * 60;
 
     clearInterval(timerIntervals[timerId]); // Clear any existing timer
@@ -313,6 +319,9 @@ function startTimer(timerId, minutes) {
             alert(`${timerId.replace('timer-', '')}-Minute Timer Finished!`);
         }
     }, 1000);
+
+    // Change the button label to "Restart"
+    startButton.textContent = "Restart";
 }
 
 function resetTimer(timerId, minutes) {
@@ -340,4 +349,45 @@ function resetCustomTimer() {
     } else {
         alert('Please enter a valid number of minutes to reset the timer.');
     }
+}
+
+function saveHiddenTasks() {
+    const hiddenTasks = Array.from(document.getElementById("hidden-tasks").children).map(li => li.textContent.replace("↩️", "").trim());
+    localStorage.setItem("hiddenTasks", JSON.stringify(hiddenTasks));
+}
+
+function loadHiddenTasks() {
+    const hiddenTasks = JSON.parse(localStorage.getItem("hiddenTasks") || "[]");
+    const hiddenTasksList = document.getElementById("hidden-tasks");
+    hiddenTasks.forEach(text => {
+        const hiddenTask = document.createElement("li");
+        hiddenTask.textContent = text;
+
+        const restoreButton = document.createElement("button");
+        restoreButton.textContent = "↩️"; // Restore icon
+        restoreButton.onclick = () => {
+            restoreTask(hiddenTask, text, ""); // Section ID will be empty for now
+        };
+
+        hiddenTask.appendChild(restoreButton);
+        hiddenTasksList.appendChild(hiddenTask);
+    });
+}
+
+function savePersonalTasks() {
+    const personalTasks = Array.from(document.getElementById("personal-tasks").children).map(li => {
+        const checkbox = li.querySelector("input[type='checkbox']");
+        const span = li.querySelector("span");
+        return { text: span.textContent, completed: checkbox.checked };
+    });
+    localStorage.setItem("personalTasks", JSON.stringify(personalTasks));
+}
+
+function loadPersonalTasks() {
+    const personalTasks = JSON.parse(localStorage.getItem("personalTasks") || "[]");
+    const personalTasksList = document.getElementById("personal-tasks");
+    personalTasks.forEach(task => {
+        const li = createTaskElement(task.text, task.completed, true);
+        personalTasksList.appendChild(li);
+    });
 }
