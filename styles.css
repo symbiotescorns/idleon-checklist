@@ -105,20 +105,19 @@ body.dark-mode .controls .button.toggle {
     flex-wrap: wrap; /* Allow cards to wrap to the next row */
     justify-content: center; /* Center the cards */
     gap: 20px; /* Add spacing between cards */
-    padding: 20px;
-    max-width: 1200px;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .card {
-    flex: 1 1 calc(33.333% - 40px); /* Responsive width: 3 cards per row with spacing */
-    margin: 20px; /* Add margin to prevent overlap */
+    flex: 1 1 calc(33.333% - 20px); /* Responsive width: 3 cards per row with spacing */
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
     background-color: #ffffff; /* White background for the card */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
     text-align: center; /* Center-align text */
+    box-sizing: border-box;
 }
 
 .card:hover {
@@ -195,7 +194,7 @@ body.dark-mode .card-content ul li {
     width: 20px; /* Ensure consistent width */
     height: 20px; /* Ensure consistent height */
     border: 2px solid #ccc;
-    border-radius: 50%; /* Ensure perfect circle */
+    border-radius: 5px;
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -212,8 +211,9 @@ body.dark-mode .card-content ul li {
     color: white;
     font-size: 14px;
     position: absolute;
-    top: 2px;
-    left: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .checklist li {
@@ -350,12 +350,12 @@ body.dark-mode .credits-section ul li i {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding: 20px;
     align-items: flex-start; /* Align General and Completion sections to the top */
 }
 
 .general-section .container {
-    width: 65%; /* Adjust width for better alignment */
+    width: calc((100% - 40px) * 2 / 3 + 20px); /* 2 gaps go 20px = 40px - align to timer section */
+    padding: 0;
 }
 
 .card.general-card {
@@ -381,6 +381,7 @@ body.dark-mode .credits-section ul li i {
     flex-direction: column; /* Stack progress bars vertically */
     gap: 15px; /* Add spacing between progress bars */
     margin-top: 0; /* Align with General section */
+    box-sizing: border-box;
 }
 
 .progress-bar {
@@ -454,13 +455,9 @@ body.dark-mode .completion-card {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding: 20px;
     flex-wrap: wrap; /* Ensure responsiveness */
     align-items: flex-start; /* Align items to the top */
-}
-
-.worlds-section .container {
-    width: 65%; /* Align with the General section */
+    margin-top: 20px;
 }
 
 .personal-tasks {
@@ -594,15 +591,18 @@ body.dark-mode .progress-bar .bar .fill {
     background-color: #4caf50; /* Keep the fill color consistent */
 }
 
+.layout-container {
+    padding: 20px;
+}
+
 .timers-section {
     display: flex;
     justify-content: space-between;
-    gap: 15px; /* Reduce gap between columns */
-    padding: 15px; /* Reduce padding */
+    gap: 20px; /* Reduce gap between columns */
+    padding: 20px; /* Reduce padding */
     background-color: #ffffff;
     border-radius: 8px; /* Slightly smaller border radius */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    margin-bottom: 15px; /* Reduce margin below */
 }
 
 body.dark-mode .timers-section {
@@ -713,6 +713,23 @@ body.dark-mode .hidden-tasks ul li {
 
 .hidden-tasks ul li button:hover {
     transform: scale(1.2);
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo .logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.header-logo .header-title-image {
+    height: 75px;
+    object-fit: contain;
 }
 
 @media (max-width: 1024px) {

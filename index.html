@@ -7,11 +7,15 @@
     <title>Daily Checklist</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="./assets/site/logo.png" type="image/png">
 </head>
 
 <body>
     <header>
-        <h1>Daily Checklist</h1>
+        <div class="header-logo">
+            <img src="./assets/site/logo.png" alt="Logo" class="logo">
+            <img src="./assets/site/DailyCheckList.png" alt="Daily Checklist" class="header-title-image">
+        </div>
         <input type="text" class="search-bar" placeholder="Task search" oninput="filterTasks()">
         <div class="controls">
             <button class="button reset" onclick="resetCheckboxes()">RESET</button>
@@ -44,28 +48,30 @@
             </div>
         </div>
     </div>
-    <div class="general-section">
-        <div class="container" id="general-container">
-            <!-- General tasks will be dynamically loaded here -->
+    <div class="layout-container">
+        <div class="general-section">
+            <div class="container" id="general-container">
+                <!-- General tasks will be dynamically loaded here -->
+            </div>
+            <div class="completion-card">
+                <!-- Progress bars will be dynamically loaded here -->
+            </div>
         </div>
-        <div class="completion-card">
-            <!-- Progress bars will be dynamically loaded here -->
+        <div class="worlds-section">
+            <div class="container" id="worlds-container">
+                <!-- Worlds tasks will be dynamically loaded here -->
+            </div>
+            <div class="personal-tasks">
+                <img src="./assets/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
+                <h3>Personal Tasks</h3>
+                <ul id="personal-tasks"></ul>
+                <button onclick="addPersonalTask()">Add Task</button>
+            </div>
         </div>
-    </div>
-    <div class="worlds-section">
-        <div class="container" id="worlds-container">
-            <!-- Worlds tasks will be dynamically loaded here -->
+        <div class="hidden-tasks">
+            <h3>Hidden Tasks</h3>
+            <ul id="hidden-tasks"></ul>
         </div>
-        <div class="personal-tasks">
-            <img src="./assets/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
-            <h3>Personal Tasks</h3>
-            <ul id="personal-tasks"></ul>
-            <button onclick="addPersonalTask()">Add Task</button>
-        </div>
-    </div>
-    <div class="hidden-tasks">
-        <h3>Hidden Tasks</h3>
-        <ul id="hidden-tasks"></ul>
     </div>
     <footer>
         <h3>Credits</h3>
