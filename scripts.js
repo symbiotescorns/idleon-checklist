@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const isDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
-    if (isDarkMode) document.body.classList.add("dark-mode");
-
+    // Removed dark mode toggle logic
     loadTasks();
     setupCollapsibleSections();
     document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
@@ -18,11 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadPersonalTasks();
 });
 
-function toggleDarkMode() {
-    const body = document.body;
-    body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", JSON.stringify(body.classList.contains("dark-mode")));
-}
+// Removed toggleDarkMode function
 
 function createTaskElement(text, completed, isPersonal = false) {
     const li = document.createElement("li");
@@ -40,8 +34,12 @@ function createTaskElement(text, completed, isPersonal = false) {
     span.textContent = text;
 
     const hideButton = document.createElement("button");
-    hideButton.textContent = "👁️"; // Eye icon
-    hideButton.title = "Hide Task"; // Tooltip for better clarity
+    const hideImage = document.createElement("img");
+    hideImage.src = "./assets/site/Vector 2.png"; // Use the eye icon image
+    hideImage.alt = "Hide Icon";
+    hideImage.style.width = "20px"; // Adjust size as needed
+    hideImage.style.height = "20px";
+    hideButton.appendChild(hideImage);
     hideButton.onclick = () => {
         hideTask(li, text);
     };
@@ -82,7 +80,12 @@ function hideTask(taskElement, text) {
     hiddenTask.textContent = text;
 
     const restoreButton = document.createElement("button");
-    restoreButton.textContent = "↩️"; // Restore icon
+    const restoreImage = document.createElement("img");
+    restoreImage.src = "./assets/site/111 1.png"; // Use the return icon image
+    restoreImage.alt = "Restore Icon";
+    restoreImage.style.width = "20px"; // Adjust size as needed
+    restoreImage.style.height = "20px";
+    restoreButton.appendChild(restoreImage);
     restoreButton.onclick = () => {
         const originalSectionId = taskElement.dataset.sectionId; // Retrieve the original section ID
         restoreTask(hiddenTask, text, originalSectionId);
@@ -214,8 +217,12 @@ function loadTasks() {
                         span.textContent = task;
 
                         const hideButton = document.createElement('button');
-                        hideButton.textContent = "👁️"; // Eye icon
-                        hideButton.title = "Hide Task"; // Tooltip for clarity
+                        const hideImage = document.createElement("img");
+                        hideImage.src = "./assets/site/Vector 2.png"; // Use the eye icon image
+                        hideImage.alt = "Hide Icon";
+                        hideImage.style.width = "20px"; // Adjust size as needed
+                        hideImage.style.height = "20px";
+                        hideButton.appendChild(hideImage);
                         hideButton.onclick = () => {
                             hideTask(listItem, task);
                         };
@@ -372,7 +379,12 @@ function loadHiddenTasks() {
         hiddenTask.textContent = text;
 
         const restoreButton = document.createElement("button");
-        restoreButton.textContent = "↩️"; // Restore icon
+        const restoreImage = document.createElement("img");
+        restoreImage.src = "./assets/site/111 1.png"; // Use the return icon image
+        restoreImage.alt = "Restore Icon";
+        restoreImage.style.width = "20px"; // Adjust size as needed
+        restoreImage.style.height = "20px";
+        restoreButton.appendChild(restoreImage);
         restoreButton.onclick = () => {
             restoreTask(hiddenTask, text, ""); // Section ID will be empty for now
         };

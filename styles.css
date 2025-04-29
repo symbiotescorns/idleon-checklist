@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121212; /* Default to dark mode */
+    color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,23 +10,15 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-    transition: background-color 0.5s, color 0.5s;
-    font-weight: bold; /* Make all text bold in dark mode */
-}
-
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1e1e2f;
+    background-color: #121212;
     color: #ffffff;
     padding: 15px 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-bottom: 5px solid;
-    border-image: linear-gradient(to right, red, white, red) 1;
+    border-bottom: 2px solid #27ae60;
 }
 
 header h1 {
@@ -82,24 +74,6 @@ header .controls .button.toggle:hover {
     transform: scale(1.2);
 }
 
-body.dark-mode header {
-    background-color: #121212;
-    border-bottom: 2px solid #27ae60;
-}
-
-body.dark-mode .controls .button.reset {
-    background-color: #f30606;
-    color: #ffffff;
-}
-
-body.dark-mode .controls .button.reset:hover {
-    background-color: #d90404;
-}
-
-body.dark-mode .controls .button.toggle {
-    color: #ffffff;
-}
-
 .container {
     display: flex; /* Use flexbox for alignment */
     flex-wrap: wrap; /* Allow cards to wrap to the next row */
@@ -114,35 +88,23 @@ body.dark-mode .controls .button.toggle {
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
     
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
     text-align: center; /* Center-align text */
     box-sizing: border-box;
 }
 
 .card-inner {
-    background-color: #ffffff; /* White background for the card */
+    background-color: #1e1e1e; /* Ensure the card switches to dark mode color */
     height: 100%;
     border-radius: inherit;
     overflow: hidden;
+    color: #ffffff; /* Ensure text inside the card is white */
 }
 
 .card:hover {
     transform: scale(1.05); /* Slightly enlarge the card on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
-}
-
-body.dark-mode .card {
-    /* border-color: #333333; */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode .card-inner {
-    background-color: #1e1e1e; /* Ensure the card switches to dark mode color */
-    color: #ffffff; /* Ensure text inside the card is white */
-}
-
-body.dark-mode .card:hover {
     background-color: #2a2a2a;
 }
 
@@ -163,10 +125,6 @@ body.dark-mode .card:hover {
 .card-content h3 {
     font-size: 1.5rem; /* Adjust font size for the title */
     margin-bottom: 10px;
-    color: #333;
-}
-
-body.dark-mode .card-content h3 {
     color: #ffffff; /* Ensure text inside card content is white */
 }
 
@@ -179,10 +137,6 @@ body.dark-mode .card-content h3 {
 .card-content ul li {
     font-size: 1rem; /* Match Figma font size */
     margin: 5px 0;
-    color: #666;
-}
-
-body.dark-mode .card-content ul li {
     color: #ffffff; /* Ensure text inside card content is white */
 }
 
@@ -238,11 +192,6 @@ body.dark-mode .card-content ul li {
 }
 
 .checklist li:hover {
-    background-color: #e0f7fa; /* Keep the highlight effect */
-    transform: none; /* Remove the enlarging effect */
-}
-
-body.dark-mode .checklist li:hover {
     background-color: #37474f; /* Keep the highlight effect in dark mode */
     transform: none; /* Remove the enlarging effect */
 }
@@ -287,36 +236,24 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 0.9rem;
-    color: #666;
-    background-color: #f4f4f9;
-    border-top: 1px solid #ccc;
+    color: #ffffff;
+    background-color: #121212;
+    border-top: 1px solid #333;
 }
 
 footer h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #333;
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-
-body.dark-mode footer {
-    background-color: #121212;
-    color: #ffffff;
-    border-top: 1px solid #333;
-}
-
-body.dark-mode footer h3,
-body.dark-mode .credits-section h4 {
+.credits-section ul li {
     color: #ffffff;
 }
 
-body.dark-mode .credits-section ul li {
-    color: #ffffff;
-}
-
-body.dark-mode .credits-section ul li i {
+.credits-section ul li i {
     color: #27ae60; /* Adjust icon color for dark mode */
 }
 
@@ -352,6 +289,8 @@ body.dark-mode .credits-section ul li i {
     /* Remove redundant styles since it now uses the card structure */
     margin-top: 0; /* Align with General section */
     box-sizing: border-box;
+    background-color: #1e1e1e; /* Ensure the completion card switches to dark mode */
+    color: #ffffff; /* Ensure text inside the completion card is white */
 }
 
 .progress-bar {
@@ -368,7 +307,7 @@ body.dark-mode .credits-section ul li i {
 .progress-bar .bar {
     width: 100%;
     height: 20px;
-    background-color: #e0e0e0;
+    background-color: #333333; /* Darken the progress bar background */
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -378,6 +317,7 @@ body.dark-mode .credits-section ul li i {
     height: 100%;
     width: 0; /* Default width is 0, updated dynamically */
     transition: width 0.3s ease, box-shadow 0.3s ease;
+    background-color: #4caf50; /* Keep the fill color consistent */
 }
 
 #total-progress {
@@ -416,11 +356,6 @@ body.dark-mode .credits-section ul li i {
     box-shadow: 0 0 15px 5px currentColor; /* Glow effect */
 }
 
-body.dark-mode .completion-card {
-    background-color: #1e1e1e; /* Ensure the completion card switches to dark mode */
-    color: #ffffff; /* Ensure text inside the completion card is white */
-}
-
 .worlds-section {
     display: flex;
     justify-content: space-between;
@@ -433,9 +368,6 @@ body.dark-mode .completion-card {
 .personal-tasks {
     /* Remove redundant styles since it now uses the card structure */
     margin: 20px auto; /* Center the Personal Tasks section horizontally */
-}
-
-body.dark-mode .personal-tasks {
     background-color: #1e1e1e; /* Ensure the personal tasks card switches to dark mode */
     color: #ffffff; /* Ensure text inside the personal tasks card is white */
 }
@@ -446,12 +378,8 @@ body.dark-mode .personal-tasks {
     max-height: 200px; /* Limit the height */
     object-fit: cover; /* Ensure the image scales properly */
     object-position: left; /* Align the image to the left */
-    border-bottom: 2px solid #ccc; /* Add a subtle divider */
-    margin-bottom: 15px; /* Add spacing below the banner */
-}
-
-body.dark-mode .personal-tasks .banner {
     border-bottom: 2px solid #333; /* Darken the divider in dark mode */
+    margin-bottom: 15px; /* Add spacing below the banner */
 }
 
 .personal-tasks ul {
@@ -465,14 +393,10 @@ body.dark-mode .personal-tasks .banner {
     transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
     padding: 5px;
     border-radius: 5px; /* Add rounded corners */
+    background-color: #2a2a2a;
 }
 
 .personal-tasks ul li:hover {
-    background-color: #e0f7fa; /* Keep the highlight effect */
-    transform: none; /* Remove the enlarging effect */
-}
-
-body.dark-mode .personal-tasks ul li:hover {
     background-color: #37474f; /* Keep the highlight effect in dark mode */
     transform: none; /* Remove the enlarging effect */
 }
@@ -539,14 +463,6 @@ body.dark-mode .personal-tasks ul li:hover {
     background-color: #45a049;
 }
 
-body.dark-mode .progress-bar .bar {
-    background-color: #333333; /* Darken the progress bar background */
-}
-
-body.dark-mode .progress-bar .bar .fill {
-    background-color: #4caf50; /* Keep the fill color consistent */
-}
-
 .layout-container {
     padding: 20px;
 }
@@ -556,13 +472,9 @@ body.dark-mode .progress-bar .bar .fill {
     justify-content: space-between;
     gap: 20px; /* Reduce gap between columns */
     padding: 20px; /* Reduce padding */
-    background-color: #ffffff;
+    background-color: #1e1e1e;
     border-radius: 8px; /* Slightly smaller border radius */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-body.dark-mode .timers-section {
-    background-color: #1e1e1e;
     color: #ffffff;
 }
 
@@ -571,12 +483,8 @@ body.dark-mode .timers-section {
     text-align: center;
     padding: 8px; /* Reduce padding */
     border-radius: 8px; /* Slightly smaller border radius */
-    background-color: #f9f9f9;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-body.dark-mode .timer-column {
     background-color: #2a2a2a;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .timer-column h3 {
@@ -619,15 +527,11 @@ body.dark-mode .timer-column {
 .hidden-tasks {
     margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #1e1e1e;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
     max-width: 600px;
-}
-
-body.dark-mode .hidden-tasks {
-    background-color: #1e1e1e;
     color: #ffffff;
 }
 
@@ -648,14 +552,10 @@ body.dark-mode .hidden-tasks {
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 5px;
-    background-color: #f9f9f9;
+    background-color: #2a2a2a;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-body.dark-mode .hidden-tasks ul li {
-    background-color: #2a2a2a;
 }
 
 .hidden-tasks ul li button {
@@ -723,13 +623,9 @@ body.dark-mode .hidden-tasks ul li {
     justify-content: space-between;
     margin-top: 20px;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #2a2a2a;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .completion-actions {
-    background-color: #2a2a2a;
 }
 
 .completion-actions .column {
@@ -771,14 +667,10 @@ body.dark-mode .completion-actions {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #2a2a2a;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap; /* Ensure responsiveness */
-}
-
-body.dark-mode .completion-card .completion-actions {
-    background-color: #2a2a2a;
 }
 
 .completion-card .completion-actions .column {
@@ -824,14 +716,10 @@ body.dark-mode .completion-card .completion-actions {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #2a2a2a;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap; /* Ensure responsiveness */
-}
-
-body.dark-mode .completion-card .completion-actions {
-    background-color: #2a2a2a;
 }
 
 .completion-card .completion-actions .column {
@@ -867,4 +755,29 @@ body.dark-mode .completion-card .completion-actions {
 
 .completion-card .completion-actions .button.placeholder:hover {
     background-color: #45a049;
+}
+
+.image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.image-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-button:hover {
+    transform: scale(1.1);
 }
