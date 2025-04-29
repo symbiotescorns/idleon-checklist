@@ -33,6 +33,7 @@ header .controls {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 20px; /* Add spacing between the search bar and the controls */
 }
 
 header .controls .button.reset {
@@ -331,12 +332,16 @@ footer h3 {
 .progress-bar {
     display: flex;
     flex-direction: column; /* Ensure label and bar are stacked */
+    align-items: left; /* Align label and bar vertically */
+    gap: 5px; /* Add spacing between the label and the bar */
 }
 
 .progress-bar span {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 5px;
     color: #666;
+    flex-shrink: 0; /* Prevent the label from shrinking */
+    text-align: left; /* Align text to the left */
 }
 
 .progress-bar .bar {
@@ -346,6 +351,8 @@ footer h3 {
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    flex-grow: 1; /* Allow the bar to take up remaining space */
+    height: 10px; /* Slimmer height for the progress bar */
 }
 
 .progress-bar .bar .fill {
@@ -356,35 +363,35 @@ footer h3 {
 }
 
 #total-progress {
-    background-image: linear-gradient(to right, rgba(4, 70, 4, 0), rgb(5, 101, 5));
+    background: linear-gradient(to right, transparent, #00FBFF); 
 }
 
 #world-1-progress {
-    background-color: #0cf533; 
+    background: linear-gradient(to right, transparent, #54BD3C); 
 }
 
 #world-2-progress {
-    background-color: #C2B280; 
+    background: linear-gradient(to right, transparent, #F4EA97); 
 }
 
 #world-3-progress {
-    background-color: #899cf0; 
+    background: linear-gradient(to right, transparent, #78C2EA); 
 }
 
 #world-4-progress {
-    background-color: #800080; 
+    background: linear-gradient(to right, transparent, #8C34CA);  
 }
 
 #world-5-progress {
-    background-color: #CF1020;
+    background: linear-gradient(to right, transparent, #C28772); 
 }
 
 #world-6-progress {
-    background-color: #6df347; 
+    background: linear-gradient(to right, transparent, #B4E04F); 
 }
 
 #personal-progress {
-    background-color: #745584;
+    background: linear-gradient(to right, transparent, #00a2ff); 
 }
 
 .progress-bar .bar .fill.glow {
@@ -857,12 +864,79 @@ footer h3 {
 }
 
 .reset-card {
-    margin-top: 20px;
-    padding: 20px;
     background-color: #1e1e1e;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-top: 20px;
+}
+
+.reset-card .banner {
+    width: 100%;
+    height: 32px;
+    object-fit: cover;
+    border-bottom: 2px solid #333;
+    margin-bottom: 15px;
+}
+
+.reset-card .card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.reset-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.reset-actions .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.reset-actions .column p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.reset-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-actions .button.reset:hover {
+    background-color: #d90404;
+    transform: scale(1.05);
+}
+
+.reset-section {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.reset-section .banner {
+    width: 100%;
+    height: 32px;
+    object-fit: cover;
+    border-bottom: 2px solid #333;
+    margin-bottom: 15px;
 }
 
 .reset-actions {
@@ -906,4 +980,9 @@ footer h3 {
 .reset-section {
     margin-top: 20px;
     padding: 20px;
+}
+
+.reset-card .card-content {
+    padding: 15px; /* Add padding to align with other sections */
+    text-align: center; /* Center-align the content */
 }

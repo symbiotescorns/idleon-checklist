@@ -122,9 +122,13 @@ function saveTasks() {
     localStorage.setItem("personalTasks", JSON.stringify(tasks));
 }
 
-function resetCheckboxes() {
-    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false; // Uncheck all checkboxes
+function resetCheckboxes(type = "all") {
+    const selector = type === "all" 
+        ? '.checklist input[type="checkbox"]' 
+        : `.checklist[id*="${type.toLowerCase()}"] input[type="checkbox"]`;
+
+    document.querySelectorAll(selector).forEach(checkbox => {
+        checkbox.checked = false; // Uncheck all matching checkboxes
     });
     saveProgress();
     updateProgressBars(); // Reset progress bars after unchecking all checkboxes
@@ -327,6 +331,8 @@ function startTimer(timerId, minutes) {
     const startButton = document.querySelector(`[onclick="startTimer('${timerId}', ${minutes})"]`);
     let timeRemaining = minutes * 60;
 
+    const audio = new Audio('./assets/sounds/timer.mp3'); // Load the timer sound
+
     clearInterval(timerIntervals[timerId]); // Clear any existing timer
     timerIntervals[timerId] = setInterval(() => {
         const minutes = Math.floor(timeRemaining / 60);
@@ -336,7 +342,7 @@ function startTimer(timerId, minutes) {
 
         if (timeRemaining < 0) {
             clearInterval(timerIntervals[timerId]);
-            alert(`${timerId.replace('timer-', '')}-Minute Timer Finished!`);
+            audio.play().catch(error => console.error('Error playing audio:', error)); // Play the timer sound with error handling
         }
     }, 1000);
 
