@@ -55,6 +55,8 @@
             <div class="container" id="general-container">
                 <!-- General tasks will be dynamically loaded here -->
             </div>
+        </div>
+        <div class="right-section">
             <div class="completion-card card">
                 <div class="card-inner">
                     <img src="./assets/banners/complition.png" alt="Completion Banner" class="banner">
@@ -62,34 +64,40 @@
                     <div id="progress-bars-container">
                         <!-- Progress bars will be dynamically added here -->
                     </div>
-                    <div class="completion-actions">
+                </div>
+            </div>
+            <div class="reset-card card">
+                <div class="card-inner">
+                    <div class="reset-actions">
                         <div class="column">
+                            <p>Daily</p>
                             <button class="button reset" onclick="resetCheckboxes()">RESET</button>
                         </div>
                         <div class="column">
-                            <button class="button placeholder">Placeholder</button>
+                            <p>Weekly</p>
+                            <button class="button reset" onclick="resetCheckboxes()">RESET</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="worlds-section">
-            <div class="container" id="worlds-container">
-                <!-- Worlds tasks will be dynamically loaded here -->
-            </div>
-            <div class="personal-tasks card">
-                <div class="card-inner">
-                    <img src="./assets/banners/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
-                    <h3>Personal Tasks</h3>
-                    <ul id="personal-tasks"></ul>
-                    <button onclick="addPersonalTask()">Add Task</button>
-                </div>
+    </div>
+    <div class="worlds-section">
+        <div class="container" id="worlds-container">
+            <!-- Worlds tasks will be dynamically loaded here -->
+        </div>
+        <div class="personal-tasks card">
+            <div class="card-inner">
+                <img src="./assets/banners/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
+                <h3>Personal Tasks</h3>
+                <ul id="personal-tasks"></ul>
+                <button onclick="addPersonalTask()">Add Task</button>
             </div>
         </div>
-        <div class="hidden-tasks">
-            <h3>Hidden Tasks</h3>
-            <ul id="hidden-tasks"></ul>
-        </div>
+    </div>
+    <div class="hidden-tasks">
+        <h3>Hidden Tasks</h3>
+        <ul id="hidden-tasks"></ul>
     </div>
     <footer>
         <img src="./assets/site/f1.png" alt="footer" class="footer-image">

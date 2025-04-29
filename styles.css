@@ -260,8 +260,9 @@ footer h3 {
 .general-section {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     align-items: flex-start; /* Align General and Completion sections to the top */
+    flex: 3; /* General section retains its larger size */
 }
 
 .general-section .container {
@@ -291,6 +292,8 @@ footer h3 {
     box-sizing: border-box;
     background-color: #1e1e1e; /* Ensure the completion card switches to dark mode */
     color: #ffffff; /* Ensure text inside the completion card is white */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
@@ -465,6 +468,16 @@ footer h3 {
 
 .layout-container {
     padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.right-section {
+    flex: 1; /* Right section takes less space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .timers-section {
@@ -780,4 +793,76 @@ footer h3 {
 
 .image-button:hover {
     transform: scale(1.1);
+}
+
+.completion-actions .button.daily,
+.completion-actions .button.weekly {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.completion-actions .button.daily:hover {
+    background-color: #45a049;
+}
+
+.completion-actions .button.weekly:hover {
+    background-color: #3e8e41;
+}
+
+.reset-card {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.reset-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.reset-actions .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.reset-actions .column p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.reset-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-actions .button.reset:hover {
+    background-color: #d90404;
+    transform: scale(1.05);
+}
+
+.reset-section {
+    margin-top: 20px;
+    padding: 20px;
 }
