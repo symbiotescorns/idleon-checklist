@@ -47,7 +47,7 @@ header .controls .button.reset {
     background-color: #f30606;
     color: #ffffff;
     border: none;
-    padding: 10px;
+    padding: 0;
     width: 60px;
     height: 42px;
     font-size: 0.9rem;
@@ -113,11 +113,18 @@ body.dark-mode .controls .button.toggle {
     flex: 1 1 calc(33.333% - 20px); /* Responsive width: 3 cards per row with spacing */
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
-    background-color: #ffffff; /* White background for the card */
+    
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
     text-align: center; /* Center-align text */
     box-sizing: border-box;
+}
+
+.card-inner {
+    background-color: #ffffff; /* White background for the card */
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
 }
 
 .card:hover {
@@ -126,10 +133,13 @@ body.dark-mode .controls .button.toggle {
 }
 
 body.dark-mode .card {
+    /* border-color: #333333; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .card-inner {
     background-color: #1e1e1e; /* Ensure the card switches to dark mode color */
     color: #ffffff; /* Ensure text inside the card is white */
-    border-color: #333333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 body.dark-mode .card:hover {
@@ -198,6 +208,8 @@ body.dark-mode .card-content ul li {
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .checklist input[type="checkbox"]:checked {
@@ -367,6 +379,11 @@ body.dark-mode .credits-section ul li i {
 .card.general-card:hover {
     transform: scale(1.03); /* Reduce hover scale to prevent tasks from going outside */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+}
+
+.card[data-world="World 1"] {
+    background: linear-gradient(144.8deg, #172f1e 7.9%, #4a955e 100%);
+    padding: 2px; /* border thickness */
 }
 
 .completion-card {
