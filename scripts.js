@@ -167,7 +167,7 @@ function loadTasks() {
         .then(data => {
             const generalContainer = document.getElementById('general-container');
             const worldsContainer = document.getElementById('worlds-container');
-            const completionCard = document.querySelector('.completion-card');
+            const progressBarsContainer = document.getElementById('progress-bars-container'); // Updated container
 
             data.forEach(world => {
                 const card = document.createElement('div');
@@ -271,7 +271,7 @@ function loadTasks() {
                 barContainer.appendChild(fill);
                 progressBar.appendChild(label);
                 progressBar.appendChild(barContainer);
-                completionCard.appendChild(progressBar);
+                progressBarsContainer.appendChild(progressBar); // Append to the correct container
             });
 
             loadProgress();

@@ -717,3 +717,154 @@ body.dark-mode .hidden-tasks ul li {
         width: 100%; /* Full width for smaller screens */
     }
 }
+
+.completion-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .completion-actions {
+    background-color: #2a2a2a;
+}
+
+.completion-actions .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.completion-actions .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.completion-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+}
+
+.completion-actions .button.reset:hover {
+    background-color: #d90404;
+}
+
+.completion-actions .button.placeholder {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.completion-actions .button.placeholder:hover {
+    background-color: #45a049;
+}
+
+.completion-card .completion-actions {
+    margin-top: 20px; /* Add spacing above the buttons */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+body.dark-mode .completion-card .completion-actions {
+    background-color: #2a2a2a;
+}
+
+.completion-card .completion-actions .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Add spacing between rows if wrapped */
+}
+
+.completion-card .completion-actions .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.completion-card .completion-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+}
+
+.completion-card .completion-actions .button.reset:hover {
+    background-color: #d90404;
+}
+
+.completion-card .completion-actions .button.placeholder {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.completion-card .completion-actions .button.placeholder:hover {
+    background-color: #45a049;
+}
+
+.completion-card #progress-bars-container {
+    margin-bottom: 20px; /* Add spacing below progress bars */
+}
+
+.completion-card .completion-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+body.dark-mode .completion-card .completion-actions {
+    background-color: #2a2a2a;
+}
+
+.completion-card .completion-actions .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Add spacing between rows if wrapped */
+}
+
+.completion-card .completion-actions .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.completion-card .completion-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+}
+
+.completion-card .completion-actions .button.reset:hover {
+    background-color: #d90404;
+}
+
+.completion-card .completion-actions .button.placeholder {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.completion-card .completion-actions .button.placeholder:hover {
+    background-color: #45a049;
+}
