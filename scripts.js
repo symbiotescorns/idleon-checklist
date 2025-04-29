@@ -122,9 +122,13 @@ function saveTasks() {
     localStorage.setItem("personalTasks", JSON.stringify(tasks));
 }
 
-function resetCheckboxes() {
-    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false; // Uncheck all checkboxes
+function resetCheckboxes(type = "all") {
+    const selector = type === "all" 
+        ? '.checklist input[type="checkbox"]' 
+        : `.checklist[id*="${type.toLowerCase()}"] input[type="checkbox"]`;
+
+    document.querySelectorAll(selector).forEach(checkbox => {
+        checkbox.checked = false; // Uncheck all matching checkboxes
     });
     saveProgress();
     updateProgressBars(); // Reset progress bars after unchecking all checkboxes
