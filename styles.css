@@ -349,16 +349,7 @@ body.dark-mode .credits-section ul li i {
 }
 
 .completion-card {
-    flex: 1 1 calc(33.333% - 40px); /* Align with other cards */
-    margin: 0; /* Remove extra margins to align with General section */
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: left; /* Align content to the left */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack progress bars vertically */
-    gap: 15px; /* Add spacing between progress bars */
+    /* Remove redundant styles since it now uses the card structure */
     margin-top: 0; /* Align with General section */
     box-sizing: border-box;
 }
@@ -440,22 +431,8 @@ body.dark-mode .completion-card {
 }
 
 .personal-tasks {
-    flex: 1 1 calc(33.333% - 40px); /* Align with other cards */
+    /* Remove redundant styles since it now uses the card structure */
     margin: 20px auto; /* Center the Personal Tasks section horizontally */
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: left; /* Align content to the left */
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    gap: 15px; /* Add spacing between elements */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
-}
-
-.personal-tasks:hover {
-    transform: scale(1.03); /* Enlarge the Personal Tasks box on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
 body.dark-mode .personal-tasks {
