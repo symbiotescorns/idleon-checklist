@@ -226,12 +226,13 @@ body.dark-mode .card-content ul li {
 }
 
 .checklist li:hover {
-    transform: scale(1.05); /* Slightly enlarge the task */
-    background-color: #e0f7fa; /* Highlight the task with a light color */
+    background-color: #e0f7fa; /* Keep the highlight effect */
+    transform: none; /* Remove the enlarging effect */
 }
 
 body.dark-mode .checklist li:hover {
-    background-color: #37474f; /* Highlight with a darker color in dark mode */
+    background-color: #37474f; /* Keep the highlight effect in dark mode */
+    transform: none; /* Remove the enlarging effect */
 }
 
 .checklist li button {
@@ -364,7 +365,7 @@ body.dark-mode .credits-section ul li i {
 }
 
 .card.general-card:hover {
-    transform: scale(1.02); /* Reduce hover scale to prevent tasks from going outside */
+    transform: scale(1.03); /* Reduce hover scale to prevent tasks from going outside */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
@@ -413,31 +414,31 @@ body.dark-mode .credits-section ul li i {
 }
 
 #world-1-progress {
-    background-color: #0cf533; /* Blue */
+    background-color: #0cf533; 
 }
 
 #world-2-progress {
-    background-color: #C2B280; /* Orange */
+    background-color: #C2B280; 
 }
 
 #world-3-progress {
-    background-color: #899cf0; /* Purple */
+    background-color: #899cf0; 
 }
 
 #world-4-progress {
-    background-color: #800080; /* Pink */
+    background-color: #800080; 
 }
 
 #world-5-progress {
-    background-color: #CF1020; /* Cyan */
+    background-color: #CF1020;
 }
 
 #world-6-progress {
-    background-color: #6df347; /* Yellow */
+    background-color: #6df347; 
 }
 
 #personal-progress {
-    background-color: #745584; /* Brown */
+    background-color: #745584;
 }
 
 .progress-bar .bar .fill.glow {
@@ -514,12 +515,13 @@ body.dark-mode .personal-tasks .banner {
 }
 
 .personal-tasks ul li:hover {
-    transform: scale(1.05); /* Slightly enlarge the task */
-    background-color: #e0f7fa; /* Highlight the task with a light color */
+    background-color: #e0f7fa; /* Keep the highlight effect */
+    transform: none; /* Remove the enlarging effect */
 }
 
 body.dark-mode .personal-tasks ul li:hover {
-    background-color: #37474f; /* Highlight with a darker color in dark mode */
+    background-color: #37474f; /* Keep the highlight effect in dark mode */
+    transform: none; /* Remove the enlarging effect */
 }
 
 .personal-tasks ul li label {
