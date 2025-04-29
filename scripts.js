@@ -172,7 +172,13 @@ function loadTasks() {
             data.forEach(world => {
                 const card = document.createElement('div');
                 card.className = 'card';
+
+                card.dataset.world = world.name;
+                
                 if (world.name === 'General') card.classList.add('general-card');
+
+                const cardInner = document.createElement('div');
+                cardInner.className = 'card-inner';
 
                 const banner = document.createElement('img');
                 banner.src = world.banner;
@@ -224,8 +230,10 @@ function loadTasks() {
                     cardContent.appendChild(checklist);
                 });
 
-                card.appendChild(banner);
-                card.appendChild(cardContent);
+                cardInner.appendChild(banner);
+                cardInner.appendChild(cardContent);
+
+                card.appendChild(cardInner);
 
                 if (world.name === 'General') {
                     generalContainer.appendChild(card);
