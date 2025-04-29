@@ -288,44 +288,6 @@ footer h3 {
     letter-spacing: 1px;
 }
 
-.credits-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap; /* Ensure responsiveness */
-}
-
-.credits-section {
-    text-align: left;
-}
-
-.credits-section h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.credits-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.credits-section ul li {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.credits-section ul li i {
-    color: #4caf50; /* Icon color */
-    font-size: 1.2rem;
-}
 
 body.dark-mode footer {
     background-color: #121212;
@@ -730,6 +692,15 @@ body.dark-mode .hidden-tasks ul li {
 .header-logo .header-title-image {
     height: 75px;
     object-fit: contain;
+}
+
+/* Style for the footer image */
+.footer-image {
+    display: block; /* Ensures the image is treated as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    max-width: 100%; /* Ensures the image doesn't exceed the container width */
+    height: auto; /* Maintains the aspect ratio */
+    padding: 16px 0; /* Adds some spacing above and below the image */
 }
 
 @media (max-width: 1024px) {
