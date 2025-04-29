@@ -1,7 +1,7 @@
 [
     {
         "name": "General",
-        "banner": "./assets/banners/general.png",
+        "banner": "./assets/banners/gen.png",
         "tasks": [
             {
                 "type": "Daily",

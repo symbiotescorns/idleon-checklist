@@ -19,10 +19,10 @@
         <input type="text" class="search-bar" placeholder="Task search" oninput="filterTasks()">
         <div class="controls">
             <button class="image-button">
-                <img src="./assets/site/Vector 2.png" alt="Eye Icon">
+                <img src="./assets/site/Beginner 1.png">
             </button>
             <button class="image-button">
-                <img src="./assets/site/111 1.png" alt="Return Icon">
+                <img src="./assets/site/Vector 1.png">
             </button>
         </div>
     </header>
@@ -59,7 +59,7 @@
         <div class="right-section">
             <div class="completion-card card">
                 <div class="card-inner">
-                    <img src="./assets/banners/complition.png" alt="Completion Banner" class="banner">
+                    <img src="./assets/banners/complete.png" alt="Completion Banner" class="banner">
                     <!-- Progress bars will be dynamically loaded here -->
                     <div id="progress-bars-container">
                         <!-- Progress bars will be dynamically added here -->
@@ -68,14 +68,17 @@
             </div>
             <div class="reset-card card">
                 <div class="card-inner">
-                    <div class="reset-actions">
-                        <div class="column">
-                            <p>Daily</p>
-                            <button class="button reset" onclick="resetCheckboxes()">RESET</button>
-                        </div>
-                        <div class="column">
-                            <p>Weekly</p>
-                            <button class="button reset" onclick="resetCheckboxes()">RESET</button>
+                    <img src="./assets/banners/reset.png" alt="Reset Banner" class="banner">
+                    <div class="card-content">
+                        <div class="reset-actions">
+                            <div class="column">
+                                <p>Daily</p>
+                                <button class="button reset" onclick="resetCheckboxes()">RESET</button>
+                            </div>
+                            <div class="column">
+                                <p>Weekly</p>
+                                <button class="button reset" onclick="resetCheckboxes()">RESET</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +91,7 @@
         </div>
         <div class="personal-tasks card">
             <div class="card-inner">
-                <img src="./assets/banners/Frame_12_1.png" alt="Personal Tasks Banner" class="banner">
+                <img src="./assets/banners/pp.png" alt="Personal Tasks Banner" class="banner">
                 <h3>Personal Tasks</h3>
                 <ul id="personal-tasks"></ul>
                 <button onclick="addPersonalTask()">Add Task</button>
@@ -103,6 +106,7 @@
         <img src="./assets/site/f1.png" alt="footer" class="footer-image">
     </footer>
     <script src="scripts.js"></script>
+    <script src="moreFunctions.js"></script>
 </body>
 
 </html>
