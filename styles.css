@@ -300,12 +300,16 @@ footer h3 {
 .progress-bar {
     display: flex;
     flex-direction: column; /* Ensure label and bar are stacked */
+    align-items: left; /* Align label and bar vertically */
+    gap: 5px; /* Add spacing between the label and the bar */
 }
 
 .progress-bar span {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 5px;
     color: #666;
+    flex-shrink: 0; /* Prevent the label from shrinking */
+    text-align: left; /* Align text to the left */
 }
 
 .progress-bar .bar {
@@ -315,6 +319,8 @@ footer h3 {
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    flex-grow: 1; /* Allow the bar to take up remaining space */
+    height: 10px; /* Slimmer height for the progress bar */
 }
 
 .progress-bar .bar .fill {
@@ -325,35 +331,35 @@ footer h3 {
 }
 
 #total-progress {
-    background-image: linear-gradient(to right, rgba(4, 70, 4, 0), rgb(5, 101, 5));
+    background: linear-gradient(to right, transparent, #00FBFF); 
 }
 
 #world-1-progress {
-    background-color: #0cf533; 
+    background: linear-gradient(to right, transparent, #54BD3C); 
 }
 
 #world-2-progress {
-    background-color: #C2B280; 
+    background: linear-gradient(to right, transparent, #F4EA97); 
 }
 
 #world-3-progress {
-    background-color: #899cf0; 
+    background: linear-gradient(to right, transparent, #78C2EA); 
 }
 
 #world-4-progress {
-    background-color: #800080; 
+    background: linear-gradient(to right, transparent, #8C34CA);  
 }
 
 #world-5-progress {
-    background-color: #CF1020;
+    background: linear-gradient(to right, transparent, #C28772); 
 }
 
 #world-6-progress {
-    background-color: #6df347; 
+    background: linear-gradient(to right, transparent, #B4E04F); 
 }
 
 #personal-progress {
-    background-color: #745584;
+    background: linear-gradient(to right, transparent, #00a2ff); 
 }
 
 .progress-bar .bar .fill.glow {
