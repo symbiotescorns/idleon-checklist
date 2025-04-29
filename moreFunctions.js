@@ -31,14 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const quote = document.createElement('p');
                 quote.textContent = randomQuote;
                 quote.style.position = 'absolute';
-                quote.style.top = '43%'; // Move text slightly more up
-                quote.style.left = '43%'; // Move text slightly more to the left
+                quote.style.top = '40%'; // Move text slightly higher
+                quote.style.left = '40%';
                 quote.style.transform = 'translate(-50%, -50%)';
                 quote.style.margin = '0';
                 quote.style.padding = '0';
-                quote.style.fontSize = '1.2rem';
-                quote.style.fontWeight = 'bold';
+                quote.style.fontSize = '1.8rem'; // Increase font size
+                quote.style.fontFamily = "'Poppins', sans-serif"; // Use Poppins font
                 quote.style.color = '#000000'; // Change text color to black
+                quote.style.textAlign = 'center'; // Ensure text is centered
+                quote.style.whiteSpace = 'normal'; // Allow text wrapping
+                quote.style.wordWrap = 'break-word'; // Ensure long words wrap properly
 
                 imageContainer.appendChild(image);
                 imageContainer.appendChild(quote);
