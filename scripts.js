@@ -183,6 +183,9 @@ function loadTasks() {
                 const cardInner = document.createElement('div');
                 cardInner.className = 'card-inner';
 
+                const bannerWrapper = document.createElement('div');
+                bannerWrapper.className = 'banner-wrapper';
+
                 const banner = document.createElement('img');
                 banner.src = world.banner;
                 banner.alt = `${world.name} Banner`;
@@ -237,7 +240,9 @@ function loadTasks() {
                     cardContent.appendChild(checklist);
                 });
 
-                cardInner.appendChild(banner);
+                bannerWrapper.appendChild(banner);
+
+                cardInner.appendChild(bannerWrapper);
                 cardInner.appendChild(cardContent);
 
                 card.appendChild(cardInner);

@@ -108,11 +108,15 @@ header .controls .button.toggle:hover {
     background-color: #2a2a2a;
 }
 
+.banner-wrapper {
+    height: 32px;
+    overflow: hidden;
+}
+
 .banner {
     width: 100%; /* Full width of the card */
-    height: 32px; /* Maintain aspect ratio */
-    max-height: 200px; /* Limit the height */
-    object-fit: cover; /* Ensure the image scales properly */
+    height: 100%;
+    object-fit: scale-down;
     object-position: left; /* Align the image to the left */
     border-bottom: 2px solid #ccc; /* Add a subtle divider */
 }
@@ -258,16 +262,36 @@ footer h3 {
 }
 
 .general-section {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    gap: 10px;
-    align-items: flex-start; /* Align General and Completion sections to the top */
-    flex: 3; /* General section retains its larger size */
+    gap: 20px;
+    align-items: flex-start; */
+    /* Align General and Completion sections to the top */
+    /* General section retains its larger size */
+    /* flex: 3;  */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.3rem;
+    
+    width: 100%;
 }
 
 .general-section .container {
-    width: calc((100% - 40px) * 2 / 3 + 20px); /* 2 gaps go 20px = 40px - align to timer section */
+    /* 2 gaps go 20px = 40px - align to timer section */
+    /* width: calc((100% - 40px) * 2 / 3 + 20px); */
     padding: 0;
+    margin: 0;
+    /* flex: 0 0 calc((100% - 40px) * 2 / 3); */
+    grid-column: span 2;
+}
+
+.worlds-section .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.3rem;
+    width: 100%;
+
 }
 
 .card.general-card {
@@ -294,6 +318,14 @@ footer h3 {
     color: #ffffff; /* Ensure text inside the completion card is white */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#progress-bars-container > .progress-bar {
+    margin-top: 0.5rem;
+}
+
+#progress-bars-container > .progress-bar:first-of-type {
+    margin-top: 0;
 }
 
 .progress-bar {
@@ -362,10 +394,10 @@ footer h3 {
 .worlds-section {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 1.3rem;
     flex-wrap: wrap; /* Ensure responsiveness */
     align-items: flex-start; /* Align items to the top */
-    margin-top: 20px;
+    margin-top: 1.3rem;
 }
 
 .personal-tasks {
@@ -467,17 +499,19 @@ footer h3 {
 }
 
 .layout-container {
+    display: block;
     padding: 20px;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
 }
 
 .right-section {
-    flex: 1; /* Right section takes less space */
+    /* Right section takes less space */
+    /* flex: 1; */
+    /* flex: 1 1 calc((100% - 40px) / 3);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 20px; */
+
+    display: block;
 }
 
 .timers-section {
@@ -611,14 +645,21 @@ footer h3 {
 }
 
 @media (max-width: 1024px) {
+    .general-section {
+        display: flex;
+        flex-direction: column;
+    }
+
     .card {
-        flex: 1 1 calc(50% - 40px); /* 2 cards per row on medium screens */
+        /* 2 cards per row on medium screens */
+        /* flex: 1 1 calc(50% - 40px);  */
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        flex: 1 1 calc(100% - 40px); /* 1 card per row on small screens */
+        /* 1 card per row on small screens */
+        /* flex: 1 1 calc(100% - 40px);  */
     }
 
     .general-section, .worlds-section {
