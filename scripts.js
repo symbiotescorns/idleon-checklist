@@ -1,3 +1,6 @@
+const timerAudio = new Audio('./assets/audio/timer.mp3');
+timerAudio.load(); // Preload audio
+
 document.addEventListener("DOMContentLoaded", () => {
     // Removed dark mode toggle logic
     loadTasks();
@@ -331,22 +334,28 @@ function startTimer(timerId, minutes) {
     const startButton = document.querySelector(`[onclick="startTimer('${timerId}', ${minutes})"]`);
     let timeRemaining = minutes * 60;
 
-    const audio = new Audio('./assets/sounds/timer.mp3'); // Load the timer sound
+    clearInterval(timerIntervals[timerId]);
 
-    clearInterval(timerIntervals[timerId]); // Clear any existing timer
+    // Immediately show the time before starting the interval
+    const updateDisplay = () => {
+        const mins = Math.floor(Math.max(timeRemaining, 0) / 60); // Ensure no negative values
+        const secs = Math.max(timeRemaining, 0) % 60;
+        timerElement.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    };
+
+    updateDisplay(); // Show initial time right away
+
     timerIntervals[timerId] = setInterval(() => {
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        timeRemaining--;
-
-        if (timeRemaining < 0) {
+        if (timeRemaining <= 0) {
             clearInterval(timerIntervals[timerId]);
-            audio.play().catch(error => console.error('Error playing audio:', error)); // Play the timer sound with error handling
+            timerAudio.currentTime = 0; // Reset audio to the beginning
+            timerAudio.play().catch(error => console.error('Error playing audio:', error)); // Use preloaded audio
+        } else {
+            timeRemaining--;
+            updateDisplay();
         }
     }, 1000);
 
-    // Change the button label to "Restart"
     startButton.textContent = "Restart";
 }
 
