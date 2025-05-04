@@ -156,6 +156,16 @@ function filterTasks() {
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
+        const cardId = card.id;
+        const isProgressBarCard = cardId === 'progress-bars-container';
+        const isResetCard = cardId === 'reset-card';
+        const isPersonalCard = cardId === 'personal-tasks';
+
+        if (isProgressBarCard || isResetCard || isPersonalCard) {
+            card.style.display = ''; // Always show progress bar, reset card, and personal card
+            return;
+        }
+
         const tasks = card.querySelectorAll('.checklist li');
         let hasMatch = false;
 
@@ -172,6 +182,13 @@ function filterTasks() {
         // Show or hide the card based on whether it has matching tasks
         card.style.display = hasMatch ? '' : 'none';
     });
+
+    // If the search bar is cleared, ensure all cards are displayed
+    if (!query) {
+        cards.forEach(card => {
+            card.style.display = '';
+        });
+    }
 }
 
 function saveProgress() {
