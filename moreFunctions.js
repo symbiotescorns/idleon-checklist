@@ -61,42 +61,98 @@ document.addEventListener("DOMContentLoaded", () => {
     // Functionality for Vector 1.png button (Cog Icon)
     vectorButton.addEventListener('click', () => {
         const popup = document.createElement('div');
-        popup.style.position = 'fixed';
-        popup.style.top = '50%';
-        popup.style.left = '50%';
-        popup.style.transform = 'translate(-50%, -50%)';
-        popup.style.backgroundColor = '#1e1e1e';
-        popup.style.padding = '30px';
-        popup.style.borderRadius = '10px';
-        popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.5)';
-        popup.style.zIndex = '1000';
-        popup.style.width = '50%';
-        popup.style.height = '30%';
-        popup.style.color = '#ffffff';
-        popup.style.textAlign = 'center';
-        popup.style.overflow = 'hidden';
+        popup.className = 'settings-popup';
 
         const closeButton = document.createElement('button');
         closeButton.textContent = 'X';
-        closeButton.style.position = 'absolute';
-        closeButton.style.top = '10px';
-        closeButton.style.right = '10px';
-        closeButton.style.background = 'none';
-        closeButton.style.border = 'none';
-        closeButton.style.fontSize = '1.5rem';
-        closeButton.style.color = '#ffffff';
-        closeButton.style.cursor = 'pointer';
+        closeButton.className = 'close-button';
         closeButton.addEventListener('click', () => {
             document.body.removeChild(popup);
         });
 
-        const placeholderText = document.createElement('p');
-        placeholderText.textContent = 'Functions not currently available in your region.';
-        placeholderText.style.marginTop = '50px';
-        placeholderText.style.fontSize = '1.2rem';
+        const title = document.createElement('h2');
+        title.textContent = 'Settings';
+
+        const hideTimersCheckbox = document.createElement('input');
+        hideTimersCheckbox.type = 'checkbox';
+        hideTimersCheckbox.id = 'hide-timers';
+        hideTimersCheckbox.checked = localStorage.getItem('hideTimers') === 'true';
+        hideTimersCheckbox.addEventListener('change', () => {
+            const timersSection = document.querySelector('.timers-section');
+            if (hideTimersCheckbox.checked) {
+                timersSection.style.display = 'none';
+                localStorage.setItem('hideTimers', 'true');
+            } else {
+                timersSection.style.display = 'flex';
+                localStorage.setItem('hideTimers', 'false');
+            }
+        });
+
+        const hideTimersLabel = document.createElement('label');
+        hideTimersLabel.htmlFor = 'hide-timers';
+        hideTimersLabel.textContent = 'Hide Timers';
+
+        const hideTimersContainer = document.createElement('div');
+        hideTimersContainer.className = 'checklist-item';
+        hideTimersContainer.appendChild(hideTimersCheckbox);
+        hideTimersContainer.appendChild(hideTimersLabel);
+
+        const hideCardsTitle = document.createElement('h3');
+        hideCardsTitle.textContent = 'Hide Specific Cards';
+
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = 'checklist-container';
+
+        const addedCards = new Set(); // Track already added cards to avoid duplicates
+
+        document.querySelectorAll('.card').forEach(card => {
+            const cardName = card.dataset.world || 'General';
+            if (!addedCards.has(cardName)) {
+                addedCards.add(cardName); // Mark this card as added
+
+                const cardCheckbox = document.createElement('input');
+                cardCheckbox.type = 'checkbox';
+                cardCheckbox.id = `hide-card-${cardName}`;
+                cardCheckbox.checked = localStorage.getItem(`hideCard-${cardName}`) === 'true';
+                cardCheckbox.addEventListener('change', () => {
+                    if (cardCheckbox.checked) {
+                        card.style.display = 'none';
+                        localStorage.setItem(`hideCard-${cardName}`, 'true');
+                    } else {
+                        card.style.display = 'block';
+                        localStorage.setItem(`hideCard-${cardName}`, 'false');
+                    }
+                });
+
+                const cardLabel = document.createElement('label');
+                cardLabel.htmlFor = `hide-card-${cardName}`;
+                cardLabel.textContent = `Hide ${cardName} Card`;
+
+                const cardOption = document.createElement('div');
+                cardOption.className = 'checklist-item';
+                cardOption.appendChild(cardCheckbox);
+                cardOption.appendChild(cardLabel);
+
+                cardsContainer.appendChild(cardOption);
+            }
+        });
 
         popup.appendChild(closeButton);
-        popup.appendChild(placeholderText);
+        popup.appendChild(title);
+        popup.appendChild(hideTimersContainer);
+        popup.appendChild(hideCardsTitle);
+        popup.appendChild(cardsContainer);
         document.body.appendChild(popup);
+    });
+
+    // Restore hidden timers and cards on page load
+    if (localStorage.getItem('hideTimers') === 'true') {
+        document.querySelector('.timers-section').style.display = 'none';
+    }
+    document.querySelectorAll('.card').forEach(card => {
+        const cardName = card.dataset.world || 'General';
+        if (localStorage.getItem(`hideCard-${cardName}`) === 'true') {
+            card.style.display = 'none';
+        }
     });
 });
