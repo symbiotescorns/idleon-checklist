@@ -73,6 +73,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = document.createElement('h2');
         title.textContent = 'Settings';
 
+        // Sorting options
+        const sortingTitle = document.createElement('h3');
+        sortingTitle.textContent = 'Sort Tasks';
+
+        const sortingContainer = document.createElement('div');
+        sortingContainer.className = 'checklist-container';
+
+        const sortSelect = document.createElement('select');
+        sortSelect.className = 'sort-select';
+        sortSelect.innerHTML = `
+            <option value="" disabled selected>Select Sorting Option</option>
+            <option value="alphabetical">Sort A-Z</option>
+            <option value="priority">Sort by Priority</option>
+        `;
+        sortSelect.addEventListener('change', () => {
+            const sortBy = sortSelect.value;
+            document.querySelectorAll('.checklist').forEach(checklist => {
+                sortTasks(checklist.id, sortBy);
+            });
+        });
+
+        sortingContainer.appendChild(sortSelect);
+
+        // Hide timers option
         const hideTimersCheckbox = document.createElement('input');
         hideTimersCheckbox.type = 'checkbox';
         hideTimersCheckbox.id = 'hide-timers';
@@ -97,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hideTimersContainer.appendChild(hideTimersCheckbox);
         hideTimersContainer.appendChild(hideTimersLabel);
 
+        // Hide cards option
         const hideCardsTitle = document.createElement('h3');
         hideCardsTitle.textContent = 'Hide Specific Cards';
 
@@ -139,6 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         popup.appendChild(closeButton);
         popup.appendChild(title);
+        popup.appendChild(sortingTitle);
+        popup.appendChild(sortingContainer);
         popup.appendChild(hideTimersContainer);
         popup.appendChild(hideCardsTitle);
         popup.appendChild(cardsContainer);

@@ -17,13 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadHiddenTasks();
     loadPersonalTasks();
+    addSortingControls(); // Add sorting controls after tasks are loaded
 });
 
 // Removed toggleDarkMode function
 
-function createTaskElement(text, completed, isPersonal = false) {
+function createTaskElement(text, completed, isPersonal = false, isHighPriority = false) {
     const li = document.createElement("li");
     li.dataset.sectionId = ""; // Add a data attribute to store the section ID
+    li.classList.toggle('high-priority', isHighPriority); // Add high-priority class if applicable
+
     const label = document.createElement("label");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -47,10 +50,20 @@ function createTaskElement(text, completed, isPersonal = false) {
         hideTask(li, text);
     };
 
+    const priorityButton = document.createElement("button");
+    priorityButton.textContent = "⭐";
+    priorityButton.title = "Mark as High Priority";
+    priorityButton.className = "priority-button";
+    priorityButton.onclick = () => {
+        li.classList.toggle('high-priority');
+        saveTasks();
+    };
+
     label.appendChild(checkbox);
     label.appendChild(span);
     li.appendChild(label);
     li.appendChild(hideButton); // Add the hide button
+    li.appendChild(priorityButton); // Add the priority button
 
     if (isPersonal) {
         const deleteButton = document.createElement("button");
@@ -117,12 +130,13 @@ function restoreTask(hiddenTaskElement, text, sectionId) {
 }
 
 function saveTasks() {
-    const tasks = Array.from(document.getElementById("personal-tasks").children).map(li => {
+    const tasks = Array.from(document.querySelectorAll(".checklist li")).map(li => {
         const checkbox = li.querySelector("input[type='checkbox']");
         const span = li.querySelector("span");
-        return { text: span.textContent, completed: checkbox.checked };
+        const isHighPriority = li.classList.contains('high-priority');
+        return { text: span.textContent, completed: checkbox.checked, isHighPriority };
     });
-    localStorage.setItem("personalTasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function resetCheckboxes(type = "all") {
@@ -139,8 +153,24 @@ function resetCheckboxes(type = "all") {
 
 function filterTasks() {
     const query = document.querySelector('.search-bar').value.toLowerCase(); // Fixed selector
-    document.querySelectorAll('.checklist li').forEach(task => {
-        task.style.display = task.textContent.toLowerCase().includes(query) ? '' : 'none';
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        const tasks = card.querySelectorAll('.checklist li');
+        let hasMatch = false;
+
+        tasks.forEach(task => {
+            const text = task.textContent.toLowerCase();
+            if (text.includes(query)) {
+                task.style.display = '';
+                hasMatch = true;
+            } else {
+                task.style.display = 'none';
+            }
+        });
+
+        // Show or hide the card based on whether it has matching tasks
+        card.style.display = hasMatch ? '' : 'none';
     });
 }
 
@@ -179,6 +209,8 @@ function loadTasks() {
             const worldsContainer = document.getElementById('worlds-container');
             const progressBarsContainer = document.getElementById('progress-bars-container'); // Updated container
 
+            const savedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+
             data.forEach(world => {
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -216,31 +248,14 @@ function loadTasks() {
                     checklist.id = `${world.name.toLowerCase().replace(/\s+/g, '-')}-${taskGroup.type.toLowerCase().replace(/\s+/g, '-')}`;
 
                     taskGroup.items.forEach(task => {
-                        const listItem = document.createElement('li');
+                        const savedTask = savedTasks.find(t => t.text === task);
+                        const listItem = createTaskElement(
+                            task,
+                            savedTask?.completed || false,
+                            false,
+                            savedTask?.isHighPriority || false
+                        );
                         listItem.dataset.sectionId = checklist.id; // Store the section ID
-                        const label = document.createElement('label');
-                        const checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.addEventListener('change', updateProgressBars);
-
-                        const span = document.createElement('span');
-                        span.textContent = task;
-
-                        const hideButton = document.createElement('button');
-                        const hideImage = document.createElement("img");
-                        hideImage.src = "./assets/site/Vector 2.png"; // Use the eye icon image
-                        hideImage.alt = "Hide Icon";
-                        hideImage.style.width = "20px"; // Adjust size as needed
-                        hideImage.style.height = "20px";
-                        hideButton.appendChild(hideImage);
-                        hideButton.onclick = () => {
-                            hideTask(listItem, task);
-                        };
-
-                        label.appendChild(checkbox);
-                        label.appendChild(span);
-                        listItem.appendChild(label);
-                        listItem.appendChild(hideButton); // Add the hide button
                         checklist.appendChild(listItem);
                     });
 
@@ -427,7 +442,53 @@ function loadPersonalTasks() {
     const personalTasks = JSON.parse(localStorage.getItem("personalTasks") || "[]");
     const personalTasksList = document.getElementById("personal-tasks");
     personalTasks.forEach(task => {
-        const li = createTaskElement(task.text, task.completed, true);
+        const li = createTaskElement(task.text, task.completed, true, task.isHighPriority);
         personalTasksList.appendChild(li);
+    });
+}
+
+function sortTasks(sectionId, sortBy = 'alphabetical') {
+    const checklist = document.getElementById(sectionId);
+    if (!checklist) return;
+
+    const tasks = Array.from(checklist.children);
+
+    tasks.sort((a, b) => {
+        if (sortBy === 'priority') {
+            const aPriority = a.classList.contains('high-priority') ? 1 : 0;
+            const bPriority = b.classList.contains('high-priority') ? 1 : 0;
+            return bPriority - aPriority || a.textContent.localeCompare(b.textContent);
+        } else if (sortBy === 'alphabetical') {
+            return a.textContent.localeCompare(b.textContent);
+        }
+    });
+
+    tasks.forEach(task => checklist.appendChild(task));
+}
+
+function addSortingControls() {
+    document.querySelectorAll('.card-content').forEach(content => {
+        const checklist = content.querySelector('.checklist');
+        if (!checklist) return;
+
+        const sectionId = checklist.id;
+
+        const sortContainer = document.createElement('div');
+        sortContainer.className = 'sort-container';
+
+        const sortAlphabeticalButton = document.createElement('button');
+        sortAlphabeticalButton.textContent = 'Sort A-Z';
+        sortAlphabeticalButton.className = 'sort-button';
+        sortAlphabeticalButton.onclick = () => sortTasks(sectionId, 'alphabetical');
+
+        const sortPriorityButton = document.createElement('button');
+        sortPriorityButton.textContent = 'Sort by Priority';
+        sortPriorityButton.className = 'sort-button';
+        sortPriorityButton.onclick = () => sortTasks(sectionId, 'priority');
+
+        sortContainer.appendChild(sortAlphabeticalButton);
+        sortContainer.appendChild(sortPriorityButton);
+
+        content.insertBefore(sortContainer, checklist);
     });
 }

@@ -1,3 +1,10 @@
+<h2>Update to checklist</h2>
+<ul>
+  <li>Ability to mark tasks as high priority (these highlight)</li>
+  <li>Added ability to sort by alphabetical or high pirority (see settings menu)</li>
+  <li>Search bar now hides all world cards except for the world that has the task/keyword</li>
+</ul>
+
 <h2>Updated List of Functions (April 29, 2025)</h2>
 <ul>
   <li>Toggles between light and dark mode and saves the preference locally.</li>
