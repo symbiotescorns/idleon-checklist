@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212; /* Default to dark mode */
+    background: url('assets/site/dark 1.png') no-repeat center center fixed; /* Corrected image path */
+    background-size: cover; /* Ensure the image covers the entire background */
     color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -14,11 +14,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #121212;
+    background: radial-gradient(circle, #100f11, #1a0533);
     color: #ffffff;
     padding: 15px 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-bottom: 2px solid #27ae60;
+    border-bottom: 2px solid transparent; /* Remove solid color */
+    border-image: linear-gradient(to right, purple, yellow, purple) 1; /* Multi-colored gradient */
 }
 
 header h1 {
@@ -96,7 +97,7 @@ header .controls .button.toggle:hover {
 }
 
 .card-inner {
-    background-color: #1e1e1e; /* Ensure the card switches to dark mode color */
+    background-color: #1e1e28; /* Ensure the card switches to dark mode color */
     height: 100%;
     border-radius: inherit;
     overflow: hidden;
@@ -106,7 +107,7 @@ header .controls .button.toggle:hover {
 .card:hover {
     transform: scale(1.05); /* Slightly enlarge the card on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
-    background-color: #2a2a2a;
+    background-color: #33236d;
 }
 
 .banner-wrapper {
@@ -221,10 +222,10 @@ header .controls .button.toggle:hover {
 
 .search-bar {
     width: 80%;
-    height: 20px;
-    border: 1px solid black;
+    height: 40px;
+    border: 1px solid rgb(85, 16, 90);
     border-radius: 5px;
-    padding: 5px;
+    padding: 2px;
     font-size: 14px;
     outline: none;
     transition: border-color 0.3s;
@@ -310,15 +311,40 @@ footer h3 {
 }
 
 .card[data-world="World 1"] {
-    background: linear-gradient(144.8deg, #172f1e 7.9%, #4a955e 100%);
+    background: linear-gradient(144.8deg, #1c3c26 7.9%, #4a955e 100%);
     padding: 2px; /* border thickness */
 }
+.card[data-world="World 2"] {
+    background: linear-gradient(144.8deg, #F4EA97 7.9%, #faed7b 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 3"] {
+    background: linear-gradient(144.8deg, #78C2EA 7.9%, #6ac0ef 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 4"] {
+    background: linear-gradient(144.8deg, #8C34CA 7.9%, #8625cb 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 5"] {
+    background: linear-gradient(144.8deg, #C28772 7.9%, #c27f67 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 6"] {
+    background: linear-gradient(144.8deg, #B4E04F 7.9%, #b3e244 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="General"] {
+    background: linear-gradient(144.8deg, #B4E04F 7.9%, #F4EA97 30%, #78C2EA 60%, #8C34CA 100%);
+    padding: 2px; /* border thickness */
+}
+
 
 .completion-card {
     /* Remove redundant styles since it now uses the card structure */
     margin-top: 0; /* Align with General section */
     box-sizing: border-box;
-    background-color: #1e1e1e; /* Ensure the completion card switches to dark mode */
+    background-color: #1e1e28; /* Ensure the completion card switches to dark mode */
     color: #ffffff; /* Ensure text inside the completion card is white */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -411,10 +437,14 @@ footer h3 {
 }
 
 .personal-tasks {
-    /* Remove redundant styles since it now uses the card structure */
-    margin: 20px auto; /* Center the Personal Tasks section horizontally */
-    background-color: #1e1e1e; /* Ensure the personal tasks card switches to dark mode */
-    color: #ffffff; /* Ensure text inside the personal tasks card is white */
+    margin: 20px auto; 
+    background-color: #1e1e28; 
+    color: #ffffff; 
+    width: 300px; 
+    height: 400px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    overflow: hidden; 
 }
 
 /* .personal-tasks .banner {
@@ -534,7 +564,7 @@ footer h3 {
     justify-content: space-between;
     gap: 20px; /* Reduce gap between columns */
     padding: 20px; /* Reduce padding */
-    background-color: #1e1e1e;
+    background-color: #1e1e28;
     border-radius: 8px; /* Slightly smaller border radius */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     color: #ffffff;
@@ -545,7 +575,7 @@ footer h3 {
     text-align: center;
     padding: 8px; /* Reduce padding */
     border-radius: 8px; /* Slightly smaller border radius */
-    background-color: #2a2a2a;
+    background-color: #212131;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
@@ -712,6 +742,7 @@ footer h3 {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 
 .completion-actions .button.reset {
     background-color: #f30606;
@@ -1006,10 +1037,10 @@ footer h3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+    background: linear-gradient(135deg, #1e1e28, #14142f);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 16px rgba(136, 136, 136, 0.5);
     z-index: 1000;
     width: 60%;
     max-height: 80%;
@@ -1038,12 +1069,19 @@ footer h3 {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: none;
+    background: orange; /* Set the background color to orange */
     border: none;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: bold;
     color: #ffffff;
     cursor: pointer;
     transition: transform 0.3s ease, color 0.3s ease;
+    width: 50px; /* Set width for the circular shape */
+    height: 50px; /* Set height for the circular shape */
+    border-radius: 50%; /* Make the background circular */
+    display: flex; /* Center the text/icon inside the circle */
+    align-items: center;
+    justify-content: center;
 }
 
 .settings-popup .close-button:hover {
@@ -1065,7 +1103,7 @@ footer h3 {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+    background: linear-gradient(135deg, #2e2e3b, #131329);
     padding: 10px 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
