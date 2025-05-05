@@ -60,7 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Functionality for Vector 1.png button (Cog Icon)
     vectorButton.addEventListener('click', () => {
+        if(document.getElementById('settings-popup')) {
+            return 
+        }
         const popup = document.createElement('div');
+        popup.setAttribute('id', 'settings-popup');
         popup.className = 'settings-popup';
 
         const closeButton = document.createElement('button');
