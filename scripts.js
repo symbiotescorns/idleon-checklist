@@ -364,29 +364,26 @@ let timerIntervals = {};
 function startTimer(timerId, minutes) {
     const timerElement = document.getElementById(timerId);
     const startButton = document.querySelector(`[onclick="startTimer('${timerId}', ${minutes})"]`);
-    let timeRemaining = minutes * 60;
+    const endTime = Date.now() + minutes * 60 * 1000; // Calculate the end time
 
     clearInterval(timerIntervals[timerId]);
 
-    // Immediately show the time before starting the interval
     const updateDisplay = () => {
-        const mins = Math.floor(Math.max(timeRemaining, 0) / 60); // Ensure no negative values
-        const secs = Math.max(timeRemaining, 0) % 60;
+        const timeRemaining = Math.max(0, endTime - Date.now()); // Calculate remaining time
+        const mins = Math.floor(timeRemaining / 60000);
+        const secs = Math.floor((timeRemaining % 60000) / 1000);
         timerElement.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    };
 
-    updateDisplay(); // Show initial time right away
-
-    timerIntervals[timerId] = setInterval(() => {
         if (timeRemaining <= 0) {
             clearInterval(timerIntervals[timerId]);
             timerAudio.currentTime = 0; // Reset audio to the beginning
-            timerAudio.play().catch(error => console.error('Error playing audio:', error)); // Use preloaded audio
-        } else {
-            timeRemaining--;
-            updateDisplay();
+            timerAudio.play().catch(error => console.error('Error playing audio:', error));
         }
-    }, 1000);
+    };
+
+    updateDisplay(); // Show initial time immediately
+
+    timerIntervals[timerId] = setInterval(updateDisplay, 1000); // Update every second
 
     startButton.textContent = "Restart";
 }
