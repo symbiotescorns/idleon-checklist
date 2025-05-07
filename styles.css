@@ -838,33 +838,6 @@ footer h3 {
     margin-top: 10px; /* Add spacing between rows if wrapped */
 }
 
-.completion-card .completion-actions .button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.completion-card .completion-actions .button.reset {
-    background-color: #f30606;
-    color: #ffffff;
-}
-
-.completion-card .completion-actions .button.reset:hover {
-    background-color: #d90404;
-}
-
-.completion-card .completion-actions .button.placeholder {
-    background-color: #4caf50;
-    color: #ffffff;
-}
-
-.completion-card .completion-actions .button.placeholder:hover {
-    background-color: #45a049;
-}
-
 .image-button {
     background: none;
     border: none;
@@ -873,8 +846,8 @@ footer h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -888,26 +861,6 @@ footer h3 {
 
 .image-button:hover {
     transform: scale(1.1);
-}
-
-.completion-actions .button.daily,
-.completion-actions .button.weekly {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #4caf50;
-    color: #ffffff;
-}
-
-.completion-actions .button.daily:hover {
-    background-color: #45a049;
-}
-
-.completion-actions .button.weekly:hover {
-    background-color: #3e8e41;
 }
 
 .reset-card {
@@ -938,22 +891,39 @@ footer h3 {
 
 .reset-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center the buttons horizontally */
     align-items: center;
-    gap: 20px;
+    gap: 10px; /* Reduce the gap between buttons */
+    position: relative; /* For positioning the divider */
 }
 
 .reset-actions .column {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px; /* Reduce spacing between text and button */
+}
+
+.reset-actions .divider {
+    position: absolute;
+    height: 100%; /* Adjust height to match button alignment */
+    width: 2px;
+    background-color: #ccc; /* Divider color */
+    left: 50%; /* Center the divider */
+    transform: translateX(-50%);
 }
 
 .reset-actions .column p {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
+    color: #ffffff;
+}
+
+.reset-section p {
+    text-align: center; /* Center-align the text */
+    margin-top: 1px; /* Add spacing above the text */
+    font-size: 1rem;
     color: #ffffff;
 }
 
@@ -1240,4 +1210,22 @@ footer h3 {
 .sort-select:focus {
     border-color: #4caf50;
     background-color: #1e1e1e;
+}
+
+.button.reset.daily-reset {
+    background-color: #FF5900; /* Green for daily reset */
+    color: #ffffff;
+}
+
+.button.reset.daily-reset:hover {
+    background-color: #e65101;
+}
+
+.button.reset.weekly-reset {
+    background-color: #59008D; /* Blue for weekly reset */
+    color: #ffffff;
+}
+
+.button.reset.weekly-reset:hover {
+    background-color: #490074;
 }

@@ -70,6 +70,7 @@
                         
                     </div>
                 </div>
+
                 <div class="reset-card card">
                     <div class="card-inner">
                         <div class="banner-wrapper">
@@ -79,16 +80,19 @@
                             <div class="reset-actions">
                                 <div class="column">
                                     <p>Daily</p>
-                                    <button class="button reset" onclick="resetCheckboxes('Daily')">RESET</button>
+                                    <button class="button reset daily-reset" onclick="resetCheckboxes('Daily')">RESET</button>
                                 </div>
+                                <div class="divider"></div> <!-- Add a line divider -->
                                 <div class="column">
                                     <p>Weekly</p>
-                                    <button class="button reset" onclick="resetCheckboxes('Weekly')">RESET</button>
+                                    <button class="button reset weekly-reset" onclick="resetCheckboxes('Weekly')">RESET</button>
                                 </div>
                             </div>
+                            <p>Note: This action will reset your current selections</p> <!-- Move this below the buttons -->
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

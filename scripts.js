@@ -51,7 +51,12 @@ function createTaskElement(text, completed, isPersonal = false, isHighPriority =
     };
 
     const priorityButton = document.createElement("button");
-    priorityButton.textContent = "⭐";
+    const priorityImage = document.createElement("img");
+    priorityImage.src = "./assets/site/high-p.png"; // Use the high-priority icon image
+    priorityImage.alt = "High Priority Icon";
+    priorityImage.style.width = "20px"; // Adjust size as needed
+    priorityImage.style.height = "20px";
+    priorityButton.appendChild(priorityImage);
     priorityButton.title = "Mark as High Priority";
     priorityButton.className = "priority-button";
     priorityButton.onclick = () => {
