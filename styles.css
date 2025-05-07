@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: url('assets/site/dark 1.png') no-repeat center center fixed; /* Corrected image path */
-    background-size: cover; /* Ensure the image covers the entire background */
+    background: linear-gradient(to bottom right, #1e1b29, #000D36); /* Gradient background */
     color: #ffffff;
     margin: 0;
     padding: 0;
