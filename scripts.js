@@ -97,19 +97,30 @@ function addPersonalTask() {
 
 function hideTask(taskElement, text) {
     const hiddenTasksList = document.getElementById("hidden-tasks");
+    const sectionId = taskElement.dataset.sectionId; // Retrieve the section ID
+    const sectionHeaderId = `hidden-section-${sectionId}`;
+    let sectionHeader = document.getElementById(sectionHeaderId);
+
+    // Create a new section header if it doesn't exist
+    if (!sectionHeader) {
+        sectionHeader = document.createElement("h4");
+        sectionHeader.id = sectionHeaderId;
+        sectionHeader.textContent = sectionId.replace(/-/g, ' ').toUpperCase(); // Format section name
+        hiddenTasksList.appendChild(sectionHeader);
+    }
+
     const hiddenTask = document.createElement("li");
     hiddenTask.textContent = text;
 
     const restoreButton = document.createElement("button");
     const restoreImage = document.createElement("img");
-    restoreImage.src = "./assets/site/111 1.png"; // Use the return icon image
+    restoreImage.src = "./assets/site/return.png"; // Use the return icon image
     restoreImage.alt = "Restore Icon";
-    restoreImage.style.width = "20px"; // Adjust size as needed
-    restoreImage.style.height = "20px";
+    restoreImage.style.width = "25px"; // Adjust size as needed
+    restoreImage.style.height = "25px";
     restoreButton.appendChild(restoreImage);
     restoreButton.onclick = () => {
-        const originalSectionId = taskElement.dataset.sectionId; // Retrieve the original section ID
-        restoreTask(hiddenTask, text, originalSectionId);
+        restoreTask(hiddenTask, text, sectionId);
     };
 
     hiddenTask.appendChild(restoreButton);
@@ -421,14 +432,33 @@ function resetCustomTimer() {
 }
 
 function saveHiddenTasks() {
-    const hiddenTasks = Array.from(document.getElementById("hidden-tasks").children).map(li => li.textContent.replace("↩️", "").trim());
+    const hiddenTasks = Array.from(document.getElementById("hidden-tasks").children)
+        .filter(el => el.tagName === "LI") // Only save task items, not headers
+        .map(li => {
+            const sectionHeader = li.previousElementSibling;
+            const sectionId = sectionHeader ? sectionHeader.id.replace("hidden-section-", "") : "";
+            return { text: li.textContent.replace("↩️", "").trim(), sectionId };
+        });
     localStorage.setItem("hiddenTasks", JSON.stringify(hiddenTasks));
 }
 
 function loadHiddenTasks() {
     const hiddenTasks = JSON.parse(localStorage.getItem("hiddenTasks") || "[]");
     const hiddenTasksList = document.getElementById("hidden-tasks");
-    hiddenTasks.forEach(text => {
+    hiddenTasksList.innerHTML = ""; // Clear existing tasks
+
+    hiddenTasks.forEach(({ text, sectionId }) => {
+        const sectionHeaderId = `hidden-section-${sectionId}`;
+        let sectionHeader = document.getElementById(sectionHeaderId);
+
+        // Create a new section header if it doesn't exist
+        if (!sectionHeader) {
+            sectionHeader = document.createElement("h4");
+            sectionHeader.id = sectionHeaderId;
+            sectionHeader.textContent = sectionId.replace(/-/g, ' ').toUpperCase(); // Format section name
+            hiddenTasksList.appendChild(sectionHeader);
+        }
+
         const hiddenTask = document.createElement("li");
         hiddenTask.textContent = text;
 
@@ -440,7 +470,7 @@ function loadHiddenTasks() {
         restoreImage.style.height = "20px";
         restoreButton.appendChild(restoreImage);
         restoreButton.onclick = () => {
-            restoreTask(hiddenTask, text, ""); // Section ID will be empty for now
+            restoreTask(hiddenTask, text, sectionId);
         };
 
         hiddenTask.appendChild(restoreButton);
