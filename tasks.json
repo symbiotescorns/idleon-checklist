@@ -166,5 +166,46 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Stopwatches",
+        "banner": "./assets/banners/SV_header.png",
+        "tasks": [
+            {
+                "type": "Silver",
+                "items": [ 
+                    "No values yet"
+                ]
+            },
+            {
+                "type": "Golden (aka Daily Reset)",
+                "items": [
+                    "No Bubble Left Behind",
+                    "No Stamp Left Behind",
+                    "No Meal Left Behind",
+                    "Reset Daily Guaranteed Crystal Spawns",
+                    "Daily Merit Tasks reset",
+                    "Daily Guild Tasks",
+                    "Daily Skilling Minigames restore",
+                    "Shop Vendor's restock",
+                    "Daily Boss Keys and Colloseum keys restock",
+                    "Daily Spike Game Reset",
+                    "Reset Random Event eligiblility",
+                    "Rift's Stamp Mastery & Hydrogen's Stamp Cost Reduction",
+                    "Automation Arm's Smith Production collection",
+                    "Automation Arm's Metal bar collection & Fuel fillup",
+                    "Daily Picnic Stowaway", 
+                    "Daily Post Office Orders",
+                    "New Vial Attempts",
+                    "Renew W2 Weekly Boss Fight",
+                    "Boron's Particle Upgrader resets",
+                    "Beryllium's Post Office Penner converts pens",
+                    "Auto-collect ready Trapping Machine",
+                    "Sapphire Pyramite's Kitchen Upgrade",
+                    "New Snail Mail",
+                    "New Sailing Captains available"
+                ]
+            }
+        ]
     }
 ]
