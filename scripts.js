@@ -43,8 +43,8 @@ function createTaskElement(text, completed, isPersonal = false, isHighPriority =
     const hideImage = document.createElement("img");
     hideImage.src = "./assets/site/Vector 2.png"; // Use the eye icon image
     hideImage.alt = "Hide Icon";
-    hideImage.style.width = "20px"; // Adjust size as needed
-    hideImage.style.height = "20px";
+    hideImage.style.width = "28px"; // Adjust size as needed
+    hideImage.style.height = "28px";
     hideButton.appendChild(hideImage);
     hideButton.onclick = () => {
         hideTask(li, text);

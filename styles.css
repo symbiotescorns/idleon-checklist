@@ -846,11 +846,15 @@ footer h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 40px; /* Increase width */
+    height: 40px; /* Increase height */
     border-radius: 50%;
     overflow: hidden;
     transition: transform 0.3s ease;
+}
+.setting-cog {
+    width: 60px;
+    height: 60px;
 }
 
 .image-button img {
@@ -860,7 +864,7 @@ footer h3 {
 }
 
 .image-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.15); /* Slightly enlarge on hover */
 }
 
 .reset-card {
