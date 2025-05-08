@@ -437,75 +437,67 @@ footer h3 {
 .worlds-section {
     display: flex;
     justify-content: space-between;
-    gap: 1.3rem;
+    gap: 1.3rem; /* Add spacing between personal and hidden cards */
     flex-wrap: wrap; /* Ensure responsiveness */
-    align-items: flex-start; /* Align items to the top */
+    align-items: stretch; /* Align items to the same height */
     margin-top: 1.3rem;
+    padding: 0 20px; /* Add padding to the left and right of the screen */
 }
 
 .personal-tasks {
-    margin: 20px auto; 
-    background-color: #1e1e28; 
-    color: #ffffff; 
-    width: 300px; 
-    height: 400px; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    overflow: hidden; 
+    flex: 3; /* Take 60% of the width */
+    margin: 0; /* Remove extra margins */
+    background-color: #1e1e28; /* Match the general card background */
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
 }
 
-/* .personal-tasks .banner {
-    width: 100%;
-    height: 32px; 
-    max-height: 200px; 
-    object-fit: cover; 
-    object-position: left; 
-    border-bottom: 2px solid #333; 
-    margin-bottom: 15px;
-} */
-
-.person-tasks .banner-wrapper {
-    border-bottom: 2px solid #333;
-    margin-bottom: 15px;
-}
-
-.hidden-tasks .banner-wrapper {
-    border-bottom: 2px solid #333;
-    margin-bottom: 15px;
+.personal-tasks:hover {
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
 .personal-tasks ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1; /* Allow the list to grow and fill available space */
+    overflow-y: auto; /* Add scroll if content overflows */
 }
 
 .personal-tasks ul li {
-    font-size: 1rem; /* Ensure consistent font size across all tasks */
-    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
-    padding: 5px;
+    display: flex; /* Ensure buttons stay on the same line */
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Space out text and buttons */
+    font-size: 1rem; /* Match general card font size */
+    padding: 5px 10px; /* Add padding for better spacing */
     border-radius: 5px; /* Add rounded corners */
     background-color: #2a2a2a;
+    margin-bottom: 5px; /* Add spacing between list items */
 }
 
 .personal-tasks ul li:hover {
-    background-color: #37474f; /* Keep the highlight effect in dark mode */
-    transform: none; /* Remove the enlarging effect */
+    background-color: #37474f; /* Highlight effect */
 }
 
 .personal-tasks ul li label {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    gap: 10px;
+    gap: 10px; /* Match spacing between checkbox and text */
+    flex-grow: 1; /* Ensure the label takes available space */
 }
 
 .personal-tasks ul li input[type="checkbox"] {
     appearance: none;
-    width: 20px;
+    width: 20px; /* Match general card checkbox size */
     height: 20px;
     border: 2px solid #ccc;
-    border-radius: 50%; /* Match radio button style */
+    border-radius: 5px;
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -522,27 +514,33 @@ footer h3 {
     color: white;
     font-size: 14px;
     position: absolute;
-    top: 2px;
-    left: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .personal-tasks ul li button {
+    margin-left: 5px; /* Add consistent spacing between buttons */
     background: none;
     border: none;
     color: #f30606;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Match general card button size */
     cursor: pointer;
-    margin-left: 10px;
     transition: transform 0.2s ease;
 }
 
 .personal-tasks ul li button:hover {
-    transform: scale(1.2); /* Slightly enlarge the X button on hover */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+.personal-tasks ul li .button-group {
+    display: flex; /* Align buttons horizontally */
+    gap: 5px; /* Match spacing between buttons */
 }
 
 .personal-tasks button {
-    margin: 20px auto 0; /* Center the button horizontally */
-    padding: 10px 15px;
+    margin: 15px auto 0; /* Center the button horizontally */
+    padding: 8px 12px; /* Adjust padding for smaller size */
     background-color: #4caf50;
     color: #ffffff;
     border: none;
@@ -551,8 +549,98 @@ footer h3 {
     transition: background-color 0.3s ease;
 }
 
-.personal-tasks button:hover {
-    background-color: #45a049;
+.hidden-tasks {
+    flex: 2; /* Take 40% of the width */
+    margin: 0; /* Remove extra margins */
+    background-color: #1e1e28; /* Match the general card background */
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    
+}
+
+.hidden-tasks:hover {
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+}
+
+.hidden-tasks ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Add scroll if content overflows */
+}
+
+.hidden-tasks ul li {
+    display: flex; /* Ensure buttons stay on the same line */
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Space out text and buttons */
+    font-size: 1rem; /* Match general card font size */
+    padding: 5px 10px; /* Add padding for better spacing */
+    border-radius: 5px; /* Add rounded corners */
+    background-color: #2a2a2a;
+    margin-bottom: 5px; /* Add spacing between list items */
+}
+
+.hidden-tasks ul li:hover {
+    background-color: #37474f; /* Highlight effect */
+}
+
+.hidden-tasks ul li label {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Match spacing between checkbox and text */
+    flex-grow: 1; /* Ensure the label takes available space */
+}
+
+.hidden-tasks ul li input[type="checkbox"] {
+    appearance: none;
+    width: 20px; /* Match general card checkbox size */
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.hidden-tasks ul li input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    position: relative;
+}
+
+.hidden-tasks ul li input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden-tasks ul li button {
+    margin-left: 5px; /* Add consistent spacing between buttons */
+    background: none;
+    border: none;
+    color: #f30606;
+    font-size: 0.9rem; /* Match general card button size */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.hidden-tasks ul li button:hover {
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+.hidden-tasks ul li .button-group {
+    display: flex; /* Align buttons horizontally */
+    gap: 5px; /* Match spacing between buttons */
 }
 
 .layout-container {
@@ -726,7 +814,7 @@ footer h3 {
     }
 
     .general-section .container, .completion-card,
-    .worlds-section .container, .personal-tasks {
+    .worlds-section .container, .personal-tasks{
         width: 100%; /* Full width for smaller screens */
     }
 }
@@ -886,13 +974,6 @@ footer h3 {
     border-bottom: 2px solid #333;
 }
 
-/* .reset-card .banner {
-    width: 100%;
-    height: 32px;
-    object-fit: cover;
-    border-bottom: 2px solid #333;
-    margin-bottom: 15px;
-} */
 
 .reset-card .card-content {
     padding: 15px;
