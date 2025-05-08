@@ -380,6 +380,7 @@ let timerIntervals = {};
 function startTimer(timerId, minutes) {
     const timerElement = document.getElementById(timerId);
     const startButton = document.querySelector(`[onclick="startTimer('${timerId}', ${minutes})"]`);
+    const stopButton = document.querySelector(`[onclick="toggleTimer('${timerId}')"]`);
     const endTime = Date.now() + minutes * 60 * 1000; // Calculate the end time
 
     clearInterval(timerIntervals[timerId]);
@@ -394,6 +395,7 @@ function startTimer(timerId, minutes) {
             clearInterval(timerIntervals[timerId]);
             timerAudio.currentTime = 0; // Reset audio to the beginning
             timerAudio.play().catch(error => console.error('Error playing audio:', error));
+            stopButton.textContent = "Stop"; // Reset stop button label
         }
     };
 
@@ -402,6 +404,40 @@ function startTimer(timerId, minutes) {
     timerIntervals[timerId] = setInterval(updateDisplay, 1000); // Update every second
 
     startButton.textContent = "Restart";
+    stopButton.textContent = "Stop"; // Ensure stop button is reset
+}
+
+function toggleTimer(timerId) {
+    const stopButton = document.querySelector(`[onclick="toggleTimer('${timerId}')"]`);
+    if (stopButton.textContent === "Stop") {
+        clearInterval(timerIntervals[timerId]); // Pause the timer
+        stopButton.textContent = "Resume";
+    } else {
+        const timerElement = document.getElementById(timerId);
+        const [mins, secs] = timerElement.textContent.split(':').map(Number);
+        const remainingTime = mins * 60 + secs; // Calculate remaining time in seconds
+        const endTime = Date.now() + remainingTime * 1000; // Calculate new end time
+
+        clearInterval(timerIntervals[timerId]);
+
+        const updateDisplay = () => {
+            const timeRemaining = Math.max(0, endTime - Date.now());
+            const mins = Math.floor(timeRemaining / 60000);
+            const secs = Math.floor((timeRemaining % 60000) / 1000);
+            timerElement.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerIntervals[timerId]);
+                timerAudio.currentTime = 0;
+                timerAudio.play().catch(error => console.error('Error playing audio:', error));
+                stopButton.textContent = "Stop"; // Reset stop button label
+            }
+        };
+
+        updateDisplay();
+        timerIntervals[timerId] = setInterval(updateDisplay, 1000);
+        stopButton.textContent = "Stop"; // Change back to "Stop" after resuming
+    }
 }
 
 function resetTimer(timerId, minutes) {
