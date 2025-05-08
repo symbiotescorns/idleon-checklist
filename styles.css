@@ -234,6 +234,7 @@ header .controls .button.toggle:hover {
     padding: 2px;
     font-size: 14px;
     outline: none;
+    background-color: rgb(32, 31, 38);
     transition: border-color 0.3s;
 }
 
