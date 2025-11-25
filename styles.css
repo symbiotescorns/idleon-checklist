@@ -1,32 +1,30 @@
+html, body {
+    height: 100%; /* Ensure the body and html take up the full height */
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background: linear-gradient(45deg, #1E1E1E, #000D36); /* Gradient background */
+    color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     transition: background-color 0.3s, color 0.3s;
-}
-
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-    transition: background-color 0.5s, color 0.5s;
-    font-weight: bold; /* Make all text bold in dark mode */
 }
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1e1e2f;
+    background: radial-gradient(circle, #100f11, #1a0533);
     color: #ffffff;
     padding: 15px 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-bottom: 5px solid;
-    border-image: linear-gradient(to right, red, white, red) 1;
+    border-bottom: 2px solid transparent; /* Remove solid color */
+    border-image: linear-gradient(to right, purple, yellow, purple) 1; /* Multi-colored gradient */
 }
 
 header h1 {
@@ -41,13 +39,14 @@ header .controls {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 20px; /* Add spacing between the search bar and the controls */
 }
 
 header .controls .button.reset {
     background-color: #f30606;
     color: #ffffff;
     border: none;
-    padding: 10px;
+    padding: 0;
     width: 60px;
     height: 42px;
     font-size: 0.9rem;
@@ -82,24 +81,6 @@ header .controls .button.toggle:hover {
     transform: scale(1.2);
 }
 
-body.dark-mode header {
-    background-color: #121212;
-    border-bottom: 2px solid #27ae60;
-}
-
-body.dark-mode .controls .button.reset {
-    background-color: #f30606;
-    color: #ffffff;
-}
-
-body.dark-mode .controls .button.reset:hover {
-    background-color: #d90404;
-}
-
-body.dark-mode .controls .button.toggle {
-    color: #ffffff;
-}
-
 .container {
     display: flex; /* Use flexbox for alignment */
     flex-wrap: wrap; /* Allow cards to wrap to the next row */
@@ -113,36 +94,42 @@ body.dark-mode .controls .button.toggle {
     flex: 1 1 calc(33.333% - 20px); /* Responsive width: 3 cards per row with spacing */
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Ensure content stays within the card */
-    background-color: #ffffff; /* White background for the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
     text-align: center; /* Center-align text */
     box-sizing: border-box;
 }
 
+.card-inner {
+    background-color: #1e1e28; /* Ensure the card switches to dark mode color */
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+    color: #ffffff; /* Ensure text inside the card is white */
+}
+
 .card:hover {
     transform: scale(1.05); /* Slightly enlarge the card on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow */
+    background-color: #33236d;
 }
 
-body.dark-mode .card {
-    background-color: #1e1e1e; /* Ensure the card switches to dark mode color */
-    color: #ffffff; /* Ensure text inside the card is white */
-    border-color: #333333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode .card:hover {
-    background-color: #2a2a2a;
+.banner-wrapper {
+    height: 32px;
+    overflow: hidden; 
 }
 
 .banner {
-    width: 100%; /* Full width of the card */
-    height: 32px; /* Maintain aspect ratio */
-    max-height: 200px; /* Limit the height */
-    object-fit: cover; /* Ensure the image scales properly */
-    object-position: left; /* Align the image to the left */
-    border-bottom: 2px solid #ccc; /* Add a subtle divider */
+    width: 100%; 
+    height: 100%; 
+    object-fit: scale-down; 
+    object-position: left; 
+}
+
+
+.banner-wrapper {
+    border-bottom: 2px solid #ccc;
 }
 
 .card-content {
@@ -153,10 +140,6 @@ body.dark-mode .card:hover {
 .card-content h3 {
     font-size: 1.5rem; /* Adjust font size for the title */
     margin-bottom: 10px;
-    color: #333;
-}
-
-body.dark-mode .card-content h3 {
     color: #ffffff; /* Ensure text inside card content is white */
 }
 
@@ -169,10 +152,6 @@ body.dark-mode .card-content h3 {
 .card-content ul li {
     font-size: 1rem; /* Match Figma font size */
     margin: 5px 0;
-    color: #666;
-}
-
-body.dark-mode .card-content ul li {
     color: #ffffff; /* Ensure text inside card content is white */
 }
 
@@ -198,6 +177,8 @@ body.dark-mode .card-content ul li {
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .checklist input[type="checkbox"]:checked {
@@ -226,11 +207,6 @@ body.dark-mode .card-content ul li {
 }
 
 .checklist li:hover {
-    background-color: #e0f7fa; /* Keep the highlight effect */
-    transform: none; /* Remove the enlarging effect */
-}
-
-body.dark-mode .checklist li:hover {
     background-color: #37474f; /* Keep the highlight effect in dark mode */
     transform: none; /* Remove the enlarging effect */
 }
@@ -252,12 +228,13 @@ body.dark-mode .checklist li:hover {
 
 .search-bar {
     width: 80%;
-    height: 20px;
-    border: 1px solid black;
+    height: 40px;
+    border: 1px solid rgb(85, 16, 90);
     border-radius: 5px;
-    padding: 5px;
+    padding: 2px;
     font-size: 14px;
     outline: none;
+    background-color: rgb(32, 31, 38);
     transition: border-color 0.3s;
 }
 
@@ -275,87 +252,58 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 0.9rem;
-    color: #666;
-    background-color: #f4f4f9;
-    border-top: 1px solid #ccc;
+    color: #ffffff;
+    background-color: transparent; /* Make footer background transparent */
+    border-top: 1px solid #333;
 }
 
 footer h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #333;
+    color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-.credits-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap; /* Ensure responsiveness */
-}
-
-.credits-section {
-    text-align: left;
-}
-
-.credits-section h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.credits-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .credits-section ul li {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: #ffffff;
 }
 
 .credits-section ul li i {
-    color: #4caf50; /* Icon color */
-    font-size: 1.2rem;
-}
-
-body.dark-mode footer {
-    background-color: #121212;
-    color: #ffffff;
-    border-top: 1px solid #333;
-}
-
-body.dark-mode footer h3,
-body.dark-mode .credits-section h4 {
-    color: #ffffff;
-}
-
-body.dark-mode .credits-section ul li {
-    color: #ffffff;
-}
-
-body.dark-mode .credits-section ul li i {
     color: #27ae60; /* Adjust icon color for dark mode */
 }
 
 .general-section {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
     gap: 20px;
-    align-items: flex-start; /* Align General and Completion sections to the top */
+    align-items: flex-start; */
+    /* Align General and Completion sections to the top */
+    /* General section retains its larger size */
+    /* flex: 3;  */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.3rem;
+    
+    width: 100%;
 }
 
 .general-section .container {
-    width: calc((100% - 40px) * 2 / 3 + 20px); /* 2 gaps go 20px = 40px - align to timer section */
+    /* 2 gaps go 20px = 40px - align to timer section */
+    /* width: calc((100% - 40px) * 2 / 3 + 20px); */
     padding: 0;
+    margin: 0;
+    /* flex: 0 0 calc((100% - 40px) * 2 / 3); */
+    grid-column: span 2;
+}
+
+.worlds-section .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.3rem;
+    width: 100%;
+
 }
 
 .card.general-card {
@@ -369,171 +317,187 @@ body.dark-mode .credits-section ul li i {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
+.card[data-world="World 1"] {
+    background: linear-gradient(144.8deg, #1c3c26 7.9%, #4a955e 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 2"] {
+    background: linear-gradient(144.8deg, #F4EA97 7.9%, #faed7b 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 3"] {
+    background: linear-gradient(144.8deg, #78C2EA 7.9%, #6ac0ef 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 4"] {
+    background: linear-gradient(144.8deg, #8C34CA 7.9%, #8625cb 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 5"] {
+    background: linear-gradient(144.8deg, #C28772 7.9%, #c27f67 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="World 6"] {
+    background: linear-gradient(144.8deg, #B4E04F 7.9%, #b3e244 100%);
+    padding: 2px; /* border thickness */
+}
+.card[data-world="General"] {
+    background: linear-gradient(144.8deg, #B4E04F 7.9%, #F4EA97 30%, #78C2EA 60%, #8C34CA 100%);
+    padding: 2px; /* border thickness */
+}
+
+
 .completion-card {
-    flex: 1 1 calc(33.333% - 40px); /* Align with other cards */
-    margin: 0; /* Remove extra margins to align with General section */
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: left; /* Align content to the left */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack progress bars vertically */
-    gap: 15px; /* Add spacing between progress bars */
+    /* Remove redundant styles since it now uses the card structure */
     margin-top: 0; /* Align with General section */
     box-sizing: border-box;
+    background-color: #1e1e28; /* Ensure the completion card switches to dark mode */
+    color: #ffffff; /* Ensure text inside the completion card is white */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#progress-bars-container > .progress-bar {
+    margin-top: 0.5rem;
+}
+
+#progress-bars-container > .progress-bar:first-of-type {
+    margin-top: 0;
 }
 
 .progress-bar {
     display: flex;
     flex-direction: column; /* Ensure label and bar are stacked */
+    align-items: left; /* Align label and bar vertically */
+    gap: 5px; /* Add spacing between the label and the bar */
 }
 
 .progress-bar span {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 5px;
     color: #666;
+    flex-shrink: 0; /* Prevent the label from shrinking */
+    text-align: left; /* Align text to the left */
 }
 
 .progress-bar .bar {
     width: 100%;
     height: 20px;
-    background-color: #e0e0e0;
+    background-color: #333333; /* Darken the progress bar background */
     border-radius: 10px;
     overflow: hidden;
     position: relative;
+    flex-grow: 1; /* Allow the bar to take up remaining space */
+    height: 10px; /* Slimmer height for the progress bar */
 }
 
 .progress-bar .bar .fill {
     height: 100%;
     width: 0; /* Default width is 0, updated dynamically */
     transition: width 0.3s ease, box-shadow 0.3s ease;
+    background-color: #4caf50; /* Keep the fill color consistent */
 }
 
 #total-progress {
-    background-image: linear-gradient(to right, rgba(4, 70, 4, 0), rgb(5, 101, 5));
+    background: linear-gradient(to right, transparent, #00FBFF); 
 }
 
 #world-1-progress {
-    background-color: #0cf533; 
+    background: linear-gradient(to right, transparent, #54BD3C); 
 }
 
 #world-2-progress {
-    background-color: #C2B280; 
+    background: linear-gradient(to right, transparent, #F4EA97); 
 }
 
 #world-3-progress {
-    background-color: #899cf0; 
+    background: linear-gradient(to right, transparent, #78C2EA); 
 }
 
 #world-4-progress {
-    background-color: #800080; 
+    background: linear-gradient(to right, transparent, #8C34CA);  
 }
 
 #world-5-progress {
-    background-color: #CF1020;
+    background: linear-gradient(to right, transparent, #C28772); 
 }
 
 #world-6-progress {
-    background-color: #6df347; 
+    background: linear-gradient(to right, transparent, #B4E04F); 
 }
 
 #personal-progress {
-    background-color: #745584;
+    background: linear-gradient(to right, transparent, #00a2ff); 
 }
 
 .progress-bar .bar .fill.glow {
     box-shadow: 0 0 15px 5px currentColor; /* Glow effect */
 }
 
-body.dark-mode .completion-card {
-    background-color: #1e1e1e; /* Ensure the completion card switches to dark mode */
-    color: #ffffff; /* Ensure text inside the completion card is white */
-}
-
 .worlds-section {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 1.3rem; /* Add spacing between personal and hidden cards */
     flex-wrap: wrap; /* Ensure responsiveness */
-    align-items: flex-start; /* Align items to the top */
-    margin-top: 20px;
+    align-items: stretch; /* Align items to the same height */
+    margin-top: 1.3rem;
+    padding: 0 20px; /* Add padding to the left and right of the screen */
 }
 
 .personal-tasks {
-    flex: 1 1 calc(33.333% - 40px); /* Align with other cards */
-    margin: 20px auto; /* Center the Personal Tasks section horizontally */
-    background-color: #ffffff;
+    flex: 3; /* Take 60% of the width */
+    margin: 0; /* Remove extra margins */
+    background-color: #1e1e28; /* Match the general card background */
+    color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: left; /* Align content to the left */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    gap: 15px; /* Add spacing between elements */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+    flex-direction: column; /* Ensure content stacks vertically */
 }
 
 .personal-tasks:hover {
-    transform: scale(1.03); /* Enlarge the Personal Tasks box on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-}
-
-body.dark-mode .personal-tasks {
-    background-color: #1e1e1e; /* Ensure the personal tasks card switches to dark mode */
-    color: #ffffff; /* Ensure text inside the personal tasks card is white */
-}
-
-.personal-tasks .banner {
-    width: 100%; /* Full width of the card */
-    height: 32px; /* Maintain aspect ratio */
-    max-height: 200px; /* Limit the height */
-    object-fit: cover; /* Ensure the image scales properly */
-    object-position: left; /* Align the image to the left */
-    border-bottom: 2px solid #ccc; /* Add a subtle divider */
-    margin-bottom: 15px; /* Add spacing below the banner */
-}
-
-body.dark-mode .personal-tasks .banner {
-    border-bottom: 2px solid #333; /* Darken the divider in dark mode */
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
 .personal-tasks ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1; /* Allow the list to grow and fill available space */
+    overflow-y: auto; /* Add scroll if content overflows */
 }
 
 .personal-tasks ul li {
-    font-size: 1rem; /* Ensure consistent font size across all tasks */
-    transition: transform 0.2s, background-color 0.2s; /* Smooth hover effect */
-    padding: 5px;
+    display: flex; /* Ensure buttons stay on the same line */
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Space out text and buttons */
+    font-size: 1rem; /* Match general card font size */
+    padding: 5px 10px; /* Add padding for better spacing */
     border-radius: 5px; /* Add rounded corners */
+    background-color: #2a2a2a;
+    margin-bottom: 5px; /* Add spacing between list items */
 }
 
 .personal-tasks ul li:hover {
-    background-color: #e0f7fa; /* Keep the highlight effect */
-    transform: none; /* Remove the enlarging effect */
-}
-
-body.dark-mode .personal-tasks ul li:hover {
-    background-color: #37474f; /* Keep the highlight effect in dark mode */
-    transform: none; /* Remove the enlarging effect */
+    background-color: #37474f; /* Highlight effect */
 }
 
 .personal-tasks ul li label {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    gap: 10px;
+    gap: 10px; /* Match spacing between checkbox and text */
+    flex-grow: 1; /* Ensure the label takes available space */
 }
 
 .personal-tasks ul li input[type="checkbox"] {
     appearance: none;
-    width: 20px;
+    width: 20px; /* Match general card checkbox size */
     height: 20px;
     border: 2px solid #ccc;
-    border-radius: 50%; /* Match radio button style */
+    border-radius: 5px;
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -550,27 +514,33 @@ body.dark-mode .personal-tasks ul li:hover {
     color: white;
     font-size: 14px;
     position: absolute;
-    top: 2px;
-    left: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .personal-tasks ul li button {
+    margin-left: 5px; /* Add consistent spacing between buttons */
     background: none;
     border: none;
     color: #f30606;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Match general card button size */
     cursor: pointer;
-    margin-left: 10px;
     transition: transform 0.2s ease;
 }
 
 .personal-tasks ul li button:hover {
-    transform: scale(1.2); /* Slightly enlarge the X button on hover */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+.personal-tasks ul li .button-group {
+    display: flex; /* Align buttons horizontally */
+    gap: 5px; /* Match spacing between buttons */
 }
 
 .personal-tasks button {
-    margin: 20px auto 0; /* Center the button horizontally */
-    padding: 10px 15px;
+    margin: 15px auto 0; /* Center the button horizontally */
+    padding: 8px 12px; /* Adjust padding for smaller size */
     background-color: #4caf50;
     color: #ffffff;
     border: none;
@@ -579,20 +549,114 @@ body.dark-mode .personal-tasks ul li:hover {
     transition: background-color 0.3s ease;
 }
 
-.personal-tasks button:hover {
-    background-color: #45a049;
+.hidden-tasks {
+    flex: 2; /* Take 40% of the width */
+    margin: 0; /* Remove extra margins */
+    background-color: #1e1e28; /* Match the general card background */
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    
 }
 
-body.dark-mode .progress-bar .bar {
-    background-color: #333333; /* Darken the progress bar background */
+.hidden-tasks:hover {
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
 }
 
-body.dark-mode .progress-bar .bar .fill {
-    background-color: #4caf50; /* Keep the fill color consistent */
+.hidden-tasks ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Add scroll if content overflows */
+}
+
+.hidden-tasks ul li {
+    display: flex; /* Ensure buttons stay on the same line */
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Space out text and buttons */
+    font-size: 1rem; /* Match general card font size */
+    padding: 5px 10px; /* Add padding for better spacing */
+    border-radius: 5px; /* Add rounded corners */
+    background-color: #2a2a2a;
+    margin-bottom: 5px; /* Add spacing between list items */
+}
+
+.hidden-tasks ul li:hover {
+    background-color: #37474f; /* Highlight effect */
+}
+
+.hidden-tasks ul li label {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Match spacing between checkbox and text */
+    flex-grow: 1; /* Ensure the label takes available space */
+}
+
+.hidden-tasks ul li input[type="checkbox"] {
+    appearance: none;
+    width: 20px; /* Match general card checkbox size */
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.hidden-tasks ul li input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    position: relative;
+}
+
+.hidden-tasks ul li input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden-tasks ul li button {
+    margin-left: 5px; /* Add consistent spacing between buttons */
+    background: none;
+    border: none;
+    color: #f30606;
+    font-size: 0.9rem; /* Match general card button size */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.hidden-tasks ul li button:hover {
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+.hidden-tasks ul li .button-group {
+    display: flex; /* Align buttons horizontally */
+    gap: 5px; /* Match spacing between buttons */
 }
 
 .layout-container {
+    display: block;
     padding: 20px;
+}
+
+.right-section {
+    /* Right section takes less space */
+    /* flex: 1; */
+    /* flex: 1 1 calc((100% - 40px) / 3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; */
+
+    display: block;
 }
 
 .timers-section {
@@ -600,13 +664,9 @@ body.dark-mode .progress-bar .bar .fill {
     justify-content: space-between;
     gap: 20px; /* Reduce gap between columns */
     padding: 20px; /* Reduce padding */
-    background-color: #ffffff;
+    background-color: #1e1e28;
     border-radius: 8px; /* Slightly smaller border radius */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-body.dark-mode .timers-section {
-    background-color: #1e1e1e;
     color: #ffffff;
 }
 
@@ -615,12 +675,8 @@ body.dark-mode .timers-section {
     text-align: center;
     padding: 8px; /* Reduce padding */
     border-radius: 8px; /* Slightly smaller border radius */
-    background-color: #f9f9f9;
+    background-color: #212131;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-body.dark-mode .timer-column {
-    background-color: #2a2a2a;
 }
 
 .timer-column h3 {
@@ -663,15 +719,11 @@ body.dark-mode .timer-column {
 .hidden-tasks {
     margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #1e1e1e;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
     max-width: 600px;
-}
-
-body.dark-mode .hidden-tasks {
-    background-color: #1e1e1e;
     color: #ffffff;
 }
 
@@ -692,14 +744,10 @@ body.dark-mode .hidden-tasks {
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 5px;
-    background-color: #f9f9f9;
+    background-color: #2a2a2a;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-body.dark-mode .hidden-tasks ul li {
-    background-color: #2a2a2a;
 }
 
 .hidden-tasks ul li button {
@@ -732,15 +780,33 @@ body.dark-mode .hidden-tasks ul li {
     object-fit: contain;
 }
 
+/* Style for the footer image */
+.footer-image {
+    background: none; /* Remove any background color */
+    opacity: 0.8; /* Slight transparency to allow background bleed-through */
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding: 16px 0;
+}
+
 @media (max-width: 1024px) {
+    .general-section {
+        display: flex;
+        flex-direction: column;
+    }
+
     .card {
-        flex: 1 1 calc(50% - 40px); /* 2 cards per row on medium screens */
+        /* 2 cards per row on medium screens */
+        /* flex: 1 1 calc(50% - 40px);  */
     }
 }
 
 @media (max-width: 768px) {
     .card {
-        flex: 1 1 calc(100% - 40px); /* 1 card per row on small screens */
+        /* 1 card per row on small screens */
+        /* flex: 1 1 calc(100% - 40px);  */
     }
 
     .general-section, .worlds-section {
@@ -748,7 +814,509 @@ body.dark-mode .hidden-tasks ul li {
     }
 
     .general-section .container, .completion-card,
-    .worlds-section .container, .personal-tasks {
+    .worlds-section .container, .personal-tasks{
         width: 100%; /* Full width for smaller screens */
     }
+}
+
+.completion-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.completion-actions .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.completion-actions .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.completion-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+}
+
+.completion-actions .button.reset:hover {
+    background-color: #d90404;
+}
+
+.completion-actions .button.placeholder {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.completion-actions .button.placeholder:hover {
+    background-color: #45a049;
+}
+
+.completion-card .completion-actions {
+    margin-top: 20px; /* Add spacing above the buttons */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.completion-card .completion-actions .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Add spacing between rows if wrapped */
+}
+
+.completion-card .completion-actions .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.completion-card .completion-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+}
+
+.completion-card .completion-actions .button.reset:hover {
+    background-color: #d90404;
+}
+
+.completion-card .completion-actions .button.placeholder {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+.completion-card .completion-actions .button.placeholder:hover {
+    background-color: #45a049;
+}
+
+.completion-card #progress-bars-container {
+    margin-bottom: 20px; /* Add spacing below progress bars */
+}
+
+.completion-card .completion-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.completion-card .completion-actions .column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Add spacing between rows if wrapped */
+}
+
+.image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Increase width */
+    height: 40px; /* Increase height */
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.setting-cog {
+    width: 60px;
+    height: 60px;
+}
+
+.image-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-button:hover {
+    transform: scale(1.15); /* Slightly enlarge on hover */
+}
+
+.reset-card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.reset-card .banner-wrapper {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+}
+
+
+.reset-card .card-content {
+    padding: 15px;
+    text-align: center;
+}
+
+.reset-actions {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center;
+    gap: 10px; /* Reduce the gap between buttons */
+    position: relative; /* For positioning the divider */
+}
+
+.reset-actions .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px; /* Reduce spacing between text and button */
+}
+
+.reset-actions .divider {
+    position: absolute;
+    height: 100%; /* Adjust height to match button alignment */
+    width: 2px;
+    background-color: #ccc; /* Divider color */
+    left: 50%; /* Center the divider */
+    transform: translateX(-50%);
+}
+
+.reset-actions .column p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.reset-section p {
+    text-align: center; /* Center-align the text */
+    margin-top: 1px; /* Add spacing above the text */
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.reset-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-actions .button.reset:hover {
+    background-color: #d90404;
+    transform: scale(1.05);
+}
+
+.reset-section {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.reset-section .banner {
+    width: 100%;
+    height: 32px;
+    object-fit: cover;
+    border-bottom: 2px solid #333;
+    margin-bottom: 15px;
+}
+
+.reset-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.reset-actions .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.reset-actions .column p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.reset-actions .button.reset {
+    background-color: #f30606;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-actions .button.reset:hover {
+    background-color: #d90404;
+    transform: scale(1.05);
+}
+
+.reset-section {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.reset-card .card-content {
+    padding: 15px; /* Add padding to align with other sections */
+    text-align: center; /* Center-align the content */
+}
+
+/* Styles for the settings popup */
+.settings-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #1e1e28, #14142f);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(136, 136, 136, 0.5);
+    z-index: 1000;
+    width: 60%;
+    max-height: 80%;
+    overflow-y: auto;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.settings-popup h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #4caf50;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.settings-popup h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #feb47b;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.settings-popup .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: orange; /* Set the background color to orange */
+    border: none;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    width: 50px; /* Set width for the circular shape */
+    height: 50px; /* Set height for the circular shape */
+    border-radius: 50%; /* Make the background circular */
+    display: flex; /* Center the text/icon inside the circle */
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-popup .close-button:hover {
+    transform: scale(1.2);
+    color: #f30606;
+}
+
+/* Styles for the checklist container */
+.settings-popup .checklist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Styles for individual checklist items */
+.settings-popup .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #2e2e3b, #131329);
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 97%;
+}
+
+.settings-popup .checklist-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.settings-popup .checklist-item input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.settings-popup .checklist-item input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    position: relative;
+}
+
+.settings-popup .checklist-item input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.settings-popup .checklist-item label {
+    font-size: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: left; /* Align text to the left */
+}
+
+/* Add a glowing effect for focus */
+.settings-popup .checklist-item input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px 2px rgba(76, 175, 80, 0.8);
+}
+
+
+.priority-button {
+    background: none;
+    border: none;
+    color: #ffd700; /* Gold color for the star */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.priority-button:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+    color: #ffa500; /* Darker gold on hover */
+}
+
+.high-priority {
+    color: #00FFEA !important;
+    font-weight: bold;
+    border: 2px solid #00FFEA; 
+}
+
+.priority-button {
+    background: none;
+    border: none;
+    color: #ffd700; /* Gold color for the star */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.priority-button:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+    color: #ffa500; /* Darker gold on hover */
+}
+
+.sort-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.sort-button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px 0;
+}
+
+.sort-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.sort-select {
+    width: 100%; /* Match the width of other settings options */
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 10px; /* Add a gap below the picklist */
+}
+
+.sort-select:focus {
+    border-color: #4caf50;
+    background-color: #1e1e1e;
+}
+
+.button.reset.daily-reset {
+    background-color: #FF5900; /* Green for daily reset */
+    color: #ffffff;
+}
+
+.button.reset.daily-reset:hover {
+    background-color: #e65101;
+}
+
+.button.reset.weekly-reset {
+    background-color: #59008D; /* Blue for weekly reset */
+    color: #ffffff;
+}
+
+.button.reset.weekly-reset:hover {
+    background-color: #490074;
 }

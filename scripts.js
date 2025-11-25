@@ -1,7 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const isDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
-    if (isDarkMode) document.body.classList.add("dark-mode");
+const timerAudio = new Audio('./assets/audio/timer.mp3');
+timerAudio.load(); // Preload audio
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Removed dark mode toggle logic
     loadTasks();
     setupCollapsibleSections();
     document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
@@ -16,17 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadHiddenTasks();
     loadPersonalTasks();
+    addSortingControls(); // Add sorting controls after tasks are loaded
 });
 
-function toggleDarkMode() {
-    const body = document.body;
-    body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", JSON.stringify(body.classList.contains("dark-mode")));
-}
+// Removed toggleDarkMode function
 
-function createTaskElement(text, completed, isPersonal = false) {
+function createTaskElement(text, completed, isPersonal = false, isHighPriority = false) {
     const li = document.createElement("li");
     li.dataset.sectionId = ""; // Add a data attribute to store the section ID
+    li.classList.toggle('high-priority', isHighPriority); // Add high-priority class if applicable
+
     const label = document.createElement("label");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -40,16 +40,35 @@ function createTaskElement(text, completed, isPersonal = false) {
     span.textContent = text;
 
     const hideButton = document.createElement("button");
-    hideButton.textContent = "👁️"; // Eye icon
-    hideButton.title = "Hide Task"; // Tooltip for better clarity
+    const hideImage = document.createElement("img");
+    hideImage.src = "./assets/site/Vector 2.png"; // Use the eye icon image
+    hideImage.alt = "Hide Icon";
+    hideImage.style.width = "28px"; // Adjust size as needed
+    hideImage.style.height = "28px";
+    hideButton.appendChild(hideImage);
     hideButton.onclick = () => {
         hideTask(li, text);
+    };
+
+    const priorityButton = document.createElement("button");
+    const priorityImage = document.createElement("img");
+    priorityImage.src = "./assets/site/high-p.png"; // Use the high-priority icon image
+    priorityImage.alt = "High Priority Icon";
+    priorityImage.style.width = "20px"; // Adjust size as needed
+    priorityImage.style.height = "20px";
+    priorityButton.appendChild(priorityImage);
+    priorityButton.title = "Mark as High Priority";
+    priorityButton.className = "priority-button";
+    priorityButton.onclick = () => {
+        li.classList.toggle('high-priority');
+        saveTasks();
     };
 
     label.appendChild(checkbox);
     label.appendChild(span);
     li.appendChild(label);
     li.appendChild(hideButton); // Add the hide button
+    li.appendChild(priorityButton); // Add the priority button
 
     if (isPersonal) {
         const deleteButton = document.createElement("button");
@@ -78,14 +97,30 @@ function addPersonalTask() {
 
 function hideTask(taskElement, text) {
     const hiddenTasksList = document.getElementById("hidden-tasks");
+    const sectionId = taskElement.dataset.sectionId; // Retrieve the section ID
+    const sectionHeaderId = `hidden-section-${sectionId}`;
+    let sectionHeader = document.getElementById(sectionHeaderId);
+
+    // Create a new section header if it doesn't exist
+    if (!sectionHeader) {
+        sectionHeader = document.createElement("h4");
+        sectionHeader.id = sectionHeaderId;
+        sectionHeader.textContent = sectionId.replace(/-/g, ' ').toUpperCase(); // Format section name
+        hiddenTasksList.appendChild(sectionHeader);
+    }
+
     const hiddenTask = document.createElement("li");
     hiddenTask.textContent = text;
 
     const restoreButton = document.createElement("button");
-    restoreButton.textContent = "↩️"; // Restore icon
+    const restoreImage = document.createElement("img");
+    restoreImage.src = "./assets/site/return.png"; // Use the return icon image
+    restoreImage.alt = "Restore Icon";
+    restoreImage.style.width = "25px"; // Adjust size as needed
+    restoreImage.style.height = "25px";
+    restoreButton.appendChild(restoreImage);
     restoreButton.onclick = () => {
-        const originalSectionId = taskElement.dataset.sectionId; // Retrieve the original section ID
-        restoreTask(hiddenTask, text, originalSectionId);
+        restoreTask(hiddenTask, text, sectionId);
     };
 
     hiddenTask.appendChild(restoreButton);
@@ -111,17 +146,22 @@ function restoreTask(hiddenTaskElement, text, sectionId) {
 }
 
 function saveTasks() {
-    const tasks = Array.from(document.getElementById("personal-tasks").children).map(li => {
+    const tasks = Array.from(document.querySelectorAll(".checklist li")).map(li => {
         const checkbox = li.querySelector("input[type='checkbox']");
         const span = li.querySelector("span");
-        return { text: span.textContent, completed: checkbox.checked };
+        const isHighPriority = li.classList.contains('high-priority');
+        return { text: span.textContent, completed: checkbox.checked, isHighPriority };
     });
-    localStorage.setItem("personalTasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function resetCheckboxes() {
-    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false; // Uncheck all checkboxes
+function resetCheckboxes(type = "all") {
+    const selector = type === "all" 
+        ? '.checklist input[type="checkbox"]' 
+        : `.checklist[id*="${type.toLowerCase()}"] input[type="checkbox"]`;
+
+    document.querySelectorAll(selector).forEach(checkbox => {
+        checkbox.checked = false; // Uncheck all matching checkboxes
     });
     saveProgress();
     updateProgressBars(); // Reset progress bars after unchecking all checkboxes
@@ -129,9 +169,42 @@ function resetCheckboxes() {
 
 function filterTasks() {
     const query = document.querySelector('.search-bar').value.toLowerCase(); // Fixed selector
-    document.querySelectorAll('.checklist li').forEach(task => {
-        task.style.display = task.textContent.toLowerCase().includes(query) ? '' : 'none';
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        const cardId = card.id;
+        const isProgressBarCard = cardId === 'progress-bars-container';
+        const isResetCard = cardId === 'reset-card';
+        const isPersonalCard = cardId === 'personal-tasks';
+
+        if (isProgressBarCard || isResetCard || isPersonalCard) {
+            card.style.display = ''; // Always show progress bar, reset card, and personal card
+            return;
+        }
+
+        const tasks = card.querySelectorAll('.checklist li');
+        let hasMatch = false;
+
+        tasks.forEach(task => {
+            const text = task.textContent.toLowerCase();
+            if (text.includes(query)) {
+                task.style.display = '';
+                hasMatch = true;
+            } else {
+                task.style.display = 'none';
+            }
+        });
+
+        // Show or hide the card based on whether it has matching tasks
+        card.style.display = hasMatch ? '' : 'none';
     });
+
+    // If the search bar is cleared, ensure all cards are displayed
+    if (!query) {
+        cards.forEach(card => {
+            card.style.display = '';
+        });
+    }
 }
 
 function saveProgress() {
@@ -167,12 +240,23 @@ function loadTasks() {
         .then(data => {
             const generalContainer = document.getElementById('general-container');
             const worldsContainer = document.getElementById('worlds-container');
-            const completionCard = document.querySelector('.completion-card');
+            const progressBarsContainer = document.getElementById('progress-bars-container'); // Updated container
+
+            const savedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
 
             data.forEach(world => {
                 const card = document.createElement('div');
                 card.className = 'card';
+
+                card.dataset.world = world.name;
+                
                 if (world.name === 'General') card.classList.add('general-card');
+
+                const cardInner = document.createElement('div');
+                cardInner.className = 'card-inner';
+
+                const bannerWrapper = document.createElement('div');
+                bannerWrapper.className = 'banner-wrapper';
 
                 const banner = document.createElement('img');
                 banner.src = world.banner;
@@ -197,35 +281,26 @@ function loadTasks() {
                     checklist.id = `${world.name.toLowerCase().replace(/\s+/g, '-')}-${taskGroup.type.toLowerCase().replace(/\s+/g, '-')}`;
 
                     taskGroup.items.forEach(task => {
-                        const listItem = document.createElement('li');
+                        const savedTask = savedTasks.find(t => t.text === task);
+                        const listItem = createTaskElement(
+                            task,
+                            savedTask?.completed || false,
+                            false,
+                            savedTask?.isHighPriority || false
+                        );
                         listItem.dataset.sectionId = checklist.id; // Store the section ID
-                        const label = document.createElement('label');
-                        const checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.addEventListener('change', updateProgressBars);
-
-                        const span = document.createElement('span');
-                        span.textContent = task;
-
-                        const hideButton = document.createElement('button');
-                        hideButton.textContent = "👁️"; // Eye icon
-                        hideButton.title = "Hide Task"; // Tooltip for clarity
-                        hideButton.onclick = () => {
-                            hideTask(listItem, task);
-                        };
-
-                        label.appendChild(checkbox);
-                        label.appendChild(span);
-                        listItem.appendChild(label);
-                        listItem.appendChild(hideButton); // Add the hide button
                         checklist.appendChild(listItem);
                     });
 
                     cardContent.appendChild(checklist);
                 });
 
-                card.appendChild(banner);
-                card.appendChild(cardContent);
+                bannerWrapper.appendChild(banner);
+
+                cardInner.appendChild(bannerWrapper);
+                cardInner.appendChild(cardContent);
+
+                card.appendChild(cardInner);
 
                 if (world.name === 'General') {
                     generalContainer.appendChild(card);
@@ -263,7 +338,7 @@ function loadTasks() {
                 barContainer.appendChild(fill);
                 progressBar.appendChild(label);
                 progressBar.appendChild(barContainer);
-                completionCard.appendChild(progressBar);
+                progressBarsContainer.appendChild(progressBar); // Append to the correct container
             });
 
             loadProgress();
@@ -305,23 +380,64 @@ let timerIntervals = {};
 function startTimer(timerId, minutes) {
     const timerElement = document.getElementById(timerId);
     const startButton = document.querySelector(`[onclick="startTimer('${timerId}', ${minutes})"]`);
-    let timeRemaining = minutes * 60;
+    const stopButton = document.querySelector(`[onclick="toggleTimer('${timerId}')"]`);
+    const endTime = Date.now() + minutes * 60 * 1000; // Calculate the end time
 
-    clearInterval(timerIntervals[timerId]); // Clear any existing timer
-    timerIntervals[timerId] = setInterval(() => {
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        timeRemaining--;
+    clearInterval(timerIntervals[timerId]);
 
-        if (timeRemaining < 0) {
+    const updateDisplay = () => {
+        const timeRemaining = Math.max(0, endTime - Date.now()); // Calculate remaining time
+        const mins = Math.floor(timeRemaining / 60000);
+        const secs = Math.floor((timeRemaining % 60000) / 1000);
+        timerElement.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+        if (timeRemaining <= 0) {
             clearInterval(timerIntervals[timerId]);
-            alert(`${timerId.replace('timer-', '')}-Minute Timer Finished!`);
+            timerAudio.currentTime = 0; // Reset audio to the beginning
+            timerAudio.play().catch(error => console.error('Error playing audio:', error));
+            stopButton.textContent = "Stop"; // Reset stop button label
         }
-    }, 1000);
+    };
 
-    // Change the button label to "Restart"
+    updateDisplay(); // Show initial time immediately
+
+    timerIntervals[timerId] = setInterval(updateDisplay, 1000); // Update every second
+
     startButton.textContent = "Restart";
+    stopButton.textContent = "Stop"; // Ensure stop button is reset
+}
+
+function toggleTimer(timerId) {
+    const stopButton = document.querySelector(`[onclick="toggleTimer('${timerId}')"]`);
+    if (stopButton.textContent === "Stop") {
+        clearInterval(timerIntervals[timerId]); // Pause the timer
+        stopButton.textContent = "Resume";
+    } else {
+        const timerElement = document.getElementById(timerId);
+        const [mins, secs] = timerElement.textContent.split(':').map(Number);
+        const remainingTime = mins * 60 + secs; // Calculate remaining time in seconds
+        const endTime = Date.now() + remainingTime * 1000; // Calculate new end time
+
+        clearInterval(timerIntervals[timerId]);
+
+        const updateDisplay = () => {
+            const timeRemaining = Math.max(0, endTime - Date.now());
+            const mins = Math.floor(timeRemaining / 60000);
+            const secs = Math.floor((timeRemaining % 60000) / 1000);
+            timerElement.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerIntervals[timerId]);
+                timerAudio.currentTime = 0;
+                timerAudio.play().catch(error => console.error('Error playing audio:', error));
+                stopButton.textContent = "Stop"; // Reset stop button label
+            }
+        };
+
+        updateDisplay();
+        timerIntervals[timerId] = setInterval(updateDisplay, 1000);
+        stopButton.textContent = "Stop"; // Change back to "Stop" after resuming
+    }
 }
 
 function resetTimer(timerId, minutes) {
@@ -352,21 +468,45 @@ function resetCustomTimer() {
 }
 
 function saveHiddenTasks() {
-    const hiddenTasks = Array.from(document.getElementById("hidden-tasks").children).map(li => li.textContent.replace("↩️", "").trim());
+    const hiddenTasks = Array.from(document.getElementById("hidden-tasks").children)
+        .filter(el => el.tagName === "LI") // Only save task items, not headers
+        .map(li => {
+            const sectionHeader = li.previousElementSibling;
+            const sectionId = sectionHeader ? sectionHeader.id.replace("hidden-section-", "") : "";
+            return { text: li.textContent.replace("↩️", "").trim(), sectionId };
+        });
     localStorage.setItem("hiddenTasks", JSON.stringify(hiddenTasks));
 }
 
 function loadHiddenTasks() {
     const hiddenTasks = JSON.parse(localStorage.getItem("hiddenTasks") || "[]");
     const hiddenTasksList = document.getElementById("hidden-tasks");
-    hiddenTasks.forEach(text => {
+    hiddenTasksList.innerHTML = ""; // Clear existing tasks
+
+    hiddenTasks.forEach(({ text, sectionId }) => {
+        const sectionHeaderId = `hidden-section-${sectionId}`;
+        let sectionHeader = document.getElementById(sectionHeaderId);
+
+        // Create a new section header if it doesn't exist
+        if (!sectionHeader) {
+            sectionHeader = document.createElement("h4");
+            sectionHeader.id = sectionHeaderId;
+            sectionHeader.textContent = sectionId.replace(/-/g, ' ').toUpperCase(); // Format section name
+            hiddenTasksList.appendChild(sectionHeader);
+        }
+
         const hiddenTask = document.createElement("li");
         hiddenTask.textContent = text;
 
         const restoreButton = document.createElement("button");
-        restoreButton.textContent = "↩️"; // Restore icon
+        const restoreImage = document.createElement("img");
+        restoreImage.src = "./assets/site/111 1.png"; // Use the return icon image
+        restoreImage.alt = "Restore Icon";
+        restoreImage.style.width = "20px"; // Adjust size as needed
+        restoreImage.style.height = "20px";
+        restoreButton.appendChild(restoreImage);
         restoreButton.onclick = () => {
-            restoreTask(hiddenTask, text, ""); // Section ID will be empty for now
+            restoreTask(hiddenTask, text, sectionId);
         };
 
         hiddenTask.appendChild(restoreButton);
@@ -387,7 +527,53 @@ function loadPersonalTasks() {
     const personalTasks = JSON.parse(localStorage.getItem("personalTasks") || "[]");
     const personalTasksList = document.getElementById("personal-tasks");
     personalTasks.forEach(task => {
-        const li = createTaskElement(task.text, task.completed, true);
+        const li = createTaskElement(task.text, task.completed, true, task.isHighPriority);
         personalTasksList.appendChild(li);
+    });
+}
+
+function sortTasks(sectionId, sortBy = 'alphabetical') {
+    const checklist = document.getElementById(sectionId);
+    if (!checklist) return;
+
+    const tasks = Array.from(checklist.children);
+
+    tasks.sort((a, b) => {
+        if (sortBy === 'priority') {
+            const aPriority = a.classList.contains('high-priority') ? 1 : 0;
+            const bPriority = b.classList.contains('high-priority') ? 1 : 0;
+            return bPriority - aPriority || a.textContent.localeCompare(b.textContent);
+        } else if (sortBy === 'alphabetical') {
+            return a.textContent.localeCompare(b.textContent);
+        }
+    });
+
+    tasks.forEach(task => checklist.appendChild(task));
+}
+
+function addSortingControls() {
+    document.querySelectorAll('.card-content').forEach(content => {
+        const checklist = content.querySelector('.checklist');
+        if (!checklist) return;
+
+        const sectionId = checklist.id;
+
+        const sortContainer = document.createElement('div');
+        sortContainer.className = 'sort-container';
+
+        const sortAlphabeticalButton = document.createElement('button');
+        sortAlphabeticalButton.textContent = 'Sort A-Z';
+        sortAlphabeticalButton.className = 'sort-button';
+        sortAlphabeticalButton.onclick = () => sortTasks(sectionId, 'alphabetical');
+
+        const sortPriorityButton = document.createElement('button');
+        sortPriorityButton.textContent = 'Sort by Priority';
+        sortPriorityButton.className = 'sort-button';
+        sortPriorityButton.onclick = () => sortTasks(sectionId, 'priority');
+
+        sortContainer.appendChild(sortAlphabeticalButton);
+        sortContainer.appendChild(sortPriorityButton);
+
+        content.insertBefore(sortContainer, checklist);
     });
 }
