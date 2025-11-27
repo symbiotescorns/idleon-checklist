@@ -16,7 +16,10 @@
                     "[Void Trial Rerun] (Speedrunning) on Voidwalker",
                     "[Cranium Cooking] on Shaman",
                     "No Stamp Left Behind: Max out stamps",
-                    "Boron: Daily atomized bubble levels"
+                    "Boron: Daily atomized bubble levels",
+                    "Masterclass Discount from Legend Talents",
+                    "Jeweled Cogs unlocked in Duper Bits Gaming",
+                    "Clicker Games: Orion, Poppy and Bubba"
                 ]
             },
             {
@@ -24,7 +27,8 @@
                 "items": [
                     "Guild's weekly GP tasks",
                     "Dungeon's x20 Happy Hour (+[Vacuous Tissue] Prayer)",
-                    "Companions free pet follower"
+                    "Companions free pet follower",
+                    "Check for Nametag reset and claimable Nametags"
                 ]
             }
         ]
@@ -109,7 +113,7 @@
                 "items": [
                     "Breeding eggs and fenceyard",
                     "Daily spice claims from Breeding",
-                    "Cooking meal using Kitchen table",
+                    "Cooking Meal using Kitchen table",
                     "Ribbons from Cooking Menu"
                 ]
             },
@@ -134,7 +138,10 @@
                     "Nuggets",
                     "Snail",
                     "Villager EXP in Hole",
-                    "Study EXP in Hole"
+                    "Study EXP in Hole",
+                    "Bravery in Hole",
+                    "Justice in Hole",
+                    "Wisdom in Hole"
                 ]
             },
             {
@@ -155,14 +162,38 @@
                 "items": [
                     "Farming crops and Crop Transfer Ticket",
                     "Sneaking ninjas and Jade Emporium",
-                    "Summoning EXP and battles (3 daily attempts)"
+                    "Summoning EXP and battles (3 daily attempts)",
+                    "Emperor's Castle and Daily Attempts"
                 ]
             },
             {
                 "type": "Weekly",
                 "items": [
                     "Summoning familiars",
-                    "Demented Spiritlord miniboss"
+                    "Demented Spiritlord miniboss",
+                    "Exotic Market from Spelunking"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "World 7",
+        "banner": "./assets/banners/SV_header.png",
+        "tasks": [
+            {
+                "type": "Daily",
+                "items": [
+                    "Acquire new items",
+                    "Attempt to complete Unstable Reliquarium runs",
+                    "Coral Reef and daily Corals",
+                    "Spelunking and Overstim Status",
+                    "Spelunking's \"Unexplainable Daily Amber Gains(...)\""
+                ]
+            },
+            {
+                "type": "Weekly",
+                "items": [
+                    "Multi Meritocracy"
                 ]
             }
         ]
@@ -187,6 +218,9 @@
                     "Daily Merit Tasks reset",
                     "Daily Guild Tasks",
                     "Daily Skilling Minigames restore",
+                    "Daily Ribbons (Event Shop, Deathbringer, Legend Talent)",
+                    "Daily Coral in Coral Riff",
+                    "Daily Masterclass Discounts from Legend Talent",
                     "Shop Vendor's restock",
                     "Daily Boss Keys and Colloseum keys restock",
                     "Daily Spike Game Reset",
@@ -203,7 +237,10 @@
                     "Auto-collect ready Trapping Machine",
                     "Sapphire Pyramite's Kitchen Upgrade",
                     "New Snail Mail",
-                    "New Sailing Captains available"
+                    "New Sailing Captains available",
+                    "New Chances for Sneaking Blessings and Pristine Charms",
+                    "New Daily Attempts at Emperor's Castle",
+                    "New Jeweled Cogs from Duper Gaming"
                 ]
             }
         ]
